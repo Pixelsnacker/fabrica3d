@@ -68,15 +68,18 @@ export default function Projekte() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((p) => (
             <div key={p.id} className="rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow group border">
-              <div
-                className="h-48 flex items-center justify-center relative overflow-hidden bg-gray-900"
-                style={{ backgroundImage: `url(${p.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-              >
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)' }} />
+              <div className="h-56 relative overflow-hidden bg-gray-900">
+                <img
+                  src={p.image}
+                  alt={lang === 'en' ? p.titleEn : p.title}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)' }} />
                 <div className="absolute top-3 left-3">
                   <span
                     className="text-xs font-bold px-2 py-1 rounded text-white"
-                    style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
+                    style={{ backgroundColor: 'var(--fabrica-red)' }}
                   >
                     {lang === 'en' ? p.categoryEn : p.category}
                   </span>
