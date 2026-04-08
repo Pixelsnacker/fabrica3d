@@ -151,3 +151,14 @@
 ## Adresskorrektur & Bildfix
 - [x] Köln-Adresse korrigiert: "Gilabchstr. 29a" in Footer und Kontakt
 - [x] Projektbilder: Express-Proxy /api/img mit Magic-Byte-Erkennung (image/webp) eingerichtet, alle 12 URLs aktualisiert
+
+## Projektgalerie – Erweiterte Filter & Lightbox
+- [x] Projektdaten um Felder "Anwendungsfall" (application) und erweiterte Materialien erweitert
+- [x] Multi-Filter-Panel: Kategorie + Material + Anwendungsfall (kombinierbar, DE/EN)
+- [x] Aktive Filter als Tags mit X-Button zum Entfernen angezeigt
+- [x] Galerie-Grid: 3-spaltig, Hover-Overlay mit Titel/Kategorie/Material/Anwendungsfall
+- [x] Lightbox-Detailansicht: Vollbild-Bild, Titel, Beschreibung, Tech, Material, Anwendungsfall, CTA
+- [x] Keyboard-Navigation in Lightbox (ESC, Pfeil links/rechts)
+- [x] Animierte Übergänge beim Filtern (fade/scale)
+- [x] "Keine Ergebnisse"-Zustand mit Reset-Button
+- [x] DE/EN vollständig für alle neuen Filter und Labels
