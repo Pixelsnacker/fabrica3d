@@ -63,7 +63,7 @@ const heroPanels = [
     desc: 'Rekonstruktion historischer Objekte und Artefakte in höchster Detailtreue.',
     descEn: 'Reconstruction of historical objects and artifacts with highest detail accuracy.',
     bg: 'linear-gradient(135deg, #2c1810 0%, #5c3317 100%)',
-    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_museum_12878e89.jpg',
+    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_museum_new-ZoYQYjMaEVWVoUych4QCZE.webp',
     Icon: IconMuseum,
   },
 ];

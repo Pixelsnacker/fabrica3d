@@ -128,3 +128,7 @@
 ## Hero-Bilder Update (3D-Druck + 3D-Scan)
 - [x] 3D-Druck-Bild (SLA-Drucker mit transparentem Getriebe) auf Hochformat 800x1200 zugeschnitten und hochgeladen
 - [x] 3D-Scan-Bild: KI-generiertes spektakuläres Bild (Strukturlicht auf Turbinenschaufel, Blau-Cyan auf Schwarz) erstellt und hochgeladen
+
+## Museumsmodelle Hero-Bild
+- [x] KI-generiertes Hochformat-Bild: modernes Museum mit Kolosseum-Tastmodell auf schwarzem Sockel, kühles Blau-Ambiente + warmes Spotlight
+- [x] Bild in Home.tsx Museumsmodelle-Panel eingebunden
