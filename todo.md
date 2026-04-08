@@ -99,3 +99,9 @@
 - [x] Logo in Navigation einbinden (statt Text-Fallback)
 - [x] Logo im Footer einbinden (weiß invertiert per CSS filter)
 - [x] TypeScript-Fehler in Home.tsx (icon → Icon) behoben
+
+## Firmendaten von bestehender Website übernehmen
+- [x] Impressum mit echten Firmendaten befüllt (beide Standorte Kerpen + Köln, HRB 81094, USt-ID DE295059929, GF Daniel Rincón)
+- [x] Datenschutzerklärung mit echten Firmendaten befüllt
+- [x] Kontaktseite: beide Büros (Kerpen Hüttenstraße 205 + Köln Gilabchstr. 205) mit Adressen und Telefonnummern
+- [x] Footer: beide Standorte (Kerpen + Köln) mit Adressen und Telefonnummern eingebracht

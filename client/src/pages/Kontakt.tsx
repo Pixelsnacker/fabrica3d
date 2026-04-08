@@ -60,27 +60,52 @@ export default function Kontakt() {
                   </a>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white flex-shrink-0" style={{ backgroundColor: 'var(--fabrica-red)' }}>
-                  <Phone size={18} />
-                </div>
-                <div>
-                  <p className="font-semibold text-sm" style={{ color: 'var(--fabrica-anthrazit)' }}>{t('Telefon', 'Phone')}</p>
-                  <p className="text-sm text-gray-600">{t('Auf Anfrage', 'On request')}</p>
-                </div>
-              </div>
+              {/* Kerpen */}
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white flex-shrink-0" style={{ backgroundColor: 'var(--fabrica-red)' }}>
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm" style={{ color: 'var(--fabrica-anthrazit)' }}>{t('Adresse', 'Address')}</p>
-                  <p className="text-sm text-gray-600">
-                    Fabrica GmbH<br />
-                    [Straße und Hausnummer]<br />
-                    [PLZ Ort]<br />
-                    Deutschland
+                  <p className="font-semibold text-sm" style={{ color: 'var(--fabrica-anthrazit)' }}>
+                    {t('Büro Kerpen-Sindorf', 'Office Kerpen-Sindorf')}
                   </p>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Fabrica GmbH<br />
+                    Hüttenstraße 205<br />
+                    D-50170 Kerpen-Sindorf
+                  </p>
+                  <a href="tel:+4922739529429" className="text-sm hover:underline mt-1 block" style={{ color: 'var(--fabrica-red)' }}>
+                    +49 (0) 2273 / 9529429
+                  </a>
+                </div>
+              </div>
+              {/* Köln */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white flex-shrink-0" style={{ backgroundColor: 'var(--fabrica-red)' }}>
+                  <MapPin size={18} />
+                </div>
+                <div>
+                  <p className="font-semibold text-sm" style={{ color: 'var(--fabrica-anthrazit)' }}>
+                    {t('Büro Köln (neu)', 'Office Cologne (new)')}
+                  </p>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Fabrica GmbH<br />
+                    Gilabchstr. 205<br />
+                    50672 Köln
+                  </p>
+                  <a href="tel:+4922117051695" className="text-sm hover:underline mt-1 block" style={{ color: 'var(--fabrica-red)' }}>
+                    +49 (0) 221 / 17051695
+                  </a>
+                </div>
+              </div>
+              {/* Fax */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white flex-shrink-0" style={{ backgroundColor: 'var(--fabrica-red)' }}>
+                  <Phone size={18} />
+                </div>
+                <div>
+                  <p className="font-semibold text-sm" style={{ color: 'var(--fabrica-anthrazit)' }}>Fax</p>
+                  <p className="text-sm text-gray-600">+49 (0) 221 / 790760092</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">

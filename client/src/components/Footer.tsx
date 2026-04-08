@@ -97,15 +97,29 @@ export default function Footer() {
               <li className="flex items-start gap-2">
                 <MapPin size={15} className="mt-0.5 flex-shrink-0 text-white/40" />
                 <span>
-                  {t('Musterstraße 1', 'Sample Street 1')}<br />
-                  {t('12345 Musterstadt', '12345 Sample City')}<br />
-                  {t('Deutschland', 'Germany')}
+                  <span className="text-white/50 text-xs uppercase tracking-wide">{t('Kerpen', 'Kerpen')}</span><br />
+                  Hüttenstraße 205<br />
+                  D-50170 Kerpen-Sindorf<br />
+                  <a href="tel:+4922739529429" className="hover:text-white transition-colors">
+                    +49 (0) 2273 / 9529429
+                  </a>
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <MapPin size={15} className="mt-0.5 flex-shrink-0 text-white/40" />
+                <span>
+                  <span className="text-white/50 text-xs uppercase tracking-wide">{t('Köln (neu)', 'Cologne (new)')}</span><br />
+                  Gilabchstr. 205<br />
+                  50672 Köln<br />
+                  <a href="tel:+4922117051695" className="hover:text-white transition-colors">
+                    +49 (0) 221 / 17051695
+                  </a>
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Clock size={15} className="mt-0.5 flex-shrink-0 text-white/40" />
                 <span>
-                  {t('Mo–Fr: 08:00–17:00 Uhr', 'Mon–Fri: 8:00 AM–5:00 PM')}
+                  {t('Mo–Fr: Termine nach Vereinbarung', 'Mon–Fri: By appointment')}
                 </span>
               </li>
             </ul>
