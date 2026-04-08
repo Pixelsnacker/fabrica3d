@@ -138,3 +138,8 @@
 - [x] Weißer Header-Bereich höher (h-14 → h-[68px])
 - [x] Topbar höher (h-8 → h-10), PageLayout padding angepasst (108px desktop)
 - [x] Anthrazit um 10% aufgehellt (oklch 22% → 32%)
+
+## Projektbilder – KI-generiert (modern, zeitlos, harmonisch)
+- [x] 12 Projektbilder generiert: FDM-Bracket, CAD-Reverse, 3D-Scan-Serie, CNC-Alu, Römerhelm, SLA-Dental, Architekturmodell, Wasserschneiden, MJF-Serienteile, Fossilien-Scan, CNC-Kunststoff, Roboterarm-Kevlar
+- [x] Einheitliche dunkle Industrieästhetik: Stahl-Blau-Grau-Palette, farblich harmonisch
+- [x] Alle 12 Bilder in Projekte.tsx eingebunden (CDN-URLs, background-image mit Gradient-Overlay)
