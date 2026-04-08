@@ -166,3 +166,6 @@
 ## Projektbilder – Einheitlicher fotorealistischer 3D-Rendering-Stil
 - [x] Alle 12 Projektbilder als fotorealistische 3D-Renderings generiert (dunkler Hintergrund, Studiobeleuchtung)
 - [x] Neue CDN-URLs in Projekte.tsx eingebunden
+
+## Fachliche Korrekturen
+- [x] Projektkarte "Wasserschneiden Titanzuschnitte" fachlich korrekt auf AWJ-Verfahren korrigiert (Bild, Titel, Beschreibung, Kategorie)
