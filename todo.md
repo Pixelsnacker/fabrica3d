@@ -105,3 +105,9 @@
 - [x] Datenschutzerklärung mit echten Firmendaten befüllt
 - [x] Kontaktseite: beide Büros (Kerpen Hüttenstraße 205 + Köln Gilabchstr. 205) mit Adressen und Telefonnummern
 - [x] Footer: beide Standorte (Kerpen + Köln) mit Adressen und Telefonnummern eingebracht
+
+## Navigation – Zweistufiges Layout (Option A)
+- [x] Topbar (obere Leiste): Telefon Kerpen + Köln + E-Mail + DE/EN Sprachumschalter + Sofortangebot-Button
+- [x] Hauptleiste: Logo links + alle Menüpunkte kompakt + Kontakt-Link
+- [x] Sofortangebot-Button vollständig sichtbar in Topbar
+- [x] Mobil: Topbar ausgeblendet, Hamburger-Menü in Hauptleiste, Kontaktdaten im mobilen Menü

@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Menu, X, ChevronDown, Mail } from 'lucide-react';
+import { Menu, X, ChevronDown, Mail, Phone } from 'lucide-react';
 
 interface NavItem {
   label: string;
@@ -56,8 +56,7 @@ const navItems: NavItem[] = [
   { label: 'Projekte', labelEn: 'Projects', href: '/projekte' },
   { label: 'Basiswissen', labelEn: 'Knowledge Base', href: '/basiswissen' },
   { label: 'Kalkulator', labelEn: 'Calculator', href: '/kalkulator' },
-  { label: 'Datei hochladen', labelEn: 'Upload File', href: '/upload' },
-  { label: 'Kontakt', labelEn: 'Contact', href: '/kontakt' },
+  { label: 'Upload', labelEn: 'Upload', href: '/upload' },
 ];
 
 export default function Navigation() {
@@ -66,7 +65,6 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const navRef = useRef<HTMLElement>(null);
 
   const isMuseumPage = location === '/museumsmodelle';
 
@@ -78,11 +76,12 @@ export default function Navigation() {
 
   useEffect(() => {
     setMobileOpen(false);
+    setMobileExpanded(null);
   }, [location]);
 
   const ctaHref = isMuseumPage
     ? 'mailto:kontakt@fabrica3d.eu?subject=Anfrage%20Museumsmodell'
-    : 'mailto:kontakt@fabrica3d.eu?subject=Allgemeine%20Anfrage';
+    : 'mailto:kontakt@fabrica3d.eu?subject=Sofortangebot%20Anfrage';
 
   const ctaLabel = isMuseumPage
     ? t('Kontakt aufnehmen', 'Contact Us')
@@ -90,78 +89,53 @@ export default function Navigation() {
 
   return (
     <>
-      <header
-        ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 bg-white"
-        style={{ boxShadow: scrolled ? '0 2px 16px rgba(0,0,0,0.08)' : '0 1px 0 rgba(0,0,0,0.08)' }}
-      >
-        <div className="container">
-          <div className="flex items-center justify-between h-16 md:h-18">
-            {/* Logo */}
-            <Link href="/" className="flex items-center flex-shrink-0">
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/FabricaLogoneu_e9be3c25.png"
-                alt="Fabrica GmbH – Digital Production"
-                className="h-10 w-auto object-contain"
-                style={{ maxWidth: '180px' }}
-              />
-            </Link>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white">
 
-            {/* Desktop Nav */}
-            <nav className="hidden xl:flex items-center gap-1">
-              {navItems.map((item) => (
-                <div key={item.label} className="nav-item relative">
-                  {item.children ? (
-                    <>
-                      <button
-                        className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded hover:bg-gray-50 transition-colors"
-                        style={{ color: 'var(--fabrica-anthrazit)' }}
-                      >
-                        {lang === 'en' ? item.labelEn : item.label}
-                        <ChevronDown size={14} />
-                      </button>
-                      <div className="nav-dropdown">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className="block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors first:rounded-t-lg last:rounded-b-lg"
-                            style={{ color: 'var(--fabrica-anthrazit)' }}
-                          >
-                            {lang === 'en' ? child.labelEn : child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </>
-                  ) : (
-                    <Link
-                      href={item.href!}
-                      className="px-3 py-2 text-sm font-medium rounded hover:bg-gray-50 transition-colors block"
-                      style={{ color: 'var(--fabrica-anthrazit)' }}
-                    >
-                      {lang === 'en' ? item.labelEn : item.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
-            </nav>
+        {/* ── TOPBAR ── */}
+        <div
+          className="hidden md:block border-b text-xs"
+          style={{ backgroundColor: 'var(--fabrica-anthrazit)', color: 'rgba(255,255,255,0.85)' }}
+        >
+          <div className="container flex items-center justify-between h-8">
+            {/* Left: contact info */}
+            <div className="flex items-center gap-5">
+              <a
+                href="tel:+4922739529429"
+                className="flex items-center gap-1.5 hover:text-white transition-colors"
+              >
+                <Phone size={11} />
+                Kerpen: +49 (0) 2273 / 9529429
+              </a>
+              <a
+                href="tel:+4922117051695"
+                className="flex items-center gap-1.5 hover:text-white transition-colors"
+              >
+                <Phone size={11} />
+                Köln: +49 (0) 221 / 17051695
+              </a>
+              <a
+                href="mailto:kontakt@fabrica3d.eu"
+                className="flex items-center gap-1.5 hover:text-white transition-colors"
+              >
+                <Mail size={11} />
+                kontakt@fabrica3d.eu
+              </a>
+            </div>
 
-            {/* Right: Language + CTA */}
-            <div className="flex items-center gap-2 flex-shrink-0">
+            {/* Right: language + CTA */}
+            <div className="flex items-center gap-3">
               {/* Language switcher */}
-              <div className="hidden md:flex items-center border rounded overflow-hidden text-xs font-semibold">
+              <div className="flex items-center border border-white/20 rounded overflow-hidden font-semibold">
                 <button
                   onClick={() => setLang('de')}
-                  className={`px-2 py-1 transition-colors ${lang === 'de' ? 'text-white' : 'text-gray-600 hover:bg-gray-50'}`}
-                  style={lang === 'de' ? { backgroundColor: 'var(--fabrica-anthrazit)' } : {}}
+                  className={`px-2.5 py-0.5 transition-colors ${lang === 'de' ? 'bg-white/20 text-white' : 'hover:bg-white/10 text-white/70'}`}
                   aria-label="Deutsch"
                 >
                   🇩🇪 DE
                 </button>
                 <button
                   onClick={() => setLang('en')}
-                  className={`px-2 py-1 transition-colors ${lang === 'en' ? 'text-white' : 'text-gray-600 hover:bg-gray-50'}`}
-                  style={lang === 'en' ? { backgroundColor: 'var(--fabrica-anthrazit)' } : {}}
+                  className={`px-2.5 py-0.5 transition-colors ${lang === 'en' ? 'bg-white/20 text-white' : 'hover:bg-white/10 text-white/70'}`}
                   aria-label="English"
                 >
                   🇬🇧 EN
@@ -171,48 +145,136 @@ export default function Navigation() {
               {/* CTA Button */}
               <a
                 href={ctaHref}
-                className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white rounded transition-all hover:opacity-90"
+                className="flex items-center gap-1.5 px-3 py-0.5 font-semibold text-white rounded transition-all hover:opacity-90"
                 style={{ backgroundColor: 'var(--fabrica-red)' }}
               >
-                <Mail size={14} />
+                <Mail size={11} />
                 {ctaLabel}
               </a>
-
-              {/* Mobile menu toggle */}
-              <button
-                onClick={() => setMobileOpen(!mobileOpen)}
-                className="xl:hidden p-2 rounded hover:bg-gray-100 transition-colors"
-                aria-label={mobileOpen ? 'Menü schließen' : 'Menü öffnen'}
-              >
-                {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-              </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* ── MAIN NAVBAR ── */}
+        <div style={{ boxShadow: scrolled ? '0 2px 16px rgba(0,0,0,0.08)' : '0 1px 0 rgba(0,0,0,0.08)' }}>
+          <div className="container">
+            <div className="flex items-center justify-between h-14">
+
+              {/* Logo */}
+              <Link href="/" className="flex items-center flex-shrink-0">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/FabricaLogoneu_e9be3c25.png"
+                  alt="Fabrica GmbH – Digital Production"
+                  className="h-9 w-auto object-contain"
+                  style={{ maxWidth: '170px' }}
+                />
+              </Link>
+
+              {/* Desktop Nav */}
+              <nav className="hidden xl:flex items-center gap-0.5">
+                {navItems.map((item) => (
+                  <div key={item.label} className="nav-item relative">
+                    {item.children ? (
+                      <>
+                        <button
+                          className="flex items-center gap-1 px-2.5 py-2 text-sm font-medium rounded hover:bg-gray-50 transition-colors whitespace-nowrap"
+                          style={{ color: 'var(--fabrica-anthrazit)' }}
+                        >
+                          {lang === 'en' ? item.labelEn : item.label}
+                          <ChevronDown size={13} />
+                        </button>
+                        <div className="nav-dropdown">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className="block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors first:rounded-t-lg last:rounded-b-lg whitespace-nowrap"
+                              style={{ color: 'var(--fabrica-anthrazit)' }}
+                            >
+                              {lang === 'en' ? child.labelEn : child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </>
+                    ) : (
+                      <Link
+                        href={item.href!}
+                        className="px-2.5 py-2 text-sm font-medium rounded hover:bg-gray-50 transition-colors block whitespace-nowrap"
+                        style={{ color: 'var(--fabrica-anthrazit)' }}
+                      >
+                        {lang === 'en' ? item.labelEn : item.label}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+
+                {/* Kontakt link in main nav (desktop) */}
+                <Link
+                  href="/kontakt"
+                  className="px-2.5 py-2 text-sm font-medium rounded hover:bg-gray-50 transition-colors block whitespace-nowrap"
+                  style={{ color: 'var(--fabrica-anthrazit)' }}
+                >
+                  {t('Kontakt', 'Contact')}
+                </Link>
+              </nav>
+
+              {/* Mobile right side: language + hamburger */}
+              <div className="xl:hidden flex items-center gap-2">
+                {/* Mobile language switcher */}
+                <div className="flex items-center border rounded overflow-hidden text-xs font-semibold">
+                  <button
+                    onClick={() => setLang('de')}
+                    className={`px-2 py-1 transition-colors ${lang === 'de' ? 'text-white' : 'text-gray-600 hover:bg-gray-50'}`}
+                    style={lang === 'de' ? { backgroundColor: 'var(--fabrica-anthrazit)' } : {}}
+                    aria-label="Deutsch"
+                  >
+                    🇩🇪
+                  </button>
+                  <button
+                    onClick={() => setLang('en')}
+                    className={`px-2 py-1 transition-colors ${lang === 'en' ? 'text-white' : 'text-gray-600 hover:bg-gray-50'}`}
+                    style={lang === 'en' ? { backgroundColor: 'var(--fabrica-anthrazit)' } : {}}
+                    aria-label="English"
+                  >
+                    🇬🇧
+                  </button>
+                </div>
+
+                <button
+                  onClick={() => setMobileOpen(!mobileOpen)}
+                  className="p-2 rounded hover:bg-gray-100 transition-colors"
+                  aria-label={mobileOpen ? 'Menü schließen' : 'Menü öffnen'}
+                >
+                  {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── MOBILE MENU ── */}
         {mobileOpen && (
           <div className="xl:hidden border-t bg-white max-h-[80vh] overflow-y-auto">
             <div className="container py-3">
-              {/* Mobile language switcher */}
-              <div className="flex items-center gap-2 mb-3 pb-3 border-b">
-                <button
-                  onClick={() => setLang('de')}
-                  className={`flex-1 py-2 text-sm font-semibold rounded transition-colors ${lang === 'de' ? 'text-white' : 'bg-gray-100 text-gray-700'}`}
-                  style={lang === 'de' ? { backgroundColor: 'var(--fabrica-anthrazit)' } : {}}
-                >
-                  🇩🇪 Deutsch
-                </button>
-                <button
-                  onClick={() => setLang('en')}
-                  className={`flex-1 py-2 text-sm font-semibold rounded transition-colors ${lang === 'en' ? 'text-white' : 'bg-gray-100 text-gray-700'}`}
-                  style={lang === 'en' ? { backgroundColor: 'var(--fabrica-anthrazit)' } : {}}
-                >
-                  🇬🇧 English
-                </button>
+
+              {/* Mobile contact info */}
+              <div className="mb-3 pb-3 border-b space-y-1.5">
+                <a href="tel:+4922739529429" className="flex items-center gap-2 text-sm text-gray-600">
+                  <Phone size={13} style={{ color: 'var(--fabrica-red)' }} />
+                  Kerpen: +49 (0) 2273 / 9529429
+                </a>
+                <a href="tel:+4922117051695" className="flex items-center gap-2 text-sm text-gray-600">
+                  <Phone size={13} style={{ color: 'var(--fabrica-red)' }} />
+                  Köln: +49 (0) 221 / 17051695
+                </a>
+                <a href="mailto:kontakt@fabrica3d.eu" className="flex items-center gap-2 text-sm text-gray-600">
+                  <Mail size={13} style={{ color: 'var(--fabrica-red)' }} />
+                  kontakt@fabrica3d.eu
+                </a>
               </div>
 
-              {navItems.map((item) => (
+              {/* Nav items */}
+              {[...navItems, { label: 'Kontakt', labelEn: 'Contact', href: '/kontakt' }].map((item) => (
                 <div key={item.label}>
                   {item.children ? (
                     <div>
@@ -255,6 +317,7 @@ export default function Navigation() {
                 </div>
               ))}
 
+              {/* Mobile CTA */}
               <a
                 href={ctaHref}
                 className="mt-4 flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold text-white rounded"
@@ -269,17 +332,15 @@ export default function Navigation() {
       </header>
 
       {/* Mobile fixed CTA (bottom right) */}
-      {!isMuseumPage && (
-        <a
-          href="mailto:kontakt@fabrica3d.eu?subject=Allgemeine%20Anfrage"
-          className="md:hidden fixed bottom-6 right-4 z-40 flex items-center gap-2 px-4 py-3 text-sm font-bold text-white rounded-full shadow-lg"
-          style={{ backgroundColor: 'var(--fabrica-red)' }}
-          aria-label={t('Sofortangebot anfordern', 'Get a Quote')}
-        >
-          <Mail size={16} />
-          {t('Angebot', 'Quote')}
-        </a>
-      )}
+      <a
+        href={ctaHref}
+        className="md:hidden fixed bottom-6 right-4 z-40 flex items-center gap-2 px-4 py-3 text-sm font-bold text-white rounded-full shadow-lg"
+        style={{ backgroundColor: 'var(--fabrica-red)' }}
+        aria-label={t('Sofortangebot anfordern', 'Get a Quote')}
+      >
+        <Mail size={16} />
+        {t('Angebot', 'Quote')}
+      </a>
     </>
   );
 }
