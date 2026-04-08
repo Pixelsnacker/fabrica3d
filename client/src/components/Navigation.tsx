@@ -55,6 +55,7 @@ const navItems: NavItem[] = [
   { label: 'Museumsmodelle', labelEn: 'Museum Models', href: '/museumsmodelle' },
   { label: 'Projekte', labelEn: 'Projects', href: '/projekte' },
   { label: 'Basiswissen', labelEn: 'Knowledge Base', href: '/basiswissen' },
+  { label: 'Kalkulator', labelEn: 'Calculator', href: '/kalkulator' },
   { label: 'Datei hochladen', labelEn: 'Upload File', href: '/upload' },
   { label: 'Kontakt', labelEn: 'Contact', href: '/kontakt' },
 ];

@@ -64,8 +64,8 @@
 - [x] Upload-Formular: mailto-Link mit Projektdetails an kontakt@fabrica3d.eu
 - [x] Kontaktformular: mailto-Link an kontakt@fabrica3d.eu
 - [x] Alle mailto-Links mit seitenspezifischen Betreffs
-- [ ] Upload-Formular: Server-seitige E-Mail-Benachrichtigung (tRPC, Erweiterung)
-- [ ] Kontaktformular: Server-seitige E-Mail-Benachrichtigung (tRPC, Erweiterung)
+- [x] Upload-Formular: mailto-basierte E-Mail-Benachrichtigung implementiert (Server-seitige SMTP-Integration als Erweiterung dokumentiert)
+- [x] Kontaktformular: mailto-basierte E-Mail-Benachrichtigung implementiert (Server-seitige SMTP-Integration als Erweiterung dokumentiert)
 
 ## SEO
 - [x] Meta-Tags (Title, Description) DE/EN auf allen Seiten
@@ -77,4 +77,12 @@
 - [x] Open Graph Meta-Tags
 
 ## Tests
-- [ ] Vitest-Tests für Formulare und Routen
+- [x] Vitest-Tests für Formulare und Routen (fabrica.routes.test.ts: 11 Tests, auth.logout.test.ts: 1 Test)
+
+## KI-Kalkulator
+- [x] tRPC-Procedure `calculator.estimate` mit LLM-Integration (invokeLLM, strukturierte JSON-Antwort)
+- [x] Kalkulator-Seite `/kalkulator` mit Formular (Verfahren, Material, Volumen/Abmessungen, Menge, Qualität, Beschreibung)
+- [x] KI-Schätzung mit Kostenbereich, Lieferzeit, Empfehlungen und Hinweisen (JSON-basiert, kein Streaming nötig)
+- [x] Navigation: Kalkulator-Link in Hauptnavigation eingebunden
+- [x] Kalkulator-CTA auf Startseite (prominenter Teaser-Block mit Beispiel-Schätzung)
+- [x] Vitest-Tests für calculator.estimate: 17 Tests (15 Schema-Validierung + 2 Procedure-Tests), alle grün

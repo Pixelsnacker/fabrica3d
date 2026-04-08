@@ -3,7 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import PageLayout from '@/components/PageLayout';
 import {
   Mail, ChevronRight, Upload, BookOpen, Shield, Clock, Users, Award, Layers,
-  Cpu, Scan, Wrench, Building2, CheckCircle, ArrowRight
+  Cpu, Scan, Wrench, Building2, CheckCircle, ArrowRight, Calculator, Zap
 } from 'lucide-react';
 
 const heroPanels = [
@@ -391,6 +391,81 @@ export default function Home() {
                 LOGO {i}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* KI-Kalkulator Teaser */}
+      <section className="py-14 md:py-20 bg-white">
+        <div className="container">
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, var(--fabrica-anthrazit) 60%, #3d0000 100%)' }}
+          >
+            <div className="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
+              <div className="flex-1 text-white">
+                <div className="flex items-center gap-2 mb-3">
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center"
+                    style={{ backgroundColor: 'var(--fabrica-red)' }}
+                  >
+                    <Calculator size={20} className="text-white" />
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-widest text-white/50">
+                    {t('KI-gestützt', 'AI-powered')}
+                  </span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold mb-3">
+                  {t('Kosten sofort abschätzen', 'Estimate Costs Instantly')}
+                </h2>
+                <p className="text-white/70 leading-relaxed mb-5">
+                  {t(
+                    'Unser KI-Kalkulator gibt Ihnen in Sekunden eine realistische Preisspanne für Ihr 3D-Druck- oder CNC-Projekt. Wählen Sie Verfahren, Material und Abmessungen – die KI rechnet den Rest.',
+                    'Our AI calculator gives you a realistic price range for your 3D printing or CNC project in seconds. Select process, material and dimensions – the AI does the rest.'
+                  )}
+                </p>
+                <div className="flex flex-wrap gap-3 text-sm text-white/60 mb-6">
+                  <span className="flex items-center gap-1.5"><Zap size={14} className="text-yellow-400" /> {t('Sofortige Schätzung', 'Instant estimate')}</span>
+                  <span className="flex items-center gap-1.5"><CheckCircle size={14} className="text-green-400" /> {t('Alle 3D-Druck-Verfahren & CNC', 'All 3D printing & CNC processes')}</span>
+                  <span className="flex items-center gap-1.5"><Shield size={14} className="text-blue-400" /> {t('Unverbindlich & kostenlos', 'Non-binding & free')}</span>
+                </div>
+                <Link
+                  href="/kalkulator"
+                  className="inline-flex items-center gap-2 px-6 py-3 font-bold text-white rounded-xl transition-all hover:opacity-90"
+                  style={{ backgroundColor: 'var(--fabrica-red)' }}
+                >
+                  <Calculator size={18} />
+                  {t('Zum Kalkulator', 'Open Calculator')}
+                  <ChevronRight size={16} />
+                </Link>
+              </div>
+              {/* Visual preview */}
+              <div className="flex-shrink-0 w-full md:w-72">
+                <div className="bg-white/10 backdrop-blur rounded-xl p-5 border border-white/10">
+                  <div className="text-xs font-semibold text-white/50 uppercase tracking-wide mb-3">
+                    {t('Beispiel-Schätzung', 'Example Estimate')}
+                  </div>
+                  <div className="space-y-2 mb-4">
+                    {[
+                      { label: t('Verfahren', 'Process'), value: 'FDM-Druck' },
+                      { label: t('Material', 'Material'), value: 'PETG' },
+                      { label: t('Abmessungen', 'Dimensions'), value: '80 × 60 × 40 mm' },
+                      { label: t('Menge', 'Quantity'), value: '5 Stück' },
+                    ].map(item => (
+                      <div key={item.label} className="flex justify-between text-xs">
+                        <span className="text-white/50">{item.label}</span>
+                        <span className="text-white font-medium">{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border-t border-white/10 pt-3">
+                    <div className="text-xs text-white/50 mb-1">{t('Geschätzte Kosten', 'Estimated Cost')}</div>
+                    <div className="text-2xl font-bold text-white">45 – 85 €</div>
+                    <div className="text-xs text-white/40">{t('Netto, zzgl. MwSt.', 'Net, excl. VAT')}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

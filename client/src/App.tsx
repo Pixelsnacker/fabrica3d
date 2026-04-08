@@ -35,6 +35,9 @@ const Drehen = lazy(() => import("@/pages/cnc/Drehen"));
 const Wasserschneiden = lazy(() => import("@/pages/cnc/Wasserschneiden"));
 const Laserschneiden = lazy(() => import("@/pages/cnc/Laserschneiden"));
 
+// Kalkulator
+const Kalkulator = lazy(() => import("@/pages/Kalkulator"));
+
 // Other pages
 const Museumsmodelle = lazy(() => import("@/pages/Museumsmodelle"));
 const Projekte = lazy(() => import("@/pages/Projekte"));
@@ -82,6 +85,9 @@ function Router() {
         <Route path="/cnc/drehen" component={Drehen} />
         <Route path="/cnc/wasserschneiden" component={Wasserschneiden} />
         <Route path="/cnc/laserschneiden" component={Laserschneiden} />
+
+        {/* Kalkulator */}
+        <Route path="/kalkulator" component={Kalkulator} />
 
         {/* Other */}
         <Route path="/museumsmodelle" component={Museumsmodelle} />
