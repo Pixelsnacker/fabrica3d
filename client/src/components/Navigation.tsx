@@ -98,19 +98,13 @@ export default function Navigation() {
         <div className="container">
           <div className="flex items-center justify-between h-16 md:h-18">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-              <div
-                className="w-8 h-8 rounded flex items-center justify-center text-white font-bold text-sm"
-                style={{ backgroundColor: 'var(--fabrica-red)' }}
-              >
-                F
-              </div>
-              <div className="leading-tight">
-                <div className="font-bold text-sm" style={{ color: 'var(--fabrica-anthrazit)' }}>
-                  Fabrica GmbH
-                </div>
-                <div className="text-xs text-gray-500 font-medium tracking-wide">Digital Production</div>
-              </div>
+            <Link href="/" className="flex items-center flex-shrink-0">
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/FabricaLogoneu_e9be3c25.png"
+                alt="Fabrica GmbH – Digital Production"
+                className="h-10 w-auto object-contain"
+                style={{ maxWidth: '180px' }}
+              />
             </Link>
 
             {/* Desktop Nav */}

@@ -43,10 +43,10 @@
 }
 
 :root {
-  /* Fabrica Brand Colors */
-  --fabrica-red: oklch(35% 0.18 25);
-  --fabrica-red-dark: oklch(28% 0.16 25);
-  --fabrica-red-light: oklch(42% 0.18 25);
+  /* Fabrica Brand Colors – #7a0e3f */
+  --fabrica-red: oklch(38.3% 0.144 0.6);
+  --fabrica-red-dark: oklch(30% 0.13 0.6);
+  --fabrica-red-light: oklch(46% 0.14 0.6);
   --fabrica-anthrazit: oklch(22% 0.01 260);
   --fabrica-gray: oklch(96% 0.002 260);
 
@@ -57,7 +57,7 @@
   --card-foreground: oklch(22% 0.01 260);
   --popover: oklch(100% 0 0);
   --popover-foreground: oklch(22% 0.01 260);
-  --primary: oklch(35% 0.18 25);
+  --primary: oklch(38.3% 0.144 0.6);
   --primary-foreground: oklch(100% 0 0);
   --secondary: oklch(96% 0.002 260);
   --secondary-foreground: oklch(22% 0.01 260);
@@ -69,20 +69,20 @@
   --destructive-foreground: oklch(100% 0 0);
   --border: oklch(90% 0.004 260);
   --input: oklch(90% 0.004 260);
-  --ring: oklch(35% 0.18 25);
-  --chart-1: oklch(35% 0.18 25);
+  --ring: oklch(38.3% 0.144 0.6);
+  --chart-1: oklch(38.3% 0.144 0.6);
   --chart-2: oklch(55% 0.15 200);
   --chart-3: oklch(65% 0.12 150);
   --chart-4: oklch(75% 0.1 80);
   --chart-5: oklch(45% 0.12 280);
   --sidebar: oklch(100% 0 0);
   --sidebar-foreground: oklch(22% 0.01 260);
-  --sidebar-primary: oklch(35% 0.18 25);
+  --sidebar-primary: oklch(38.3% 0.144 0.6);
   --sidebar-primary-foreground: oklch(100% 0 0);
   --sidebar-accent: oklch(96% 0.002 260);
   --sidebar-accent-foreground: oklch(22% 0.01 260);
   --sidebar-border: oklch(90% 0.004 260);
-  --sidebar-ring: oklch(35% 0.18 25);
+  --sidebar-ring: oklch(38.3% 0.144 0.6);
 }
 
 .dark {

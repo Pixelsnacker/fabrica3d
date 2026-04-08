@@ -2,9 +2,13 @@ import { Link } from 'wouter';
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageLayout from '@/components/PageLayout';
 import {
-  Mail, ChevronRight, Upload, BookOpen, Shield, Clock, Users, Award, Layers,
-  Cpu, Scan, Wrench, Building2, CheckCircle, ArrowRight, Calculator, Zap
+  Mail, ChevronRight, Shield, Clock, Users, Award, Layers,
+  CheckCircle, ArrowRight, Calculator, Zap, BookOpen, Upload
 } from 'lucide-react';
+import {
+  Icon3DPrint, IconCAD, Icon3DScan, IconCNC, IconMuseum,
+  IconUpload, IconBasiswissen, IconKalkulator
+} from '@/components/FabricaIcons';
 
 const heroPanels = [
   {
@@ -15,7 +19,7 @@ const heroPanels = [
     desc: 'FDM, SLA, SLS, MJF, Polyjet und Endlosfaser – alle Verfahren aus einer Hand.',
     descEn: 'FDM, SLA, SLS, MJF, Polyjet and Continuous Fiber – all processes from one source.',
     bg: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-    icon: '🖨️',
+    Icon: Icon3DPrint,
   },
   {
     id: 'cad',
@@ -25,7 +29,7 @@ const heroPanels = [
     desc: 'Konstruktion, Reverse Engineering und Datenaufbereitung für alle Fertigungsverfahren.',
     descEn: 'Engineering, reverse engineering and data preparation for all manufacturing processes.',
     bg: 'linear-gradient(135deg, #0f3460 0%, #533483 100%)',
-    icon: '📐',
+    Icon: IconCAD,
   },
   {
     id: '3d-scan',
@@ -35,7 +39,7 @@ const heroPanels = [
     desc: 'GOM ATOS Präzisionsmessung mit Toleranzen bis ±0,01 mm.',
     descEn: 'GOM ATOS precision measurement with tolerances down to ±0.01 mm.',
     bg: 'linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%)',
-    icon: '🔬',
+    Icon: Icon3DScan,
   },
   {
     id: 'cnc',
@@ -44,8 +48,8 @@ const heroPanels = [
     href: '/cnc/fraesen',
     desc: 'Fräsen, Drehen, Wasserschneiden und Laserschneiden in Kunststoff und Metall.',
     descEn: 'Milling, turning, water jet and laser cutting in plastic and metal.',
-    bg: 'linear-gradient(135deg, #3d0000 0%, #6b0000 100%)',
-    icon: '⚙️',
+    bg: 'linear-gradient(135deg, #3d0010 0%, #7a0e3f 100%)',
+    Icon: IconCNC,
   },
   {
     id: 'museum',
@@ -55,7 +59,7 @@ const heroPanels = [
     desc: 'Rekonstruktion historischer Objekte und Artefakte in höchster Detailtreue.',
     descEn: 'Reconstruction of historical objects and artifacts with highest detail accuracy.',
     bg: 'linear-gradient(135deg, #2c1810 0%, #5c3317 100%)',
-    icon: '🏛️',
+    Icon: IconMuseum,
   },
 ];
 
@@ -93,11 +97,11 @@ const whyFabrica = [
 ];
 
 const services = [
-  { icon: <span className="text-2xl">🖨️</span>, label: '3D-Druck', labelEn: '3D Printing', href: '/3d-druck/fdm', desc: 'FDM, SLA, SLS, MJF, Polyjet, Endlosfaser', descEn: 'FDM, SLA, SLS, MJF, Polyjet, Continuous Fiber' },
-  { icon: <Cpu size={24} />, label: 'CAD-Daten', labelEn: 'CAD Data', href: '/cad/konstruktion', desc: 'Konstruktion & Reverse Engineering', descEn: 'Engineering & Reverse Engineering' },
-  { icon: <Scan size={24} />, label: '3D-Scan', labelEn: '3D Scan', href: '/3d-scan/gom-atos', desc: 'GOM ATOS Präzisionsmessung', descEn: 'GOM ATOS Precision Measurement' },
-  { icon: <Wrench size={24} />, label: 'CNC-Bearbeitung', labelEn: 'CNC Machining', href: '/cnc/fraesen', desc: 'Fräsen, Drehen, Schneiden', descEn: 'Milling, Turning, Cutting' },
-  { icon: <Building2 size={24} />, label: 'Museumsmodelle', labelEn: 'Museum Models', href: '/museumsmodelle', desc: 'Historische Rekonstruktionen', descEn: 'Historical Reconstructions' },
+  { Icon: Icon3DPrint, label: '3D-Druck', labelEn: '3D Printing', href: '/3d-druck/fdm', desc: 'FDM, SLA, SLS, MJF, Polyjet, Endlosfaser', descEn: 'FDM, SLA, SLS, MJF, Polyjet, Continuous Fiber' },
+  { Icon: IconCAD, label: 'CAD-Daten', labelEn: 'CAD Data', href: '/cad/konstruktion', desc: 'Konstruktion & Reverse Engineering', descEn: 'Engineering & Reverse Engineering' },
+  { Icon: Icon3DScan, label: '3D-Scan', labelEn: '3D Scan', href: '/3d-scan/gom-atos', desc: 'GOM ATOS Präzisionsmessung', descEn: 'GOM ATOS Precision Measurement' },
+  { Icon: IconCNC, label: 'CNC-Bearbeitung', labelEn: 'CNC Machining', href: '/cnc/fraesen', desc: 'Fräsen, Drehen, Schneiden', descEn: 'Milling, Turning, Cutting' },
+  { Icon: IconMuseum, label: 'Museumsmodelle', labelEn: 'Museum Models', href: '/museumsmodelle', desc: 'Historische Rekonstruktionen', descEn: 'Historical Reconstructions' },
 ];
 
 const projects = [
@@ -120,7 +124,9 @@ export default function Home() {
             <Link href={panel.href} key={panel.id} className="hero-panel" style={{ background: panel.bg }}>
               <div className="panel-overlay" />
               <div className="panel-content">
-                <div className="text-3xl mb-2">{panel.icon}</div>
+                <div className="mb-2 opacity-80">
+                  <panel.Icon size={36} color="white" strokeWidth={1.2} />
+                </div>
                 <h2 className="font-bold text-lg leading-tight">
                   {lang === 'en' ? panel.labelEn : panel.label}
                 </h2>
@@ -144,7 +150,9 @@ export default function Home() {
               className="flex items-center gap-4 p-4 rounded-lg text-white"
               style={{ background: panel.bg }}
             >
-              <span className="text-2xl">{panel.icon}</span>
+              <div className="flex-shrink-0">
+                <panel.Icon size={28} color="white" strokeWidth={1.2} />
+              </div>
               <div>
                 <div className="font-bold text-sm">{lang === 'en' ? panel.labelEn : panel.label}</div>
                 <div className="text-xs text-white/70 mt-0.5">{lang === 'en' ? panel.descEn : panel.desc}</div>
@@ -242,7 +250,7 @@ export default function Home() {
                   className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3 text-white group-hover:scale-110 transition-transform"
                   style={{ backgroundColor: 'var(--fabrica-anthrazit)' }}
                 >
-                  {svc.icon}
+                  <svc.Icon size={22} color="white" strokeWidth={1.4} />
                 </div>
                 <h3 className="font-bold text-sm mb-1" style={{ color: 'var(--fabrica-anthrazit)' }}>
                   {lang === 'en' ? svc.labelEn : svc.label}

@@ -11,17 +11,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div
-                className="w-8 h-8 rounded flex items-center justify-center text-white font-bold text-sm"
-                style={{ backgroundColor: 'var(--fabrica-red)' }}
-              >
-                F
-              </div>
-              <div>
-                <div className="font-bold text-sm">Fabrica GmbH</div>
-                <div className="text-xs text-white/60 font-medium">Digital Production</div>
-              </div>
+            <div className="mb-4">
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/FabricaLogoneu_e9be3c25.png"
+                alt="Fabrica GmbH – Digital Production"
+                className="h-10 w-auto object-contain"
+                style={{ maxWidth: '180px', filter: 'brightness(0) invert(1)' }}
+              />
             </div>
             <p className="text-sm text-white/70 leading-relaxed mb-4">
               {t(

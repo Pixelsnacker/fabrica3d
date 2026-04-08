@@ -86,3 +86,16 @@
 - [x] Navigation: Kalkulator-Link in Hauptnavigation eingebunden
 - [x] Kalkulator-CTA auf Startseite (prominenter Teaser-Block mit Beispiel-Schätzung)
 - [x] Vitest-Tests für calculator.estimate: 17 Tests (15 Schema-Validierung + 2 Procedure-Tests), alle grün
+
+## Icon-Redesign: Emoji → SVG-Strichzeichnungen
+- [x] SVG-Icon-Komponenten-Bibliothek erstellt (FabricaIcons.tsx, 20 Icons)
+- [x] Emoji-Icons in Home.tsx (Hero-Panels, Services-Grid) durch SVG-Strichzeichnungen ersetzt
+- [x] Emoji-Icons in Navigation.tsx entfernt (keine Emoji-Icons vorhanden)
+- [x] Icons in Technologie-Unterseiten: Lucide-Icons bleiben (bereits moderne Strichzeichnungen)
+
+## Logo & Markenfarbe
+- [x] Logo FabricaLogoneu.png als CDN-Asset hochladen
+- [x] Markenfarbe #7a0e3f in allen CSS-Variablen und Tailwind-Klassen ersetzen (oklch(38.3% 0.144 0.6))
+- [x] Logo in Navigation einbinden (statt Text-Fallback)
+- [x] Logo im Footer einbinden (weiß invertiert per CSS filter)
+- [x] TypeScript-Fehler in Home.tsx (icon → Icon) behoben
