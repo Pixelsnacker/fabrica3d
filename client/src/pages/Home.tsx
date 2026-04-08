@@ -19,6 +19,7 @@ const heroPanels = [
     desc: 'FDM, SLA, SLS, MJF, Polyjet und Endlosfaser – alle Verfahren aus einer Hand.',
     descEn: 'FDM, SLA, SLS, MJF, Polyjet and Continuous Fiber – all processes from one source.',
     bg: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_3ddruck_bb4d7a7f.jpg',
     Icon: Icon3DPrint,
   },
   {
@@ -29,6 +30,7 @@ const heroPanels = [
     desc: 'Konstruktion, Reverse Engineering und Datenaufbereitung für alle Fertigungsverfahren.',
     descEn: 'Engineering, reverse engineering and data preparation for all manufacturing processes.',
     bg: 'linear-gradient(135deg, #0f3460 0%, #533483 100%)',
+    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_cad_64e2ace3.jpg',
     Icon: IconCAD,
   },
   {
@@ -39,6 +41,7 @@ const heroPanels = [
     desc: 'GOM ATOS Präzisionsmessung mit Toleranzen bis ±0,01 mm.',
     descEn: 'GOM ATOS precision measurement with tolerances down to ±0.01 mm.',
     bg: 'linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%)',
+    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_scan_6bb5d0a4.jpg',
     Icon: Icon3DScan,
   },
   {
@@ -49,6 +52,7 @@ const heroPanels = [
     desc: 'Fräsen, Drehen, Wasserschneiden und Laserschneiden in Kunststoff und Metall.',
     descEn: 'Milling, turning, water jet and laser cutting in plastic and metal.',
     bg: 'linear-gradient(135deg, #3d0010 0%, #7a0e3f 100%)',
+    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_cnc_cff9e0f2.jpg',
     Icon: IconCNC,
   },
   {
@@ -59,6 +63,7 @@ const heroPanels = [
     desc: 'Rekonstruktion historischer Objekte und Artefakte in höchster Detailtreue.',
     descEn: 'Reconstruction of historical objects and artifacts with highest detail accuracy.',
     bg: 'linear-gradient(135deg, #2c1810 0%, #5c3317 100%)',
+    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_museum_12878e89.jpg',
     Icon: IconMuseum,
   },
 ];
@@ -121,13 +126,25 @@ export default function Home() {
         {/* Desktop: side-by-side panels */}
         <div className="hidden md:flex h-full">
           {heroPanels.map((panel) => (
-            <Link href={panel.href} key={panel.id} className="hero-panel" style={{ background: panel.bg }}>
-              <div className="panel-overlay" />
+            <Link
+              href={panel.href}
+              key={panel.id}
+              className="hero-panel"
+              style={{
+                background: panel.bg,
+                ...(panel.image ? {
+                  backgroundImage: `url(${panel.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center top',
+                } : {})
+              }}
+            >
+              <div className="panel-overlay" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.15) 100%)' }} />
               <div className="panel-content">
-                <div className="mb-2 opacity-80">
+                <div className="mb-2 opacity-90">
                   <panel.Icon size={36} color="white" strokeWidth={1.2} />
                 </div>
-                <h2 className="font-bold text-lg leading-tight">
+                <h2 className="font-bold text-lg leading-tight drop-shadow-md">
                   {lang === 'en' ? panel.labelEn : panel.label}
                 </h2>
                 <div className="panel-desc">
@@ -147,8 +164,15 @@ export default function Home() {
             <Link
               href={panel.href}
               key={panel.id}
-              className="flex items-center gap-4 p-4 rounded-lg text-white"
-              style={{ background: panel.bg }}
+              className="flex items-center gap-4 p-4 rounded-lg text-white relative overflow-hidden"
+              style={{
+                background: panel.bg,
+                ...(panel.image ? {
+                  backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 100%), url(${panel.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                } : {})
+              }}
             >
               <div className="flex-shrink-0">
                 <panel.Icon size={28} color="white" strokeWidth={1.2} />

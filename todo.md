@@ -111,3 +111,13 @@
 - [x] Hauptleiste: Logo links + alle Menüpunkte kompakt + Kontakt-Link
 - [x] Sofortangebot-Button vollständig sichtbar in Topbar
 - [x] Mobil: Topbar ausgeblendet, Hamburger-Menü in Hauptleiste, Kontaktdaten im mobilen Menü
+
+## Hero-Panel Bilder (hochformatig, farblich harmonisch)
+- [x] 3D-Druck: FDM-Drucker Makro-Aufnahme (blau, 800x1200)
+- [x] CAD-Daten: CAD-Workspace mit 3D-Modell auf Bildschirm (blau, 800x1200)
+- [x] 3D-Scan: Blaulicht-Strukturlicht-Scan auf schwarzem Hintergrund (800x1200)
+- [x] CNC-Bearbeitung: CNC-Fräse mit Funkenflug (dunkel-orange, 800x1200)
+- [x] Museumsmodelle: Bronzeskulptur auf schwarzem Hintergrund (800x1200)
+- [x] Alle Bilder auf Hochformat 800x1200 zugeschnitten, Helligkeit/Sättigung harmonisiert
+- [x] Als CDN-Assets hochgeladen und in Home.tsx eingebunden (Desktop + Mobile)
+- [x] Gradient-Overlay von unten für Lesbarkeit der Texte
