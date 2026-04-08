@@ -10,6 +10,7 @@ export default function SLA() {
       subtitle="Stereolithografie – höchste Oberflächenqualität und feinste Details für anspruchsvolle Anwendungen."
       subtitleEn="Stereolithography – highest surface quality and finest details for demanding applications."
       mailtoSubject="Anfrage%20SLA-Druck"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_sla_panorama-XGVXRKSsM2Tz8j8vCESQwj.webp"
       heroColor="oklch(30% 0.15 260)"
       caseStudies={[
         { title: 'Schmuckprototyp', titleEn: 'Jewelry Prototype', industry: 'Schmuck', industryEn: 'Jewelry', challenge: 'Filigrane Schmuckstücke mit höchster Detailtreue für Gussformen.', challengeEn: 'Filigree jewelry with highest detail accuracy for casting molds.', solution: 'SLA-Druck in castable Resin mit 0,025 mm Schichtdicke.', solutionEn: 'SLA printing in castable resin with 0.025 mm layer thickness.', result: 'Perfekte Gussqualität, Designzyklus von Wochen auf 2 Tage reduziert.', resultEn: 'Perfect casting quality, design cycle reduced from weeks to 2 days.' },

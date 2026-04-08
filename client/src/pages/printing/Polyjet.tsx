@@ -10,6 +10,7 @@ export default function Polyjet() {
       subtitle="Mehrere Materialien und Farben in einem Druckvorgang – höchste Detailgenauigkeit mit variablen Shore-Härten."
       subtitleEn="Multiple materials and colors in one print – highest detail accuracy with variable Shore hardness."
       mailtoSubject="Anfrage%20Polyjet"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_polyjet_panorama-bJC78HVkCv4DXftzyir9Xi.webp"
       heroColor="oklch(30% 0.12 320)"
       caseStudies={[
         { title: 'Medizinisches Anatomiemodell', titleEn: 'Medical Anatomy Model', industry: 'Medizintechnik', industryEn: 'Medical Technology', challenge: 'Anatomiemodell für Operationsplanung mit unterschiedlichen Gewebesteifigkeiten.', challengeEn: 'Anatomy model for surgical planning with different tissue stiffnesses.', solution: 'Polyjet mit mehreren Materialien: rigid für Knochen, flexible für Weichgewebe.', solutionEn: 'Polyjet with multiple materials: rigid for bones, flexible for soft tissue.', result: 'Realitätsgetreues Modell, OP-Planung deutlich verbessert.', resultEn: 'Realistic model, surgical planning significantly improved.' },

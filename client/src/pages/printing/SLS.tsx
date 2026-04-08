@@ -10,6 +10,7 @@ export default function SLS() {
       subtitle="Selektives Lasersintern – keine Stützstrukturen, hohe mechanische Belastbarkeit, serientauglich."
       subtitleEn="Selective Laser Sintering – no support structures, high mechanical strength, suitable for series production."
       mailtoSubject="Anfrage%20SLS-Druck"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_sls_panorama-2LJpJBGnxfFBu7udib4N4b.webp"
       heroColor="oklch(25% 0.08 200)"
       caseStudies={[
         { title: 'Komplexe Baugruppe Maschinenbau', titleEn: 'Complex Assembly Mechanical Engineering', industry: 'Maschinenbau', industryEn: 'Mechanical Engineering', challenge: 'Bauteil mit Hinterschneidungen und komplexen Innenkanälen, nicht zerspanbar.', challengeEn: 'Component with undercuts and complex internal channels, not machinable.', solution: 'SLS in PA12, keine Stützstrukturen erforderlich, direkt einsatzbereit.', solutionEn: 'SLS in PA12, no support structures required, ready to use directly.', result: 'Bauteil in 5 Tagen, Funktionstest bestanden, Kosten 70% unter CNC.', resultEn: 'Component in 5 days, functional test passed, costs 70% below CNC.' },

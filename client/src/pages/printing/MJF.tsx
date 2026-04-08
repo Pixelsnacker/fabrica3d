@@ -10,6 +10,7 @@ export default function MJF() {
       subtitle="Multi Jet Fusion von HP – schneller als SLS, isotrope Eigenschaften, ideal für Serienproduktion."
       subtitleEn="Multi Jet Fusion by HP – faster than SLS, isotropic properties, ideal for series production."
       mailtoSubject="Anfrage%20MJF-Druck"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_mjf_panorama-9SsUkwhULkNZXS2AmwkEUJ.webp"
       heroColor="oklch(20% 0.05 230)"
       caseStudies={[
         { title: 'Serienproduktion Funktionsteile', titleEn: 'Series Production Functional Parts', industry: 'Industrie', industryEn: 'Industry', challenge: 'Serienproduktion von 1000 Funktionsteilen mit isotropen Eigenschaften.', challengeEn: 'Series production of 1000 functional parts with isotropic properties.', solution: 'MJF PA12 mit optimiertem Nestingfaktor für maximale Packungsdichte.', solutionEn: 'MJF PA12 with optimized nesting factor for maximum packing density.', result: '1000 Teile in 5 Tagen, gleichmäßige Eigenschaften in alle Richtungen.', resultEn: '1000 parts in 5 days, uniform properties in all directions.' },

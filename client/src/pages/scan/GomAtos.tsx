@@ -10,6 +10,7 @@ export default function GomAtos() {
       subtitle="Professionelles optisches Messsystem für Qualitätskontrolle und Digitalisierung – Toleranz ±0,01 mm."
       subtitleEn="Professional optical measuring system for quality control and digitization – tolerance ±0.01 mm."
       mailtoSubject="Anfrage%203D-Scan"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_3dscan_panorama-enR5FWV3DmycJ8anGV2ZYL.webp"
       heroColor="oklch(25% 0.1 200)"
       caseStudies={[
         { title: 'Qualitätskontrolle Serienteil', titleEn: 'Series Part Quality Control', industry: 'Automotive', industryEn: 'Automotive', challenge: 'Maßprüfung von 500 Serienteilen mit engen Toleranzen und vollständiger Dokumentation.', challengeEn: 'Dimensional inspection of 500 series parts with tight tolerances and complete documentation.', solution: 'GOM ATOS Scan, automatisierter Vergleich mit CAD-Nominalgeometrie, Farbplot-Auswertung.', solutionEn: 'GOM ATOS scan, automated comparison with CAD nominal geometry, color plot evaluation.', result: '500 Teile in 3 Tagen geprüft, vollständige Prüfdokumentation, 3 Teile ausgesondert.', resultEn: '500 parts inspected in 3 days, complete inspection documentation, 3 parts rejected.' },

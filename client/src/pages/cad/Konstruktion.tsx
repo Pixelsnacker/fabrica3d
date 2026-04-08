@@ -10,6 +10,7 @@ export default function Konstruktion() {
       subtitle="Fertigungsgerechte Konstruktion für 3D-Druck und CNC – inklusive Aufbereitung nicht verwendbarer Daten."
       subtitleEn="Manufacturing-ready engineering for 3D printing and CNC – including preparation of unusable data."
       mailtoSubject="Anfrage%20CAD%20Konstruktion"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_cad_panorama-LL85c2KDLjQk6uJYDQhbBK.webp"
       heroColor="oklch(20% 0.1 260)"
       caseStudies={[
         { title: 'Architekturmodell zu Druckdaten', titleEn: 'Architecture Model to Print Data', industry: 'Architektur', industryEn: 'Architecture', challenge: 'ArchiCAD-Modell mit offenen Flächen und falschen Wandstärken, nicht direkt druckbar.', challengeEn: 'ArchiCAD model with open surfaces and incorrect wall thicknesses, not directly printable.', solution: 'Vollständige Datenaufbereitung: Flächenmodell zu Volumenmodell, Wandstärken angepasst.', solutionEn: 'Complete data preparation: surface model to solid model, wall thicknesses adjusted.', result: 'Druckfähige Daten in 2 Tagen, Modell erfolgreich gedruckt.', resultEn: 'Printable data in 2 days, model successfully printed.' },

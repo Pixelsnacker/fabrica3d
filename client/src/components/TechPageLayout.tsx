@@ -24,6 +24,7 @@ interface TechPageProps {
   subtitleEn: string;
   mailtoSubject: string;
   heroColor?: string;
+  heroImage?: string;
   children: React.ReactNode;
   caseStudies?: CaseStudy[];
   badge?: string;
@@ -37,6 +38,7 @@ export default function TechPageLayout({
   subtitleEn,
   mailtoSubject,
   heroColor = 'var(--fabrica-anthrazit)',
+  heroImage,
   children,
   caseStudies,
   badge,
@@ -56,14 +58,23 @@ export default function TechPageLayout({
       {/* Hero */}
       <section
         className="py-16 md:py-24 text-white relative overflow-hidden"
-        style={{ background: `linear-gradient(135deg, ${heroColor} 0%, var(--fabrica-anthrazit) 100%)` }}
+        style={heroImage
+          ? { backgroundImage: `url(${heroImage})`, backgroundSize: 'cover', backgroundPosition: 'center right' }
+          : { background: `linear-gradient(135deg, ${heroColor} 0%, var(--fabrica-anthrazit) 100%)` }
+        }
       >
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)',
-            backgroundSize: '20px 20px'
-          }} />
-        </div>
+        {/* Dark overlay for text readability over photo */}
+        {heroImage && (
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(18,18,24,0.92) 0%, rgba(18,18,24,0.75) 45%, rgba(18,18,24,0.35) 100%)' }} />
+        )}
+        {!heroImage && (
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)',
+              backgroundSize: '20px 20px'
+            }} />
+          </div>
+        )}
         <div className="container relative">
           {badge && (
             <span

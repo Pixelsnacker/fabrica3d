@@ -172,3 +172,8 @@
 
 ## Header-Layout
 - [x] Topbar (h-12, 48px) und Hauptnavigation (h-[82px]) um ca. 20 % vergrößert, Logo und PageLayout-Offset angepasst
+
+## Panorama Hero-Banner
+- [x] Alle Hero-Banner-Seiten inventarisiert und fotorealistische Panoramabilder generiert
+- [x] Neue Bilder in alle betroffenen Seiten eingebunden
+- [x] Dropdown-Menü leicht transparent gemacht (rgba(255,255,255,0.95) + backdrop-blur)

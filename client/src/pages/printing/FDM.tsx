@@ -11,6 +11,7 @@ export default function FDM() {
       subtitle="Schmelzschichtverfahren mit breiter Materialauswahl – ideal für Prototypen, Funktionsteile und Gehäuse."
       subtitleEn="Fused Deposition Modeling with a wide range of materials – ideal for prototypes, functional parts and housings."
       mailtoSubject="Anfrage%20FDM-Druck"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_fdm_panorama-XjUkNA3AYA9xFmbaiRBi3y.webp"
       heroColor="oklch(22% 0.01 260)"
       caseStudies={[
         {

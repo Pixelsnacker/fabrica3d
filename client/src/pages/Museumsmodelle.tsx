@@ -10,6 +10,7 @@ export default function Museumsmodelle() {
       subtitle="Rekonstruktion historischer Objekte und Artefakte in höchster Detailtreue – für Museen, Ausstellungen und Bildungseinrichtungen."
       subtitleEn="Reconstruction of historical objects and artifacts with highest detail accuracy – for museums, exhibitions and educational institutions."
       mailtoSubject="Anfrage%20Museumsmodelle"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_museum_panorama-2VZGD7iT3RNDmFFs4auDDZ.webp"
       heroColor="oklch(28% 0.06 50)"
       badge="Spezialgebiet"
       badgeEn="Specialty"

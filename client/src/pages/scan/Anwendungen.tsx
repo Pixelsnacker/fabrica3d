@@ -10,6 +10,7 @@ export default function ScanAnwendungen() {
       subtitle="Qualitätskontrolle, Digitalisierung, Maßprüfung und Archivierung mit professioneller Messtechnik."
       subtitleEn="Quality control, digitization, dimensional inspection and archiving with professional measurement technology."
       mailtoSubject="Anfrage%203D-Scan"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_3dscan_panorama-enR5FWV3DmycJ8anGV2ZYL.webp"
       heroColor="oklch(22% 0.08 200)"
     >
       <section className="mb-12">

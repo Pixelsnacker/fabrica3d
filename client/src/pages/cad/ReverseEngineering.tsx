@@ -10,6 +10,7 @@ export default function ReverseEngineering() {
       subtitle="3D-Scan als Grundlage für CAD-Rekonstruktion – Ersatzteile ohne Zeichnung, Altteile digitalisieren."
       subtitleEn="3D scan as the basis for CAD reconstruction – spare parts without drawings, digitizing old parts."
       mailtoSubject="Anfrage%20Reverse%20Engineering"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_reverse_engineering_panorama-ZktQwSqLTcuGMggkpygyBK.webp"
       heroColor="oklch(22% 0.08 240)"
       caseStudies={[
         { title: 'Veraltetes Maschinenteil', titleEn: 'Obsolete Machine Part', industry: 'Maschinenbau', industryEn: 'Mechanical Engineering', challenge: 'Maschinenteil aus den 1970ern, kein Hersteller mehr, keine Zeichnung vorhanden.', challengeEn: 'Machine part from the 1970s, no manufacturer anymore, no drawing available.', solution: '3D-Scan mit GOM ATOS, parametrische CAD-Rekonstruktion, FDM-Druck in PA.', solutionEn: '3D scan with GOM ATOS, parametric CAD reconstruction, FDM printing in PA.', result: 'Funktionales Ersatzteil in 7 Tagen, Maschine wieder produktionsfähig.', resultEn: 'Functional spare part in 7 days, machine back in production.' },
