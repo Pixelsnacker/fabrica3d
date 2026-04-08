@@ -124,3 +124,7 @@
 
 ## Statistiken Startseite
 - [x] Statistik-Bereich: "10+ Jahre Erfahrung in der digitalen Fertigung" als prominentes Badge, Platzhalter entfernt
+
+## Hero-Bilder Update (3D-Druck + 3D-Scan)
+- [x] 3D-Druck-Bild (SLA-Drucker mit transparentem Getriebe) auf Hochformat 800x1200 zugeschnitten und hochgeladen
+- [x] 3D-Scan-Bild: KI-generiertes spektakuläres Bild (Strukturlicht auf Turbinenschaufel, Blau-Cyan auf Schwarz) erstellt und hochgeladen

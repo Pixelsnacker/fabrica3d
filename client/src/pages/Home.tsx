@@ -19,7 +19,7 @@ const heroPanels = [
     desc: 'FDM, SLA, SLS, MJF, Polyjet und Endlosfaser – alle Verfahren aus einer Hand.',
     descEn: 'FDM, SLA, SLS, MJF, Polyjet and Continuous Fiber – all processes from one source.',
     bg: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_3ddruck_bb4d7a7f.jpg',
+    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_3ddruck_new_59911c60.jpg',
     Icon: Icon3DPrint,
   },
   {
@@ -41,7 +41,7 @@ const heroPanels = [
     desc: 'GOM ATOS Präzisionsmessung mit Toleranzen bis ±0,01 mm.',
     descEn: 'GOM ATOS precision measurement with tolerances down to ±0.01 mm.',
     bg: 'linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%)',
-    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_scan_6bb5d0a4.jpg',
+    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_scan_new-Rw2RgJUDnJd9oL3qHRq9MZ.webp',
     Icon: Icon3DScan,
   },
   {
