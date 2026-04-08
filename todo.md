@@ -169,3 +169,6 @@
 
 ## Fachliche Korrekturen
 - [x] Projektkarte "Wasserschneiden Titanzuschnitte" fachlich korrekt auf AWJ-Verfahren korrigiert (Bild, Titel, Beschreibung, Kategorie)
+
+## Header-Layout
+- [x] Topbar (h-12, 48px) und Hauptnavigation (h-[82px]) um ca. 20 % vergrößert, Logo und PageLayout-Offset angepasst
