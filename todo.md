@@ -162,3 +162,7 @@
 - [x] Animierte Übergänge beim Filtern (fade/scale)
 - [x] "Keine Ergebnisse"-Zustand mit Reset-Button
 - [x] DE/EN vollständig für alle neuen Filter und Labels
+
+## Projektbilder – Einheitlicher fotorealistischer 3D-Rendering-Stil
+- [x] Alle 12 Projektbilder als fotorealistische 3D-Renderings generiert (dunkler Hintergrund, Studiobeleuchtung)
+- [x] Neue CDN-URLs in Projekte.tsx eingebunden

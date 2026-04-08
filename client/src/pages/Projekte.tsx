@@ -52,7 +52,7 @@ const projects: Project[] = [
     applicationEn: 'Mechanical Engineering',
     desc: 'Digitalisierung und Neukonstruktion eines veralteten Maschinenteils ohne vorhandene Zeichnung.',
     descEn: 'Digitization and reconstruction of an obsolete machine part without existing drawing.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_cad_reverse_1ca532fe.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj02_cad_reverse-nJgUqWy9BLUGZURCGLcq29.webp',
   },
   {
     id: 3,
@@ -67,7 +67,7 @@ const projects: Project[] = [
     applicationEn: 'Quality Assurance',
     desc: 'Qualitätskontrolle von 500 Serienteilen mit GOM ATOS. Vollständige Prüfdokumentation mit Farbplot.',
     descEn: 'Quality control of 500 series parts with GOM ATOS. Complete inspection documentation with color plot.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_scan_series_7c4ffbf4.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj03_scan_turbine-mj5ThaoZrPBKCKZVC3zRkJ.webp',
   },
   {
     id: 4,
@@ -82,7 +82,7 @@ const projects: Project[] = [
     applicationEn: 'Mechanical Engineering',
     desc: '5-Achs-Bearbeitung einer Maschinenbaukomponente mit Toleranz ±0,01 mm.',
     descEn: '5-axis machining of a mechanical engineering component with tolerance ±0.01 mm.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_cnc_alu_f4951a7f.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj08_cnc_aluminum-3E8NUciPpfpJgujgb9mvRf.webp',
   },
   {
     id: 5,
@@ -97,7 +97,7 @@ const projects: Project[] = [
     applicationEn: 'Museum Model',
     desc: 'Täuschend echte Reproduktion eines Römerhelms für Museumsausstellung. Besucher können das Modell anfassen.',
     descEn: 'Deceptively real reproduction of a Roman helmet for museum exhibition. Visitors can touch the model.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_museum_helm_20ce157e.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj05_museum_colosseum-nMtJBVidGgGPdtKevR4CFu.webp',
   },
   {
     id: 6,
@@ -112,7 +112,7 @@ const projects: Project[] = [
     applicationEn: 'Medical',
     desc: 'Präzise Zahnmodelle für Kieferorthopädie mit ±0,01 mm Toleranz. Produktionszeit 80% kürzer als konventionell.',
     descEn: 'Precise dental models for orthodontics with ±0.01 mm tolerance. Production time 80% shorter than conventional.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_sla_dental_a02d9290.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj06_dental_resin-2Yw32uf2yvwzr5pbzi4jn8.webp',
   },
   {
     id: 7,
@@ -127,7 +127,7 @@ const projects: Project[] = [
     applicationEn: 'Architecture',
     desc: 'Maßstabsgetreues Modell eines historischen Gebäudes im Maßstab 1:100 für Stadtmuseum.',
     descEn: 'Scale model of a historical building at 1:100 scale for city museum.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_museum_arch_eb983340.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj07_museum_tactile-iXkpC9iUYpF7xEDFmUs3iP.webp',
   },
   {
     id: 8,
@@ -142,7 +142,7 @@ const projects: Project[] = [
     applicationEn: 'Medical',
     desc: 'Präzise Titanzuschnitte für medizinische Implantate ohne Wärmeeinflusszone.',
     descEn: 'Precise titanium cuts for medical implants without heat-affected zone.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_cnc_titan_4c15ddff.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj04_cnc_titanium-7gpyCgqdY3RShdjbQDX8Bg.webp',
   },
   {
     id: 9,
@@ -157,7 +157,7 @@ const projects: Project[] = [
     applicationEn: 'Consumer Goods',
     desc: 'Serienfertigung von 1000 Funktionsteilen mit isotropen Eigenschaften in 5 Tagen.',
     descEn: 'Series production of 1000 functional parts with isotropic properties in 5 days.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_mjf_series_c5a3cc5a.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj09_pa12_consumer-QhisCQqgxAxREUju8R56aZ.webp',
   },
   {
     id: 10,
@@ -172,7 +172,7 @@ const projects: Project[] = [
     applicationEn: 'Education & Research',
     desc: 'Digitalisierung seltener Fossilien und Reproduktion für Bildungszwecke.',
     descEn: 'Digitization of rare fossils and reproduction for educational purposes.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_scan_fossil_5c7b4546.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj10_scan_artifact-952uJHCZso6sfEXEcxk9Rj.webp',
   },
   {
     id: 11,
@@ -187,11 +187,11 @@ const projects: Project[] = [
     applicationEn: 'Electronics',
     desc: 'Kleinserie von 50 Kunststoffgehäusen mit komplexer Innengeometrie. Kosten 60% unter Spritzguss.',
     descEn: 'Small series of 50 plastic housings with complex internal geometry. Costs 60% below injection molding.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_cnc_pom_abfd1771.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj11_cnc_pom-NFPt8YNGWbHPMsZ8VYDpez.webp',
   },
   {
     id: 12,
-    title: 'Roboterarm Endlosfaser',
+    title: 'Hochfester 3D-Druck mit Endlosfaser',
     titleEn: 'Robot Arm Continuous Fiber',
     category: '3D-Druck',
     categoryEn: '3D Printing',
@@ -202,7 +202,7 @@ const projects: Project[] = [
     applicationEn: 'Robotics & Automation',
     desc: 'Leichtes Roboterarm-Segment mit Kevlar-Verstärkung. Zykluszeit um 30% verbessert.',
     descEn: 'Lightweight robot arm segment with Kevlar reinforcement. Cycle time improved by 30%.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_fdm_roboter_kevlar_a3b74adf.png',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj12_fdm_robot_arm-9GKkgyGca3v4cQcj9CTNw4.webp',
   },
 ];
 
