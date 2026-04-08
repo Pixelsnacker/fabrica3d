@@ -201,19 +201,18 @@ export default function Home() {
               )}
             </p>
           </div>
-          <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
-            {[
-              { num: 'XX', label: t('Jahre Erfahrung', 'Years Experience') },
-              { num: 'XX', label: t('Zufriedene Kunden', 'Satisfied Clients') },
-              { num: 'XX', label: t('Projekte realisiert', 'Projects Completed') },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-4xl font-bold mb-1" style={{ color: 'var(--fabrica-red)' }}>
-                  {stat.num}+
+          <div className="flex justify-center">
+            <div className="inline-flex items-center gap-4 px-8 py-5 rounded-2xl border-2" style={{ borderColor: 'var(--fabrica-red)', backgroundColor: 'oklch(38.3% 0.144 0.6 / 0.05)' }}>
+              <div className="text-5xl font-bold" style={{ color: 'var(--fabrica-red)' }}>10+</div>
+              <div className="text-left">
+                <div className="text-lg font-semibold" style={{ color: 'var(--fabrica-anthrazit)' }}>
+                  {t('Jahre Erfahrung', 'Years of Experience')}
                 </div>
-                <div className="text-sm text-gray-500 font-medium">{stat.label}</div>
+                <div className="text-sm text-gray-500">
+                  {t('in der digitalen Fertigung', 'in digital manufacturing')}
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

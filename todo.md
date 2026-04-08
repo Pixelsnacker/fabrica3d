@@ -121,3 +121,6 @@
 - [x] Alle Bilder auf Hochformat 800x1200 zugeschnitten, Helligkeit/Sättigung harmonisiert
 - [x] Als CDN-Assets hochgeladen und in Home.tsx eingebunden (Desktop + Mobile)
 - [x] Gradient-Overlay von unten für Lesbarkeit der Texte
+
+## Statistiken Startseite
+- [x] Statistik-Bereich: "10+ Jahre Erfahrung in der digitalen Fertigung" als prominentes Badge, Platzhalter entfernt
