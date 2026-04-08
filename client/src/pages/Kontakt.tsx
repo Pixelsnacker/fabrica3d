@@ -90,7 +90,7 @@ export default function Kontakt() {
                   </p>
                   <p className="text-sm text-gray-600 leading-relaxed">
                     Fabrica GmbH<br />
-                    Gilabchstr. 205<br />
+                    Gilabchstr. 29a<br />
                     50672 Köln
                   </p>
                   <a href="tel:+4922117051695" className="text-sm hover:underline mt-1 block" style={{ color: 'var(--fabrica-red)' }}>

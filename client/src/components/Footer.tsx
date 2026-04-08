@@ -109,7 +109,7 @@ export default function Footer() {
                 <MapPin size={15} className="mt-0.5 flex-shrink-0 text-white/40" />
                 <span>
                   <span className="text-white/50 text-xs uppercase tracking-wide">{t('Köln (neu)', 'Cologne (new)')}</span><br />
-                  Gilabchstr. 205<br />
+                  Gilabchstr. 29a<br />
                   50672 Köln<br />
                   <a href="tel:+4922117051695" className="hover:text-white transition-colors">
                     +49 (0) 221 / 17051695

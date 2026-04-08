@@ -35,6 +35,34 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
+
+  // Image proxy: serves CDN images with correct content-type for browser rendering
+  app.get('/api/img', async (req, res) => {
+    const url = req.query.url as string;
+    if (!url || !url.startsWith('https://d2xsxph8kpxj0f.cloudfront.net/')) {
+      return res.status(400).send('Invalid URL');
+    }
+    try {
+      const response = await fetch(url);
+      if (!response.ok) return res.status(response.status).send('Image not found');
+      const buffer = await response.arrayBuffer();
+      const bytes = new Uint8Array(buffer);
+      // Detect format from magic bytes
+      let contentType = 'image/jpeg';
+      if (bytes[0] === 0x52 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[3] === 0x46) {
+        contentType = 'image/webp'; // RIFF...WEBP
+      } else if (bytes[0] === 0x89 && bytes[1] === 0x50) {
+        contentType = 'image/png'; // PNG
+      } else if (bytes[0] === 0xFF && bytes[1] === 0xD8) {
+        contentType = 'image/jpeg'; // JPEG
+      }
+      res.set('Content-Type', contentType);
+      res.set('Cache-Control', 'public, max-age=86400');
+      res.send(Buffer.from(buffer));
+    } catch (err) {
+      res.status(500).send('Proxy error');
+    }
+  });
   // tRPC API
   app.use(
     "/api/trpc",

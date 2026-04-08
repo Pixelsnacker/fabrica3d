@@ -143,3 +143,11 @@
 - [x] 12 Projektbilder generiert: FDM-Bracket, CAD-Reverse, 3D-Scan-Serie, CNC-Alu, Römerhelm, SLA-Dental, Architekturmodell, Wasserschneiden, MJF-Serienteile, Fossilien-Scan, CNC-Kunststoff, Roboterarm-Kevlar
 - [x] Einheitliche dunkle Industrieästhetik: Stahl-Blau-Grau-Palette, farblich harmonisch
 - [x] Alle 12 Bilder in Projekte.tsx eingebunden (CDN-URLs, background-image mit Gradient-Overlay)
+
+## Museumsmodelle-Seite Update
+- [ ] Archäologische Funde-Sektion durch Tastmodelle-Sektion ersetzen (inkl. Beschreibung, Anwendungsfälle, Materialien)
+- [ ] Bronzemodelle als eigenes Thema/Sektion einbringen (Bronzeguss-Repliken, Patinierung, Anwendungen)
+
+## Adresskorrektur & Bildfix
+- [ ] Köln-Adresse korrigieren: "Gilabchstr. 205" → "Gilabchstr. 29a" in Footer, Kontakt und Impressum
+- [ ] Projektbilder: Server-Proxy-Route für korrekten Content-Type einrichten
