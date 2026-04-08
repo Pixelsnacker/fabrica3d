@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://fabrica3d.eu/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabrica3d.eu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabrica3d.eu/?lang=en"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url><loc>https://fabrica3d.eu/3d-druck/fdm</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://fabrica3d.eu/3d-druck/endlosfaser</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://fabrica3d.eu/3d-druck/sla</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/3d-druck/dlp</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/3d-druck/sls</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/3d-druck/mjf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/3d-druck/sanddruck</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fabrica3d.eu/3d-druck/polyjet</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fabrica3d.eu/3d-druck/materialien</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/cad/konstruktion</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/cad/reverse-engineering</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/3d-scan/gom-atos</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/3d-scan/anwendungen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fabrica3d.eu/cnc/fraesen</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/cnc/drehen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fabrica3d.eu/cnc/wasserschneiden</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fabrica3d.eu/cnc/laserschneiden</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fabrica3d.eu/museumsmodelle</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/projekte</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/basiswissen</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/upload</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://fabrica3d.eu/kontakt</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fabrica3d.eu/impressum</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://fabrica3d.eu/datenschutz</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>
