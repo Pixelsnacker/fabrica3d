@@ -37,7 +37,7 @@ const projects: Project[] = [
     applicationEn: 'Automotive',
     desc: 'Hochfeste Halterung für Fahrzeugchassis mit Endlosfaser-FDM. 65% Gewichtsreduktion gegenüber Aluminium bei gleicher Steifigkeit.',
     descEn: 'High-strength bracket for vehicle chassis with continuous fiber FDM. 65% weight reduction compared to aluminum at the same stiffness.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_fdm_architektur_195f6456.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_fdm_black_lattice-8tq6nUhX9wXvBK7RWr3ATY.webp',
   },
   {
     id: 2,
