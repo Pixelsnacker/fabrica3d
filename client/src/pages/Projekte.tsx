@@ -202,7 +202,7 @@ const projects: Project[] = [
     applicationEn: 'Robotics & Automation',
     desc: 'Leichtes Roboterarm-Segment mit Kevlar-Verstärkung. Zykluszeit um 30% verbessert.',
     descEn: 'Lightweight robot arm segment with Kevlar reinforcement. Cycle time improved by 30%.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_fdm_roboter_1206c028.webp',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_fdm_roboter_kevlar_a3b74adf.png',
   },
 ];
 
