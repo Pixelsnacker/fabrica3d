@@ -205,10 +205,10 @@ export default function Home() {
             <div className="inline-flex items-center gap-4 px-8 py-5 rounded-2xl border-2" style={{ borderColor: 'var(--fabrica-red)', backgroundColor: 'oklch(38.3% 0.144 0.6 / 0.05)' }}>
               <div className="text-5xl font-bold" style={{ color: 'var(--fabrica-red)' }}>10+</div>
               <div className="text-left">
-                <div className="text-lg font-semibold" style={{ color: 'var(--fabrica-anthrazit)' }}>
+                <div className="text-lg font-semibold" style={{ color: 'var(--fabrica-anthrazit)', fontSize: '20px' }}>
                   {t('Jahre Erfahrung', 'Years of Experience')}
                 </div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-500" style={{fontSize: '16px'}}>
                   {t('in der digitalen Fertigung', 'in digital manufacturing')}
                 </div>
               </div>

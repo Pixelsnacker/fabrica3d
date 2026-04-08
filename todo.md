@@ -132,3 +132,9 @@
 ## Museumsmodelle Hero-Bild
 - [x] KI-generiertes Hochformat-Bild: modernes Museum mit Kolosseum-Tastmodell auf schwarzem Sockel, kühles Blau-Ambiente + warmes Spotlight
 - [x] Bild in Home.tsx Museumsmodelle-Panel eingebunden
+
+## Header & Farb-Anpassungen
+- [x] Logo 25% größer (h-9 → h-[52px], maxWidth 170px → 210px)
+- [x] Weißer Header-Bereich höher (h-14 → h-[68px])
+- [x] Topbar höher (h-8 → h-10), PageLayout padding angepasst (108px desktop)
+- [x] Anthrazit um 10% aufgehellt (oklch 22% → 32%)

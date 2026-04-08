@@ -96,7 +96,7 @@ export default function Navigation() {
           className="hidden md:block border-b text-xs"
           style={{ backgroundColor: 'var(--fabrica-anthrazit)', color: 'rgba(255,255,255,0.85)' }}
         >
-          <div className="container flex items-center justify-between h-8">
+          <div className="container flex items-center justify-between h-10">
             {/* Left: contact info */}
             <div className="flex items-center gap-5">
               <a
@@ -158,15 +158,15 @@ export default function Navigation() {
         {/* ── MAIN NAVBAR ── */}
         <div style={{ boxShadow: scrolled ? '0 2px 16px rgba(0,0,0,0.08)' : '0 1px 0 rgba(0,0,0,0.08)' }}>
           <div className="container">
-            <div className="flex items-center justify-between h-14">
+            <div className="flex items-center justify-between h-[68px]">
 
               {/* Logo */}
               <Link href="/" className="flex items-center flex-shrink-0">
                 <img
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/FabricaLogoneu_e9be3c25.png"
                   alt="Fabrica GmbH – Digital Production"
-                  className="h-9 w-auto object-contain"
-                  style={{ maxWidth: '170px' }}
+                  className="h-[52px] w-auto object-contain"
+                  style={{ maxWidth: '210px' }}
                 />
               </Link>
 

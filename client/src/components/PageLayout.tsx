@@ -11,8 +11,8 @@ export default function PageLayout({ children, className = '' }: PageLayoutProps
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      {/* pt-14 = mobile (only main nav 56px), md:pt-[88px] = desktop (topbar 32px + main nav 56px) */}
-      <main className={`flex-1 pt-14 md:pt-[88px] ${className}`}>
+      {/* pt-[68px] = mobile (only main nav 68px), md:pt-[108px] = desktop (topbar 40px + main nav 68px) */}
+      <main className={`flex-1 pt-[68px] md:pt-[108px] ${className}`}>
         {children}
       </main>
       <Footer />
