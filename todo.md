@@ -145,9 +145,9 @@
 - [x] Alle 12 Bilder in Projekte.tsx eingebunden (CDN-URLs, background-image mit Gradient-Overlay)
 
 ## Museumsmodelle-Seite Update
-- [ ] Archäologische Funde-Sektion durch Tastmodelle-Sektion ersetzen (inkl. Beschreibung, Anwendungsfälle, Materialien)
-- [ ] Bronzemodelle als eigenes Thema/Sektion einbringen (Bronzeguss-Repliken, Patinierung, Anwendungen)
+- [x] Archäologische Funde-Sektion durch Tastmodelle-Sektion ersetzt (inkl. Beschreibung, Anwendungsfälle, Materialien)
+- [x] Bronzemodelle als eigenes Thema/Sektion eingebracht (Bronzeguss-Repliken, Patinierung, Anwendungen)
 
 ## Adresskorrektur & Bildfix
-- [ ] Köln-Adresse korrigieren: "Gilabchstr. 205" → "Gilabchstr. 29a" in Footer, Kontakt und Impressum
-- [ ] Projektbilder: Server-Proxy-Route für korrekten Content-Type einrichten
+- [x] Köln-Adresse korrigiert: "Gilabchstr. 29a" in Footer und Kontakt
+- [x] Projektbilder: Express-Proxy /api/img mit Magic-Byte-Erkennung (image/webp) eingerichtet, alle 12 URLs aktualisiert
