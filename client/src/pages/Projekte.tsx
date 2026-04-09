@@ -101,8 +101,8 @@ const projects: Project[] = [
   },
   {
     id: 6,
-    title: 'SLA Zahntechnisches Modell',
-    titleEn: 'SLA Dental Model',
+    title: 'SLA Dental Anschauungsmodell',
+    titleEn: 'SLA Dental Demonstration Model',
     category: '3D-Druck',
     categoryEn: '3D Printing',
     tech: 'SLA',
@@ -110,9 +110,9 @@ const projects: Project[] = [
     materialEn: 'Dental Resin',
     application: 'Medizin',
     applicationEn: 'Medical',
-    desc: 'Präzise Zahnmodelle für Kieferorthopädie mit ±0,01 mm Toleranz. Produktionszeit 80% kürzer als konventionell.',
-    descEn: 'Precise dental models for orthodontics with ±0.01 mm tolerance. Production time 80% shorter than conventional.',
-    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj06_dental_resin-2Yw32uf2yvwzr5pbzi4jn8.webp',
+    desc: 'SLA-gedruckte Dental-Anschauungsmodelle aus biokompatiblem Dental Resin. Serienproduktion mit ±0,05 mm Schichtgenauigkeit für Kieferorthopädie, Implantatplanung und Patientenaufklärung.',
+    descEn: 'SLA-printed dental demonstration models in biocompatible dental resin. Series production with ±0.05 mm layer accuracy for orthodontics, implant planning and patient education.',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_dental_sla_anschauung_614f8b84.jpg',
   },
   {
     id: 7,

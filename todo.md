@@ -186,13 +186,16 @@
 - [x] Heuschrecken-Tastmodell zur Projektgalerie hinzugefügt (522x430x280 mm, SLA, Strukturlack, Fühler TPU)
 
 ## Startseite – Bildkorrekturen
-- [ ] CNC-Bild Startseite ersetzen: Fräskopf-Proportionen technisch korrekt, fotorealistisch-industriell, nach Nutzerfreigabe einbauen
+- [x] CNC-Bild Startseite ersetzt: modernes CNC-Bearbeitungszentrum mit Fräskopf-Nahaufnahme und G-Code-Parametern auf Monitor
 
 ## F3 Kalkulator – Budgetorientierung & Admin-Preispanel
-- [ ] DB-Tabelle `pricing_config` erstellen (Verfahren, Min/Max-Preis, Einheit, Mindestpreis, Rabattstufen)
-- [ ] Standard-Preisdaten in DB eintragen (Seed)
-- [ ] Server-Router: Preise aus DB laden statt hartcodiert
-- [ ] Admin-Preispanel: Seite /admin/preise mit Tabelle zum Bearbeiten aller Preise
-- [ ] Kalkulator-Frontend: Kommunikation auf "Budgetorientierung" umformulieren (Titel, Badge, Disclaimer, Summary)
-- [ ] Disclaimer prominenter darstellen und Erwartungsmanagement verbessern
-- [ ] Kalkulator-Text: Deutlich kommunizieren dass Preis ein grober Richtwert ist und verbindliches Angebot erst nach Erhalt der CAD-Daten erstellt wird
+- [x] DB-Tabelle `pricing_config` erstellt (14 Verfahren, Min/Max-Preis, Einheit, Mindestpreis, Rabattstufen)
+- [x] Standard-Preisdaten in DB eingetragen (Seed)
+- [x] Server-Router: pricingRouter mit DB-Abfrage + null-Check, in routers.ts registriert
+- [x] Admin-Preispanel: Seite /admin/preise mit editierbarer Tabelle (PreisAdmin.tsx)
+- [x] Kalkulator-Frontend: "Budgetorientierung" Badge + "Grober Richtwert" Label im Ergebnis-Header
+- [x] Disclaimer prominenter: amber-Box mit AlertTriangle-Icon nach Empfehlungen
+- [x] Kalkulator-Text: Deutlich kommunizieren dass Preis ein grober Richtwert ist und verbindliches Angebot erst nach Erhalt der CAD-Daten erstellt wird
+
+## Neue Projekte – Bildtausch
+- [x] Projektkarte "Zahntechnisches Modell" → "SLA Dental Anschauungsmodell" umbenannt und Bild durch Dentalmodell.jpg ersetzt

@@ -593,11 +593,18 @@ export default function Kalkulator() {
                 <div className="bg-white rounded-xl border shadow-sm overflow-hidden">
                   {/* Cost header */}
                   <div className="p-6 text-white" style={{ background: 'linear-gradient(135deg, var(--fabrica-anthrazit) 0%, #1a1a2e 100%)' }}>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-semibold text-white/70 uppercase tracking-wide">
-                        {t('Geschätzte Kosten (Netto)', 'Estimated Cost (Net)')}
+                    {/* Budgetorientierung Badge */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                        <TrendingUp size={11} />
+                        {t('Budgetorientierung', 'Budget Guidance')}
                       </span>
                       <ConfidenceBadge level={result.confidence} lang={lang} />
+                    </div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm font-semibold text-white/70 uppercase tracking-wide">
+                        {t('Grober Richtwert (Netto)', 'Rough Reference Value (Net)')}
+                      </span>
                     </div>
                     <div className="flex items-end gap-2 mb-1">
                       <span className="text-4xl font-bold">
@@ -670,7 +677,17 @@ export default function Kalkulator() {
                     )}
 
                     {/* Disclaimer */}
-                    <p className="text-xs text-gray-400 leading-relaxed border-t pt-4">{result.disclaimer}</p>
+                    <div className="border-t pt-4">
+                      <div className="flex items-start gap-2 p-3 bg-amber-50 rounded-lg border border-amber-200">
+                        <AlertTriangle size={14} className="text-amber-600 shrink-0 mt-0.5" />
+                        <p className="text-xs text-amber-800 leading-relaxed font-medium">
+                          {t(
+                            'Der angezeigte Preis ist ein grober Richtwert zur Budgetplanung. Ein verbindliches Angebot wird nach Erhalt Ihrer CAD-Daten erstellt.',
+                            'The displayed price is a rough reference value for budget planning. A binding quote will be prepared after receiving your CAD data.'
+                          )}
+                        </p>
+                      </div>
+                    </div>
 
                     {/* CTA */}
                     <a
