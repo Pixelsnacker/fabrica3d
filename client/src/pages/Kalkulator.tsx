@@ -155,10 +155,10 @@ export default function Kalkulator() {
   }>(null);
 
   usePageMeta({
-    titleDe: 'KI-Kalkulator – Kostenabschätzung für 3D-Druck & CNC',
-    titleEn: 'AI Calculator – Cost Estimate for 3D Printing & CNC',
-    descriptionDe: 'Erhalten Sie sofort eine KI-gestützte Kostenschätzung für Ihr 3D-Druck- oder CNC-Projekt. Geben Sie Verfahren, Material und Abmessungen ein.',
-    descriptionEn: 'Get an instant AI-powered cost estimate for your 3D printing or CNC project. Enter process, material and dimensions.',
+    titleDe: 'F3 Kalkulator – Kostenabschätzung für 3D-Druck & CNC',
+    titleEn: 'F3 Calculator – Cost Estimate for 3D Printing & CNC',
+    descriptionDe: 'Erhalten Sie sofort eine präzise Kostenschätzung durch System F3 für Ihr 3D-Druck- oder CNC-Projekt. Geben Sie Verfahren, Material und Abmessungen ein.',
+    descriptionEn: 'Get an instant precise cost estimate via F3 system for your 3D printing or CNC project. Enter process, material and dimensions.',
     canonical: '/kalkulator',
   });
 
@@ -250,7 +250,7 @@ export default function Kalkulator() {
               <Calculator size={24} className="text-white" />
             </div>
             <span className="text-sm font-bold uppercase tracking-widest text-white/60">
-              {t('KI-gestützt', 'AI-powered')}
+              {t('System F3', 'System F3')}
             </span>
           </div>
           <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
@@ -258,8 +258,8 @@ export default function Kalkulator() {
           </h1>
           <p className="text-lg text-white/80 max-w-2xl leading-relaxed">
             {t(
-              'Erhalten Sie in Sekunden eine KI-gestützte Kostenschätzung für Ihr 3D-Druck- oder CNC-Projekt. Geben Sie Ihre Parameter ein und die KI berechnet einen realistischen Preisrahmen.',
-              'Get an AI-powered cost estimate for your 3D printing or CNC project in seconds. Enter your parameters and the AI calculates a realistic price range.'
+              'Erhalten Sie in Sekunden eine präzise Kostenschätzung für Ihr 3D-Druck- oder CNC-Projekt. Geben Sie Ihre Parameter ein – unser System F3 kalkuliert einen realistischen Preisrahmen.',
+              'Get a precise cost estimate for your 3D printing or CNC project in seconds. Enter your parameters – our F3 system calculates a realistic price range.'
             )}
           </p>
           <div className="flex flex-wrap gap-4 mt-6 text-sm text-white/60">
@@ -530,7 +530,7 @@ export default function Kalkulator() {
                     {estimateMutation.isPending ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        {t('KI berechnet...', 'AI calculating...')}
+                        {t('F3 kalkuliert gerade für Sie…', 'F3 is calculating for you…')}
                       </>
                     ) : (
                       <>
@@ -574,7 +574,7 @@ export default function Kalkulator() {
                     {t('Ihre Schätzung erscheint hier', 'Your estimate will appear here')}
                   </p>
                   <p className="text-sm text-gray-400">
-                    {t('Wählen Sie Verfahren, Material und Abmessungen aus, um eine KI-Schätzung zu erhalten.', 'Select process, material and dimensions to get an AI estimate.')}
+                    {t('Wählen Sie Verfahren, Material und Abmessungen aus, um eine Schätzung durch System F3 zu erhalten.', 'Select process, material and dimensions to get an F3 system estimate.')}
                   </p>
                 </div>
               )}
@@ -584,7 +584,7 @@ export default function Kalkulator() {
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--fabrica-gray)' }}>
                     <div className="w-8 h-8 border-3 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: 'var(--fabrica-red)', borderWidth: '3px' }} />
                   </div>
-                  <p className="font-semibold text-gray-700 mb-1">{t('KI analysiert Ihr Projekt...', 'AI is analysing your project...')}</p>
+                  <p className="font-semibold text-gray-700 mb-1">{t('System F3 analysiert Ihr Projekt…', 'System F3 is analysing your project…')}</p>
                   <p className="text-sm text-gray-400">{t('Das dauert nur wenige Sekunden.', 'This only takes a few seconds.')}</p>
                 </div>
               )}
