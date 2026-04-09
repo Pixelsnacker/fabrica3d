@@ -190,8 +190,8 @@ export default function Home() {
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed">
               {t(
-                'Fabrica GmbH ist nicht nur ein Produzent – wir sind Ihr spezialisierter Beschaffungsmanager und Problemlöser für komplexe Fertigungsanfragen. Wir beherrschen alle Technologien und produzieren alles aus einer Hand.',
-                'Fabrica GmbH is not just a manufacturer – we are your specialized procurement manager and problem solver for complex manufacturing requests. We master all technologies and produce everything from a single source.'
+                'Fabrica GmbH ist nicht nur ein Produzent – wir sind Ihr spezialisierter Beschaffungsmanager und Problemlöser für komplexe Fertigungsanfragen. Wir beherrschen viele Technologien und produzieren alles aus einer Hand. Die hybride Anwendung mehrerer Technologien ist unser Spezialgebiet. Kunden kommen zu uns, wenn andere keine Lösung finden!',
+                'Fabrica GmbH is not just a manufacturer – we are your specialized procurement manager and problem solver for complex manufacturing requests. We master many technologies and produce everything from a single source. The hybrid application of multiple technologies is our specialty. Customers come to us when others cannot find a solution!'
               )}
             </p>
           </div>

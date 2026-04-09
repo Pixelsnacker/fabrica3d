@@ -215,3 +215,8 @@
 ## Neue Filterkategorie – Hybrid/Modellbau
 - [x] Kategorie "Hybrid/Modellbau" in categories-Filter-Listen (DE + EN) hinzugefügt
 - [x] Geomodell-Eintrag (id 15) auf category "Hybrid/Modellbau" umgestellt
+
+## CNC-Unterseiten – Bildtausch
+- [x] Aktuelle Bildquellen in Fräsen, Drehen, Wasserschneiden, Laserschneiden identifiziert (alle hatten dasselbe hero_cnc Bild)
+- [x] Passende lizenzfreie Bilder für alle 4 CNC-Technologien gesucht und heruntergeladen
+- [x] Bilder als CDN-Assets hochgeladen und in den jeweiligen Seiten eingebunden
