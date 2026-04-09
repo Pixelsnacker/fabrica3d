@@ -247,3 +247,6 @@
 
 ## Admin-Link im Footer
 - [x] Versteckter Admin-Link im Footer eingebaut (⚙-Symbol, dezent, führt zu /admin/bilder)
+
+## Kalkulator – Beispiel-Schätzung entfernen
+- [x] Beispiel-Schätzungs-Box (FDM/PETG/80×60×40mm/5 Stück/45–85€) aus Home.tsx Kalkulator-Sektion entfernt

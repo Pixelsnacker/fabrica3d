@@ -482,32 +482,7 @@ export default function Home() {
                   <ChevronRight size={16} />
                 </Link>
               </div>
-              {/* Visual preview */}
-              <div className="flex-shrink-0 w-full md:w-72">
-                <div className="bg-white/10 backdrop-blur rounded-xl p-5 border border-white/10">
-                  <div className="text-xs font-semibold text-white/50 uppercase tracking-wide mb-3">
-                    {t('Beispiel-Schätzung', 'Example Estimate')}
-                  </div>
-                  <div className="space-y-2 mb-4">
-                    {[
-                      { label: t('Verfahren', 'Process'), value: 'FDM-Druck' },
-                      { label: t('Material', 'Material'), value: 'PETG' },
-                      { label: t('Abmessungen', 'Dimensions'), value: '80 × 60 × 40 mm' },
-                      { label: t('Menge', 'Quantity'), value: '5 Stück' },
-                    ].map(item => (
-                      <div key={item.label} className="flex justify-between text-xs">
-                        <span className="text-white/50">{item.label}</span>
-                        <span className="text-white font-medium">{item.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="border-t border-white/10 pt-3">
-                    <div className="text-xs text-white/50 mb-1">{t('Geschätzte Kosten', 'Estimated Cost')}</div>
-                    <div className="text-2xl font-bold text-white">45 – 85 €</div>
-                    <div className="text-xs text-white/40">{t('Netto, zzgl. MwSt.', 'Net, excl. VAT')}</div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
