@@ -426,7 +426,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* KI-Kalkulator Teaser */}
+      {/* F3 Kalkulator Teaser */}
       <section className="py-14 md:py-20 bg-white">
         <div className="container">
           <div
@@ -443,7 +443,7 @@ export default function Home() {
                     <Calculator size={20} className="text-white" />
                   </div>
                   <span className="text-xs font-bold uppercase tracking-widest text-white/50">
-                    {t('KI-gestützt', 'AI-powered')}
+                    {t('System F3', 'System F3')}
                   </span>
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold mb-3">
@@ -451,8 +451,8 @@ export default function Home() {
                 </h2>
                 <p className="text-white/70 leading-relaxed mb-5">
                   {t(
-                    'Unser KI-Kalkulator gibt Ihnen in Sekunden eine realistische Preisspanne für Ihr 3D-Druck- oder CNC-Projekt. Wählen Sie Verfahren, Material und Abmessungen – die KI rechnet den Rest.',
-                    'Our AI calculator gives you a realistic price range for your 3D printing or CNC project in seconds. Select process, material and dimensions – the AI does the rest.'
+                    'Unser System F3 kalkuliert Ihnen in Sekunden eine realistische Preisspanne für Ihr 3D-Druck- oder CNC-Projekt. Wählen Sie Verfahren, Material und Abmessungen – F3 übernimmt die Kalkulation.',
+                    'Our F3 system calculates a realistic price range for your 3D printing or CNC project in seconds. Select process, material and dimensions – F3 handles the calculation.'
                   )}
                 </p>
                 <div className="flex flex-wrap gap-3 text-sm text-white/60 mb-6">

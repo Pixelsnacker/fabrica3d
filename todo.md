@@ -177,3 +177,7 @@
 - [x] Alle Hero-Banner-Seiten inventarisiert und fotorealistische Panoramabilder generiert
 - [x] Neue Bilder in alle betroffenen Seiten eingebunden
 - [x] Dropdown-Menü leicht transparent gemacht (rgba(255,255,255,0.95) + backdrop-blur)
+
+## F3-Branding – Navigation & Startseite
+- [x] Navigationslink "Kalkulator" → "F3 Kalkulator" (DE + EN)
+- [x] Startseite-Teaser: "KI-gestützt" → "System F3"
