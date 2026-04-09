@@ -38,6 +38,7 @@ const Laserschneiden = lazy(() => import("@/pages/cnc/Laserschneiden"));
 // Kalkulator
 const Kalkulator = lazy(() => import("@/pages/Kalkulator"));
 // Admin
+const AdminOverview = lazy(() => import("@/pages/admin/AdminOverview"));
 const PreisAdmin = lazy(() => import("@/pages/admin/PreisAdmin"));
 const ImageAdmin = lazy(() => import("@/pages/admin/ImageAdmin"));
 
@@ -92,6 +93,7 @@ function Router() {
         {/* Kalkulator */}
         <Route path="/kalkulator" component={Kalkulator} />
         {/* Admin */}
+        <Route path="/admin" component={AdminOverview} />
         <Route path="/admin/preise" component={PreisAdmin} />
         <Route path="/admin/bilder" component={ImageAdmin} />
 
