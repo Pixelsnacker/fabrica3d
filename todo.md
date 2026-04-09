@@ -211,3 +211,7 @@
 - [x] Bild GeoModellMuseum.jpg als CDN-Asset hochgeladen
 - [x] Projekteintrag "Geomodell Museumsmodell" (id 15) hinzugefügt: CNC-Fräsen + FDM + Modellbau, PU-Schaum + PLA
 - [x] Filter-Listen (materials + applications) um "PLA Mehrfarbig", "PU-Schaum + PLA", "Industrie & Maschinenbau" ergänzt
+
+## Neue Filterkategorie – Hybrid/Modellbau
+- [x] Kategorie "Hybrid/Modellbau" in categories-Filter-Listen (DE + EN) hinzugefügt
+- [x] Geomodell-Eintrag (id 15) auf category "Hybrid/Modellbau" umgestellt

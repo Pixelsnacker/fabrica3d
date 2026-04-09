@@ -238,8 +238,8 @@ const projects: Project[] = [
     id: 15,
     title: 'Geomodell Museumsmodell',
     titleEn: 'Geological Museum Model',
-    category: 'Museum',
-    categoryEn: 'Museum',
+    category: 'Hybrid/Modellbau',
+    categoryEn: 'Hybrid/Model Making',
     tech: 'CNC-Fräsen + FDM 3D-Druck + Modellbau',
     material: 'PU-Schaum + PLA',
     materialEn: 'PU Foam + PLA',
@@ -256,8 +256,8 @@ const projects: Project[] = [
 const ALL_DE = 'Alle';
 const ALL_EN = 'All';
 
-const categories    = ['Alle', '3D-Druck', 'CAD', '3D-Scan', 'CNC', 'Museum'];
-const categoriesEn  = ['All', '3D Printing', 'CAD', '3D Scan', 'CNC', 'Museum'];
+const categories    = ['Alle', '3D-Druck', 'CAD', '3D-Scan', 'CNC', 'Museum', 'Hybrid/Modellbau'];
+const categoriesEn  = ['All', '3D Printing', 'CAD', '3D Scan', 'CNC', 'Museum', 'Hybrid/Model Making'];
 
 const materials     = ['Alle', 'PA6 + Kohlefaser', 'PA12', 'Metall', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'PLA Mehrfarbig', 'PU-Schaum + PLA', 'Titan Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLS Polyamid (PA12) + TPU'];
 const materialsEn   = ['All', 'PA6 + Carbon Fiber', 'PA12', 'Metal', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'PLA Multicolor', 'PU Foam + PLA', 'Titanium Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLS Polyamide (PA12) + TPU'];
