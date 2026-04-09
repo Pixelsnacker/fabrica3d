@@ -210,7 +210,7 @@ const projects: Project[] = [
     titleEn: 'Grasshopper Tactile Model Natural History',
     category: 'Museum',
     categoryEn: 'Museum',
-    tech: 'SLA 3D-Druck + TPU-Fühler + Strukturlack',
+    tech: 'SLS 3D-Druck + TPU-Fühler + Strukturlack',
     material: 'SLA Resin + TPU',
     materialEn: 'SLA Resin + TPU',
     application: 'Museumsmodell',
