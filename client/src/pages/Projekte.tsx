@@ -110,8 +110,8 @@ const projects: Project[] = [
     materialEn: 'Dental Resin',
     application: 'Medizin',
     applicationEn: 'Medical',
-    desc: 'SLA-gedruckte Dental-Anschauungsmodelle aus biokompatiblem Dental Resin. Serienproduktion mit ±0,05 mm Schichtgenauigkeit für Kieferorthopädie, Implantatplanung und Patientenaufklärung.',
-    descEn: 'SLA-printed dental demonstration models in biocompatible dental resin. Series production with ±0.05 mm layer accuracy for orthodontics, implant planning and patient education.',
+    desc: 'Dentalmodelle aus biokompatiblem Resin, gefertigt im SLA-3D-Druck mit anschließender Lackierung. Für die Kieferorthopädie wurden 8.000 hochpräzise Anschauungsmodelle mit einer Schichtgenauigkeit von ±0,05 mm produziert. Die SLA-gedruckten Modelle eignen sich ideal für die Anpassung von Beißschienen, die kieferorthopädische Behandlungsplanung und die anschauliche Patientenaufklärung.',
+    descEn: 'Dental models made from biocompatible resin, produced using SLA 3D printing with subsequent lacquering. For orthodontics, 8,000 high-precision demonstration models were produced with a layer accuracy of ±0.05 mm. The SLA-printed models are ideal for fitting bite splints, orthodontic treatment planning and clear patient education.',
     image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_dental_sla_anschauung_614f8b84.jpg',
   },
   {
