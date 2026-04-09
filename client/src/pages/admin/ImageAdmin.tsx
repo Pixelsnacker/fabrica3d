@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +14,6 @@ function fileToBase64(file: File): Promise<string> {
     const reader = new FileReader();
     reader.onload = () => {
       const result = reader.result as string;
-      // Strip the data URL prefix (e.g. "data:image/jpeg;base64,")
       resolve(result.split(",")[1]);
     };
     reader.onerror = reject;
@@ -25,27 +24,16 @@ function fileToBase64(file: File): Promise<string> {
 // ─── component ──────────────────────────────────────────────────────────────
 
 export default function ImageAdmin() {
+  // ALL hooks must be called unconditionally at the top
   const utils = trpc.useUtils();
   const { data: me, isLoading: meLoading } = trpc.auth.me.useQuery();
   const { data: images, isLoading, error } = trpc.images.list.useQuery(
     undefined,
     { enabled: !!me }
   );
+  const [uploadingKey, setUploadingKey] = useState<string | null>(null);
+  const inputRefs = useRef<Record<string, HTMLInputElement | null>>({});
 
-  // Show spinner while checking auth
-  if (meLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
-      </div>
-    );
-  }
-
-  // Not logged in → redirect to Manus login (with returnPath so user comes back here)
-  if (!me) {
-    window.location.href = getLoginUrl("/admin/bilder");
-    return null;
-  }
   const uploadMutation = trpc.images.upload.useMutation({
     onSuccess: () => {
       utils.images.list.invalidate();
@@ -56,10 +44,14 @@ export default function ImageAdmin() {
     },
   });
 
-  // Track which slot is currently uploading
-  const [uploadingKey, setUploadingKey] = useState<string | null>(null);
-  // Hidden file inputs per slot
-  const inputRefs = useRef<Record<string, HTMLInputElement | null>>({});
+  // Redirect to login if not authenticated (after hooks)
+  useEffect(() => {
+    if (!meLoading && !me) {
+      window.location.href = getLoginUrl("/admin/bilder");
+    }
+  }, [me, meLoading]);
+
+  // ─── handlers ─────────────────────────────────────────────────────────────
 
   async function handleFileChange(imageKey: string, file: File) {
     setUploadingKey(imageKey);
@@ -76,7 +68,41 @@ export default function ImageAdmin() {
     }
   }
 
-  // Group images by category prefix
+  // ─── early returns (after all hooks) ──────────────────────────────────────
+
+  if (meLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+      </div>
+    );
+  }
+
+  if (!me) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+        <span className="ml-3 text-gray-500">Weiterleitung zum Login…</span>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 font-medium">Zugriff verweigert oder Fehler aufgetreten.</p>
+          <p className="text-gray-500 text-sm mt-1">{error.message}</p>
+          <Link href="/">
+            <Button variant="outline" className="mt-4">Zurück zur Startseite</Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // ─── group images by category prefix ──────────────────────────────────────
+
   const grouped: Record<string, typeof images> = {};
   if (images) {
     for (const img of images) {
@@ -95,19 +121,7 @@ export default function ImageAdmin() {
     museumsmodelle: "Museumsmodelle",
   };
 
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-red-600 font-medium">Zugriff verweigert oder Fehler aufgetreten.</p>
-          <p className="text-gray-500 text-sm mt-1">{error.message}</p>
-          <Link href="/">
-            <Button variant="outline" className="mt-4">Zurück zur Startseite</Button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
+  // ─── render ───────────────────────────────────────────────────────────────
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -188,7 +202,6 @@ export default function ImageAdmin() {
                           onChange={(e) => {
                             const file = e.target.files?.[0];
                             if (file) handleFileChange(img.imageKey, file);
-                            // Reset so same file can be re-selected
                             e.target.value = "";
                           }}
                         />
@@ -216,8 +229,8 @@ export default function ImageAdmin() {
 
         {/* Hint */}
         <div className="mt-10 p-4 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800">
-          <strong>Hinweis:</strong> Empfohlene Bildgröße: mindestens 1920 × 600 px, Querformat (Panorama). 
-          Unterstützte Formate: JPG, PNG, WebP. Nach dem Upload ist das Bild sofort auf der Website sichtbar – 
+          <strong>Hinweis:</strong> Empfohlene Bildgröße: mindestens 1920 × 600 px, Querformat (Panorama).
+          Unterstützte Formate: JPG, PNG, WebP. Nach dem Upload ist das Bild sofort auf der Website sichtbar –
           ein Seitenneuladen kann nötig sein.
         </div>
       </div>

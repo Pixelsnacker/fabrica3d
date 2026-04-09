@@ -250,3 +250,6 @@
 
 ## Kalkulator – Beispiel-Schätzung entfernen
 - [x] Beispiel-Schätzungs-Box (FDM/PETG/80×60×40mm/5 Stück/45–85€) aus Home.tsx Kalkulator-Sektion entfernt
+
+## BUG: ImageAdmin React Error #310
+- [x] React Error #310 (Hook-Verletzung) in ImageAdmin.tsx behoben: alle Hooks (useState, useRef, useMutation) an den Anfang der Komponente verschoben, useEffect für Login-Redirect verwendet
