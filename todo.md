@@ -181,3 +181,6 @@
 ## F3-Branding – Navigation & Startseite
 - [x] Navigationslink "Kalkulator" → "F3 Kalkulator" (DE + EN)
 - [x] Startseite-Teaser: "KI-gestützt" → "System F3"
+
+## Neue Projekte
+- [x] Heuschrecken-Tastmodell zur Projektgalerie hinzugefügt (522x430x280 mm, SLA, Strukturlack, Fühler TPU)

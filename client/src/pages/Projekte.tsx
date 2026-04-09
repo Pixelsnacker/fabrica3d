@@ -204,6 +204,21 @@ const projects: Project[] = [
     descEn: 'Lightweight robot arm segment with Kevlar reinforcement. Cycle time improved by 30%.',
     image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj12_fdm_robot_arm-9GKkgyGca3v4cQcj9CTNw4.webp',
   },
+  {
+    id: 13,
+    title: 'Heuschrecken-Tastmodell Naturkunde',
+    titleEn: 'Grasshopper Tactile Model Natural History',
+    category: 'Museum',
+    categoryEn: 'Museum',
+    tech: 'SLA 3D-Druck + TPU-Fühler + Strukturlack',
+    material: 'SLA Resin + TPU',
+    materialEn: 'SLA Resin + TPU',
+    application: 'Museumsmodell',
+    applicationEn: 'Museum Model',
+    desc: 'Überlebensgroßes Heuschrecken-Tastmodell (522 × 430 × 280 mm) für eine Naturkundeausstellung. Korpus und Beine in SLA-Resin gedruckt und mit Strukturlack versiegelt für maximale Haptik und Langlebigkeit. Die langen Fühler wurden in flexiblem TPU gefertigt, um Bruchsicherheit im Ausstellungsbetrieb zu gewährleisten.',
+    descEn: 'Oversized grasshopper tactile model (522 × 430 × 280 mm) for a natural history exhibition. Body and legs printed in SLA resin and sealed with textured lacquer for maximum haptic quality and durability. The long antennae were produced in flexible TPU to ensure break resistance in exhibition use.',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_museum_heuschrecke_a1ec1f0a.jpg',
+  },
 ];
 
 // ─── Filterwerte ──────────────────────────────────────────────────────────────
@@ -214,8 +229,8 @@ const ALL_EN = 'All';
 const categories    = ['Alle', '3D-Druck', 'CAD', '3D-Scan', 'CNC', 'Museum'];
 const categoriesEn  = ['All', '3D Printing', 'CAD', '3D Scan', 'CNC', 'Museum'];
 
-const materials     = ['Alle', 'PA6 + Kohlefaser', 'PA12', 'Metall', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'Titan Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar'];
-const materialsEn   = ['All', 'PA6 + Carbon Fiber', 'PA12', 'Metal', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'Titanium Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar'];
+const materials     = ['Alle', 'PA6 + Kohlefaser', 'PA12', 'Metall', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'Titan Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLA Resin + TPU'];
+const materialsEn   = ['All', 'PA6 + Carbon Fiber', 'PA12', 'Metal', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'Titanium Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLA Resin + TPU'];
 
 const applications  = ['Alle', 'Automotive', 'Maschinenbau', 'Qualitätssicherung', 'Museumsmodell', 'Medizin', 'Architektur', 'Konsumgüter', 'Bildung & Forschung', 'Elektronik', 'Robotik & Automation'];
 const applicationsEn = ['All', 'Automotive', 'Mechanical Engineering', 'Quality Assurance', 'Museum Model', 'Medical', 'Architecture', 'Consumer Goods', 'Education & Research', 'Electronics', 'Robotics & Automation'];
