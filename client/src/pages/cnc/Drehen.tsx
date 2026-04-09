@@ -10,7 +10,7 @@ export default function Drehen() {
       subtitle="Präzisionsdrehen in Kunststoff und Metall – rotationssymmetrische Bauteile mit höchster Genauigkeit."
       subtitleEn="Precision turning in plastic and metal – rotationally symmetric components with highest accuracy."
       mailtoSubject="Anfrage%20CNC%20Drehen"
-      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_cnc_panorama-Pneytx7DHJd5oKkDwYNmTt.webp"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_cnc_v5_closeup-ZwAmagSVwA4UkN4VoXTksW.png"
       heroColor="oklch(23% 0.04 40)"
       caseStudies={[
         { title: 'Präzisionswelle Edelstahl', titleEn: 'Precision Shaft Stainless Steel', industry: 'Maschinenbau', industryEn: 'Mechanical Engineering', challenge: 'Präzisionswelle mit h6-Toleranz für Lagerpassung in Edelstahl.', challengeEn: 'Precision shaft with h6 tolerance for bearing fit in stainless steel.', solution: 'CNC-Drehen mit anschließendem Schleifen für h6-Toleranz.', solutionEn: 'CNC turning followed by grinding for h6 tolerance.', result: 'Toleranz h6 eingehalten, Lieferung in 4 Tagen.', resultEn: 'Tolerance h6 met, delivery in 4 days.' },

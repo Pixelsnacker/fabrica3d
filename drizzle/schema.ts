@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { decimal, int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -26,3 +26,39 @@ export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
 // TODO: Add your tables here
+
+/**
+ * Pricing configuration for the F3 calculator.
+ * Each row represents one manufacturing process with its price range and rules.
+ * Admins can update these values via the /admin/preise panel.
+ */
+export const pricingConfig = mysqlTable("pricing_config", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Internal key, e.g. "fdm", "sla", "cnc_fraesen" */
+  processKey: varchar("processKey", { length: 64 }).notNull().unique(),
+  /** Display name in German */
+  labelDe: varchar("labelDe", { length: 128 }).notNull(),
+  /** Display name in English */
+  labelEn: varchar("labelEn", { length: 128 }).notNull(),
+  /** Billing unit: 'cm3' = per cm³, 'hour' = per hour, 'object' = per object */
+  unit: mysqlEnum("unit", ["cm3", "hour", "object"]).notNull(),
+  /** Minimum price per unit (€, net) */
+  pricePerUnitMin: decimal("pricePerUnitMin", { precision: 10, scale: 4 }).notNull(),
+  /** Maximum price per unit (€, net) */
+  pricePerUnitMax: decimal("pricePerUnitMax", { precision: 10, scale: 4 }).notNull(),
+  /** Minimum order value per part (€, net) */
+  minimumPrice: decimal("minimumPrice", { precision: 10, scale: 2 }).notNull(),
+  /** Discount from 10 pcs (0–1, e.g. 0.15 = 15%) */
+  discountFrom10: decimal("discountFrom10", { precision: 5, scale: 4 }).default("0.1500").notNull(),
+  /** Discount from 50 pcs (0–1) */
+  discountFrom50: decimal("discountFrom50", { precision: 5, scale: 4 }).default("0.2500").notNull(),
+  /** Optional note shown in the calculator result */
+  noteDe: text("noteDe"),
+  noteEn: text("noteEn"),
+  /** Sort order in the admin panel */
+  sortOrder: int("sortOrder").default(0).notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type PricingConfig = typeof pricingConfig.$inferSelect;
+export type InsertPricingConfig = typeof pricingConfig.$inferInsert;

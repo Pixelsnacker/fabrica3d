@@ -10,7 +10,7 @@ export default function Wasserschneiden() {
       subtitle="Kaltes Schneidverfahren ohne Wärmeeinflusszone – für Metall, Stein, Glas, Kunststoff und Verbundwerkstoffe."
       subtitleEn="Cold cutting process without heat-affected zone – for metal, stone, glass, plastic and composites."
       mailtoSubject="Anfrage%20Wasserschneiden"
-      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_cnc_panorama-Pneytx7DHJd5oKkDwYNmTt.webp"
+      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_cnc_v5_closeup-ZwAmagSVwA4UkN4VoXTksW.png"
       heroColor="oklch(22% 0.08 220)"
       caseStudies={[
         { title: 'Titanschnitt Medizintechnik', titleEn: 'Titanium Cutting Medical Technology', industry: 'Medizintechnik', industryEn: 'Medical Technology', challenge: 'Präzise Titanzuschnitte für medizinische Implantate ohne Wärmeeinfluss.', challengeEn: 'Precise titanium cuts for medical implants without heat influence.', solution: 'Wasserstrahlschneiden mit Abrasiv, keine Wärmeeinflusszone, Toleranz ±0,1 mm.', solutionEn: 'Abrasive water jet cutting, no heat-affected zone, tolerance ±0.1 mm.', result: 'Saubere Schnittkanten, keine Materialeigenschaftsveränderung.', resultEn: 'Clean cut edges, no material property changes.' },

@@ -8,6 +8,13 @@
       "when": 1775671332276,
       "tag": "0000_numerous_jubilee",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1775726657571,
+      "tag": "0001_lumpy_mauler",
+      "breakpoints": true
     }
   ]
 }

@@ -184,3 +184,15 @@
 
 ## Neue Projekte
 - [x] Heuschrecken-Tastmodell zur Projektgalerie hinzugefügt (522x430x280 mm, SLA, Strukturlack, Fühler TPU)
+
+## Startseite – Bildkorrekturen
+- [ ] CNC-Bild Startseite ersetzen: Fräskopf-Proportionen technisch korrekt, fotorealistisch-industriell, nach Nutzerfreigabe einbauen
+
+## F3 Kalkulator – Budgetorientierung & Admin-Preispanel
+- [ ] DB-Tabelle `pricing_config` erstellen (Verfahren, Min/Max-Preis, Einheit, Mindestpreis, Rabattstufen)
+- [ ] Standard-Preisdaten in DB eintragen (Seed)
+- [ ] Server-Router: Preise aus DB laden statt hartcodiert
+- [ ] Admin-Preispanel: Seite /admin/preise mit Tabelle zum Bearbeiten aller Preise
+- [ ] Kalkulator-Frontend: Kommunikation auf "Budgetorientierung" umformulieren (Titel, Badge, Disclaimer, Summary)
+- [ ] Disclaimer prominenter darstellen und Erwartungsmanagement verbessern
+- [ ] Kalkulator-Text: Deutlich kommunizieren dass Preis ein grober Richtwert ist und verbindliches Angebot erst nach Erhalt der CAD-Daten erstellt wird

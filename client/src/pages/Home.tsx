@@ -52,7 +52,7 @@ const heroPanels = [
     desc: 'Fräsen, Drehen, Wasserschneiden und Laserschneiden in Kunststoff und Metall.',
     descEn: 'Milling, turning, water jet and laser cutting in plastic and metal.',
     bg: 'linear-gradient(135deg, #3d0010 0%, #7a0e3f 100%)',
-    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_cnc_panorama-Pneytx7DHJd5oKkDwYNmTt.webp',
+    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_cnc_v5_closeup-ZwAmagSVwA4UkN4VoXTksW.png',
     Icon: IconCNC,
   },
   {
@@ -131,15 +131,12 @@ export default function Home() {
               key={panel.id}
               className="hero-panel"
               style={{
-                background: panel.bg,
-                ...(panel.image ? {
-                  backgroundImage: `url(${panel.image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center top',
-                } : {})
+                background: panel.image
+                  ? `url(${panel.image}) center top / cover no-repeat`
+                  : panel.bg,
               }}
             >
-              <div className="panel-overlay" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.15) 100%)' }} />
+              <div className="panel-overlay" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.22) 55%, rgba(0,0,0,0.05) 100%)' }} />
               <div className="panel-content">
                 <div className="mb-2 opacity-90">
                   <panel.Icon size={36} color="white" strokeWidth={1.2} />
@@ -166,12 +163,9 @@ export default function Home() {
               key={panel.id}
               className="flex items-center gap-4 p-4 rounded-lg text-white relative overflow-hidden"
               style={{
-                background: panel.bg,
-                ...(panel.image ? {
-                  backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 100%), url(${panel.image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                } : {})
+                background: panel.image
+                  ? `linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 100%), url(${panel.image}) center / cover no-repeat`
+                  : panel.bg,
               }}
             >
               <div className="flex-shrink-0">
