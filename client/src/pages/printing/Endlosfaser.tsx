@@ -1,7 +1,9 @@
 import TechPageLayout from '@/components/TechPageLayout';
+import { trpc } from '@/lib/trpc';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Endlosfaser() {
+  const { data: imgData } = trpc.images.getByKey.useQuery({ imageKey: 'print_endlosfaser' }, { staleTime: 5 * 60 * 1000, retry: false });
   const { t } = useLanguage();
 
   return (
@@ -11,7 +13,7 @@ export default function Endlosfaser() {
       subtitle="Festigkeit wie Aluminium – Gewicht wie Kunststoff. Unser wichtigstes Alleinstellungsmerkmal für Hochleistungsbauteile."
       subtitleEn="Strength like aluminum – weight like plastic. Our most important unique selling point for high-performance components."
       mailtoSubject="Anfrage%20Endlosfaser%20FDM"
-      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_endlosfaser_panorama-RYDpxAcwVpo3HiGRMocvPJ.webp"
+      heroImage={imgData?.url ?? 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_endlosfaser_panorama-RYDpxAcwVpo3HiGRMocvPJ.webp'}
       heroColor="oklch(35% 0.18 25)"
       badge="Spezialität"
       badgeEn="Specialty"

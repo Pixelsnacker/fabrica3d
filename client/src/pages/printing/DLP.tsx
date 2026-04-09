@@ -1,7 +1,9 @@
 import TechPageLayout from '@/components/TechPageLayout';
+import { trpc } from '@/lib/trpc';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function DLP() {
+  const { data: imgData } = trpc.images.getByKey.useQuery({ imageKey: 'print_dlp' }, { staleTime: 5 * 60 * 1000, retry: false });
   const { t } = useLanguage();
   return (
     <TechPageLayout
@@ -10,7 +12,7 @@ export default function DLP() {
       subtitle="Digital Light Processing – schneller als SLA bei vergleichbarer Qualität. Ideal für Serienteile in Resin."
       subtitleEn="Digital Light Processing – faster than SLA at comparable quality. Ideal for series parts in resin."
       mailtoSubject="Anfrage%20DLP-Druck"
-      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_dlp_panorama-GHpNGLESRvqpyCrq2JPZQB.webp"
+      heroImage={imgData?.url ?? 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_dlp_panorama-GHpNGLESRvqpyCrq2JPZQB.webp'}
       heroColor="oklch(28% 0.12 280)"
       caseStudies={[
         { title: 'Schmuck-Kleinserie', titleEn: 'Jewelry Small Series', industry: 'Schmuck', industryEn: 'Jewelry', challenge: 'Serienproduktion von 500 Schmuckmodellen für Guss.', challengeEn: 'Series production of 500 jewelry models for casting.', solution: 'DLP mit castable Resin, 10x schneller als SLA bei gleicher Qualität.', solutionEn: 'DLP with castable resin, 10x faster than SLA at the same quality.', result: '500 Teile in 3 Tagen, Kosten 40% unter SLA-Einzelfertigung.', resultEn: '500 parts in 3 days, costs 40% below SLA individual production.' },

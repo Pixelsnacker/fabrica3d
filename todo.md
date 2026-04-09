@@ -224,3 +224,19 @@
 ## Startseite – 3D-Druck Hero-Bild
 - [x] SLA_Druck.jpg als CDN-Asset hochgeladen
 - [x] Startseite: 3D-Druck-Bereich Hero-Bild durch SLA_Druck.jpg ersetzt
+
+## Admin-Bildverwaltung (Self-Service Image Upload)
+- [x] DB-Tabelle `site_images` erstellt (imageKey, labelDe, url, filename, updatedAt)
+- [x] Server-Router `imagesRouter`: getByKey (public), list + upload (protected, Owner-only)
+- [x] 22 Bildslots in DB eingetragen (Seed via scripts/seed-site-images.mjs)
+- [x] Admin-Panel /admin/bilder (ImageAdmin.tsx): Vorschau-Grid + Upload-Button pro Slot, gruppiert nach Kategorie
+- [x] Startseite: alle 5 Hero-Panels laden Bild dynamisch aus DB (usePanelImage-Hook)
+- [x] CNC-Unterseiten (x4): heroImage dynamisch aus DB
+- [x] 3D-Druck-Unterseiten (x8): heroImage dynamisch aus DB
+- [x] CAD-Unterseiten (x2): heroImage dynamisch aus DB
+- [x] Scan-Unterseiten (x2): heroImage dynamisch aus DB
+- [x] Museumsmodelle: heroImage dynamisch aus DB
+- [x] useSiteImage-Hook erstellt für einfache Wiederverwendung
+- [x] Route /admin/bilder in App.tsx registriert
+- [x] Startseiten-Text: "wenn Andere" korrigiert
+- [x] 48 Tests grün, TypeScript fehlerfrei

@@ -1,7 +1,9 @@
 import TechPageLayout from '@/components/TechPageLayout';
+import { trpc } from '@/lib/trpc';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Laserschneiden() {
+  const { data: imgData } = trpc.images.getByKey.useQuery({ imageKey: 'cnc_laserschneiden' }, { staleTime: 5 * 60 * 1000, retry: false });
   const { t } = useLanguage();
   return (
     <TechPageLayout
@@ -10,7 +12,7 @@ export default function Laserschneiden() {
       subtitle="Hochpräzises Schneiden und Gravieren – für Metall, Kunststoff, Holz und Acryl."
       subtitleEn="High-precision cutting and engraving – for metal, plastic, wood and acrylic."
       mailtoSubject="Anfrage%20Laserschneiden"
-      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/cnc_laserschneiden_hero_33866744.jpg"
+      heroImage={imgData?.url ?? 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/cnc_laserschneiden_hero_33866744.jpg'}
       heroColor="oklch(20% 0.06 15)"
       caseStudies={[
         { title: 'Blechzuschnitte Serienfertigung', titleEn: 'Sheet Metal Series Production', industry: 'Maschinenbau', industryEn: 'Mechanical Engineering', challenge: 'Serienfertigung von 500 Blechzuschnitten mit komplexen Konturen.', challengeEn: 'Series production of 500 sheet metal cuts with complex contours.', solution: 'Laserschneiden mit optimiertem Nesting, minimaler Materialverschnitt.', solutionEn: 'Laser cutting with optimized nesting, minimal material waste.', result: '500 Teile in 2 Tagen, Toleranz ±0,1 mm, 15% Materialersparnis.', resultEn: '500 parts in 2 days, tolerance ±0.1 mm, 15% material savings.' },

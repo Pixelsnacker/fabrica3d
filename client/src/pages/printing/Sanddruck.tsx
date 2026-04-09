@@ -1,7 +1,9 @@
 import TechPageLayout from '@/components/TechPageLayout';
+import { trpc } from '@/lib/trpc';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Sanddruck() {
+  const { data: imgData } = trpc.images.getByKey.useQuery({ imageKey: 'print_sanddruck' }, { staleTime: 5 * 60 * 1000, retry: false });
   const { t } = useLanguage();
   return (
     <TechPageLayout
@@ -10,7 +12,7 @@ export default function Sanddruck() {
       subtitle="Gießereikerne und Gießformen direkt aus Sand – keine Werkzeugkosten, sofort einsatzbereit."
       subtitleEn="Foundry cores and casting molds directly from sand – no tooling costs, ready to use immediately."
       mailtoSubject="Anfrage%20Sanddruck"
-      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_sanddruck_panorama-mxobzZdxCqzGFANvCCWUrr.webp"
+      heroImage={imgData?.url ?? 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_sanddruck_panorama-mxobzZdxCqzGFANvCCWUrr.webp'}
       heroColor="oklch(35% 0.08 60)"
       caseStudies={[
         { title: 'Motorblock-Gießkern', titleEn: 'Engine Block Casting Core', industry: 'Maschinenbau', industryEn: 'Mechanical Engineering', challenge: 'Komplexer Gießkern für Motorblock mit engen Innenkanälen, konventionell nicht herstellbar.', challengeEn: 'Complex casting core for engine block with tight internal channels, not conventionally producible.', solution: 'Sanddruck mit Binder Jetting, Innenkanäle mit 5 mm Durchmesser realisiert.', solutionEn: 'Sand printing with binder jetting, internal channels with 5 mm diameter realized.', result: 'Erstmuster in 3 Tagen, perfekte Gussqualität ohne Werkzeugkosten.', resultEn: 'First sample in 3 days, perfect casting quality without tooling costs.' },

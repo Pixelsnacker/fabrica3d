@@ -1,6 +1,7 @@
 import { Link } from 'wouter';
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageLayout from '@/components/PageLayout';
+import { trpc } from '@/lib/trpc';
 import {
   Mail, ChevronRight, Shield, Clock, Users, Award, Layers,
   CheckCircle, ArrowRight, Calculator, Zap, BookOpen, Upload
@@ -116,8 +117,25 @@ const projects = [
   { title: 'Präzisionsfräsen Aluminium', titleEn: 'Precision Milling Aluminium', category: 'CNC', categoryEn: 'CNC', desc: '5-Achs-Bearbeitung für Maschinenbaukomponente', descEn: '5-axis machining for mechanical engineering component', color: '#3d0000' },
 ];
 
+/** Resolve a hero panel image from DB, falling back to the static URL */
+function usePanelImage(imageKey: string, fallback: string): string {
+  const { data } = trpc.images.getByKey.useQuery(
+    { imageKey },
+    { staleTime: 5 * 60 * 1000, retry: false }
+  );
+  return data?.url ?? fallback;
+}
+
 export default function Home() {
   const { lang, t } = useLanguage();
+
+  // Dynamic hero images from DB
+  const img3dDruck = usePanelImage('home_3ddruck', heroPanels[0].image);
+  const imgCad = usePanelImage('home_cad', heroPanels[1].image);
+  const imgScan = usePanelImage('home_scan', heroPanels[2].image);
+  const imgCnc = usePanelImage('home_cnc', heroPanels[3].image);
+  const imgMuseum = usePanelImage('home_museum', heroPanels[4].image);
+  const dynamicImages = [img3dDruck, imgCad, imgScan, imgCnc, imgMuseum];
 
   return (
     <PageLayout>
@@ -125,14 +143,14 @@ export default function Home() {
       <section className="relative" style={{ height: 'clamp(400px, 60vh, 600px)' }}>
         {/* Desktop: side-by-side panels */}
         <div className="hidden md:flex h-full">
-          {heroPanels.map((panel) => (
+          {heroPanels.map((panel, idx) => (
             <Link
               href={panel.href}
               key={panel.id}
               className="hero-panel"
               style={{
-                background: panel.image
-                  ? `url(${panel.image}) center top / cover no-repeat`
+                background: dynamicImages[idx]
+                  ? `url(${dynamicImages[idx]}) center top / cover no-repeat`
                   : panel.bg,
               }}
             >
@@ -157,14 +175,14 @@ export default function Home() {
 
         {/* Mobile: vertical cards */}
         <div className="md:hidden flex flex-col gap-3 p-4">
-          {heroPanels.map((panel) => (
+          {heroPanels.map((panel, idx) => (
             <Link
               href={panel.href}
               key={panel.id}
               className="flex items-center gap-4 p-4 rounded-lg text-white relative overflow-hidden"
               style={{
-                background: panel.image
-                  ? `linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 100%), url(${panel.image}) center / cover no-repeat`
+                background: dynamicImages[idx]
+                  ? `linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 100%), url(${dynamicImages[idx]}) center / cover no-repeat`
                   : panel.bg,
               }}
             >
@@ -190,7 +208,7 @@ export default function Home() {
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed">
               {t(
-                'Fabrica GmbH ist nicht nur ein Produzent – wir sind Ihr spezialisierter Beschaffungsmanager und Problemlöser für komplexe Fertigungsanfragen. Wir beherrschen viele Technologien und produzieren alles aus einer Hand. Die hybride Anwendung mehrerer Technologien ist unser Spezialgebiet. Kunden kommen zu uns, wenn andere keine Lösung finden!',
+                'Fabrica GmbH ist nicht nur ein Produzent – wir sind Ihr spezialisierter Beschaffungsmanager und Problemlöser für komplexe Fertigungsanfragen. Wir beherrschen viele Technologien und produzieren alles aus einer Hand. Die hybride Anwendung mehrerer Technologien ist unser Spezialgebiet. Kunden kommen zu uns, wenn Andere keine Lösung finden!',
                 'Fabrica GmbH is not just a manufacturer – we are your specialized procurement manager and problem solver for complex manufacturing requests. We master many technologies and produce everything from a single source. The hybrid application of multiple technologies is our specialty. Customers come to us when others cannot find a solution!'
               )}
             </p>

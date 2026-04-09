@@ -62,3 +62,22 @@ export const pricingConfig = mysqlTable("pricing_config", {
 
 export type PricingConfig = typeof pricingConfig.$inferSelect;
 export type InsertPricingConfig = typeof pricingConfig.$inferInsert;
+
+/**
+ * Site image registry – one row per image slot.
+ * Admins can upload a new image via the /admin/bilder panel to replace any slot.
+ */
+export const siteImages = mysqlTable("site_images", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Unique key identifying the image slot, e.g. "home_3ddruck", "cnc_fraesen" */
+  imageKey: varchar("imageKey", { length: 128 }).notNull().unique(),
+  /** Human-readable label shown in the admin panel */
+  labelDe: varchar("labelDe", { length: 256 }).notNull(),
+  /** Current CDN URL of the image */
+  url: text("url").notNull(),
+  /** Original filename for reference */
+  filename: varchar("filename", { length: 256 }),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+export type SiteImage = typeof siteImages.$inferSelect;
+export type InsertSiteImage = typeof siteImages.$inferInsert;

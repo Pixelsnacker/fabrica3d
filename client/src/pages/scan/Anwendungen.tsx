@@ -1,7 +1,9 @@
 import TechPageLayout from '@/components/TechPageLayout';
+import { trpc } from '@/lib/trpc';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function ScanAnwendungen() {
+  const { data: imgData } = trpc.images.getByKey.useQuery({ imageKey: 'scan_anwendungen' }, { staleTime: 5 * 60 * 1000, retry: false });
   const { t } = useLanguage();
   return (
     <TechPageLayout
@@ -10,7 +12,7 @@ export default function ScanAnwendungen() {
       subtitle="Qualitätskontrolle, Digitalisierung, Maßprüfung und Archivierung mit professioneller Messtechnik."
       subtitleEn="Quality control, digitization, dimensional inspection and archiving with professional measurement technology."
       mailtoSubject="Anfrage%203D-Scan"
-      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_3dscan_panorama-enR5FWV3DmycJ8anGV2ZYL.webp"
+      heroImage={imgData?.url ?? 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_3dscan_panorama-enR5FWV3DmycJ8anGV2ZYL.webp'}
       heroColor="oklch(22% 0.08 200)"
     >
       <section className="mb-12">

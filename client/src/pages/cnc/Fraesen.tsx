@@ -1,7 +1,9 @@
 import TechPageLayout from '@/components/TechPageLayout';
+import { trpc } from '@/lib/trpc';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Fraesen() {
+  const { data: imgData } = trpc.images.getByKey.useQuery({ imageKey: 'cnc_fraesen' }, { staleTime: 5 * 60 * 1000, retry: false });
   const { t } = useLanguage();
   return (
     <TechPageLayout
@@ -10,7 +12,7 @@ export default function Fraesen() {
       subtitle="3- und 5-Achs-Bearbeitung in Kunststoff und Metall – höchste Präzision für komplexe Geometrien."
       subtitleEn="3- and 5-axis machining in plastic and metal – highest precision for complex geometries."
       mailtoSubject="Anfrage%20CNC%20Fr%C3%A4sen"
-      heroImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/cnc_fraesen_hero_e57ad838.jpg"
+      heroImage={imgData?.url ?? 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/cnc_fraesen_hero_e57ad838.jpg'}
       heroColor="oklch(25% 0.05 30)"
       caseStudies={[
         { title: 'Präzisionsbauteil Aluminium', titleEn: 'Precision Aluminum Component', industry: 'Maschinenbau', industryEn: 'Mechanical Engineering', challenge: 'Hochpräzises Aluminiumteil mit engen Toleranzen und komplexen Freiformflächen.', challengeEn: 'High-precision aluminum part with tight tolerances and complex freeform surfaces.', solution: '5-Achs-Fräsen in einer Aufspannung, Toleranz ±0,01 mm.', solutionEn: '5-axis milling in one clamping, tolerance ±0.01 mm.', result: 'Bauteil in 3 Tagen, alle Toleranzen eingehalten, Oberflächengüte Ra 0,8.', resultEn: 'Component in 3 days, all tolerances met, surface quality Ra 0.8.' },
