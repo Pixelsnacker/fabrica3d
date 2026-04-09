@@ -211,8 +211,8 @@ const projects: Project[] = [
     category: 'Museum',
     categoryEn: 'Museum',
     tech: 'SLS 3D-Druck + TPU-Fühler + Strukturlack',
-    material: 'SLA Resin + TPU',
-    materialEn: 'SLA Resin + TPU',
+    material: 'SLS Polyamid (PA12) + TPU',
+    materialEn: 'SLS Polyamide (PA12) + TPU',
     application: 'Museumsmodell',
     applicationEn: 'Museum Model',
     desc: 'Überlebensgroßes Heuschrecken-Tastmodell (522 × 430 × 280 mm) für eine Naturkundeausstellung. Korpus und Beine in SLA-Resin gedruckt und mit Strukturlack versiegelt für maximale Haptik und Langlebigkeit. Die langen Fühler wurden in flexiblem TPU gefertigt, um Bruchsicherheit im Ausstellungsbetrieb zu gewährleisten.',
@@ -229,8 +229,8 @@ const ALL_EN = 'All';
 const categories    = ['Alle', '3D-Druck', 'CAD', '3D-Scan', 'CNC', 'Museum'];
 const categoriesEn  = ['All', '3D Printing', 'CAD', '3D Scan', 'CNC', 'Museum'];
 
-const materials     = ['Alle', 'PA6 + Kohlefaser', 'PA12', 'Metall', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'Titan Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLA Resin + TPU'];
-const materialsEn   = ['All', 'PA6 + Carbon Fiber', 'PA12', 'Metal', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'Titanium Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLA Resin + TPU'];
+const materials     = ['Alle', 'PA6 + Kohlefaser', 'PA12', 'Metall', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'Titan Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLS Polyamid (PA12) + TPU'];
+const materialsEn   = ['All', 'PA6 + Carbon Fiber', 'PA12', 'Metal', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'Titanium Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLS Polyamide (PA12) + TPU'];
 
 const applications  = ['Alle', 'Automotive', 'Maschinenbau', 'Qualitätssicherung', 'Museumsmodell', 'Medizin', 'Architektur', 'Konsumgüter', 'Bildung & Forschung', 'Elektronik', 'Robotik & Automation'];
 const applicationsEn = ['All', 'Automotive', 'Mechanical Engineering', 'Quality Assurance', 'Museum Model', 'Medical', 'Architecture', 'Consumer Goods', 'Education & Research', 'Electronics', 'Robotics & Automation'];
