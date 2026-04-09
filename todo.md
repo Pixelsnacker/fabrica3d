@@ -253,3 +253,13 @@
 
 ## BUG: ImageAdmin React Error #310
 - [x] React Error #310 (Hook-Verletzung) in ImageAdmin.tsx behoben: alle Hooks (useState, useRef, useMutation) an den Anfang der Komponente verschoben, useEffect für Login-Redirect verwendet
+
+## Kalkulator-Banner – Bild rechts mit Verlauf
+- [ ] Realistisches Foto von 3D-Druck-Bauteilen (kein KI) suchen (Unsplash/Pexels)
+- [ ] Foto als CDN-Asset hochladen
+- [ ] Kalkulator-Banner: rechts Bild mit Verlauf (links transparent → rechts Bild) einbauen
+
+## BUG: Bild-Upload FORBIDDEN auf Live-Website
+- [x] FORBIDDEN-Fehler beim Bild-Upload behoben: isOwner/requireOwner prüft jetzt role=admin (aus DB) statt nur OWNER_OPEN_ID
+- [x] Gleiche Korrektur in pricing.ts (requireOwner) angewendet
+- [x] Footer: Telefonnummer mit "Tel.:" Prefix versehen

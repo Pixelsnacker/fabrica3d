@@ -12,10 +12,13 @@ function randomSuffix() {
   return Math.random().toString(36).slice(2, 10);
 }
 
-function isOwner(ctx: { user: { openId: string } }) {
+function isOwner(ctx: { user: { openId: string; role?: string } }) {
+  // Primary check: admin role (set in DB)
+  if (ctx.user.role === "admin") return true;
+  // Fallback: OWNER_OPEN_ID env var
   const ownerOpenId = process.env.OWNER_OPEN_ID;
-  if (!ownerOpenId) return false;
-  return ctx.user.openId === ownerOpenId;
+  if (ownerOpenId && ctx.user.openId === ownerOpenId) return true;
+  return false;
 }
 
 // ─── router ─────────────────────────────────────────────────────────────────

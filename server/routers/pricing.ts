@@ -6,11 +6,14 @@ import { protectedProcedure, publicProcedure, router } from "../_core/trpc";
 import { TRPCError } from "@trpc/server";
 
 // Only the owner (admin) can modify pricing
-function requireOwner(ctx: { user: { openId: string } | null }) {
+function requireOwner(ctx: { user: { openId: string; role?: string } | null }) {
+  if (!ctx.user) throw new TRPCError({ code: "FORBIDDEN", message: "Admin only" });
+  // Primary check: admin role (set in DB)
+  if (ctx.user.role === "admin") return;
+  // Fallback: OWNER_OPEN_ID env var
   const ownerOpenId = process.env.OWNER_OPEN_ID;
-  if (!ctx.user || ctx.user.openId !== ownerOpenId) {
-    throw new TRPCError({ code: "FORBIDDEN", message: "Admin only" });
-  }
+  if (ownerOpenId && ctx.user.openId === ownerOpenId) return;
+  throw new TRPCError({ code: "FORBIDDEN", message: "Admin only" });
 }
 
 export const pricingRouter = router({

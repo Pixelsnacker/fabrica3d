@@ -101,7 +101,7 @@ export default function Footer() {
                   Hüttenstraße 205<br />
                   D-50170 Kerpen-Sindorf<br />
                   <a href="tel:+4922739529429" className="hover:text-white transition-colors">
-                    +49 (0) 2273 / 9529429
+                    Tel.: +49 (0) 2273 / 9529429
                   </a>
                 </span>
               </li>
