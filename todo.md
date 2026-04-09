@@ -220,3 +220,7 @@
 - [x] Aktuelle Bildquellen in Fräsen, Drehen, Wasserschneiden, Laserschneiden identifiziert (alle hatten dasselbe hero_cnc Bild)
 - [x] Passende lizenzfreie Bilder für alle 4 CNC-Technologien gesucht und heruntergeladen
 - [x] Bilder als CDN-Assets hochgeladen und in den jeweiligen Seiten eingebunden
+
+## Startseite – 3D-Druck Hero-Bild
+- [x] SLA_Druck.jpg als CDN-Asset hochgeladen
+- [x] Startseite: 3D-Druck-Bereich Hero-Bild durch SLA_Druck.jpg ersetzt

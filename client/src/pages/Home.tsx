@@ -19,7 +19,7 @@ const heroPanels = [
     desc: 'FDM, SLA, SLS, MJF, Polyjet und Endlosfaser – alle Verfahren aus einer Hand.',
     descEn: 'FDM, SLA, SLS, MJF, Polyjet and Continuous Fiber – all processes from one source.',
     bg: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_fdm_panorama-XjUkNA3AYA9xFmbaiRBi3y.webp',
+    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/hero_sla_druck_c80e68cf.jpg',
     Icon: Icon3DPrint,
   },
   {
