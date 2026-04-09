@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageLayout from '@/components/PageLayout';
 import { trpc } from '@/lib/trpc';
-import { Save, RefreshCw, Lock, Euro, Percent, AlertCircle, CheckCircle } from 'lucide-react';
+import { Save, RefreshCw, Lock, Euro, Percent, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
+import { getLoginUrl } from '@/const';
 
 interface PricingRow {
   id: number;
@@ -42,8 +43,24 @@ const UNIT_LABELS: Record<string, { de: string; en: string }> = {
 export default function PreisAdmin() {
   const { lang } = useLanguage();
   const isDe = lang === 'de';
+  const { data: me, isLoading: meLoading } = trpc.auth.me.useQuery();
+  const { data: rows, isLoading, refetch } = trpc.pricing.list.useQuery(
+    undefined,
+    { enabled: !!me }
+  );
 
-  const { data: rows, isLoading, refetch } = trpc.pricing.list.useQuery();
+  if (meLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+      </div>
+    );
+  }
+
+  if (!me) {
+    window.location.href = getLoginUrl("/admin/preise");
+    return null;
+  }
   const updateMutation = trpc.pricing.update.useMutation();
 
   const [editState, setEditState] = useState<EditState>({});

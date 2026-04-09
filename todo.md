@@ -240,3 +240,7 @@
 - [x] Route /admin/bilder in App.tsx registriert
 - [x] Startseiten-Text: "wenn Andere" korrigiert
 - [x] 48 Tests grün, TypeScript fehlerfrei
+
+## Admin-Zugang – Login-Redirect statt FORBIDDEN
+- [x] Admin-Seiten (/admin/bilder, /admin/preise) leiten nicht eingeloggte Nutzer automatisch zur Manus-Login-Seite weiter
+- [x] Nach Login: Redirect zurück zur Admin-Seite (über OAuth callback)

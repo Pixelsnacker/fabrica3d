@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Upload, ImageIcon, Loader2 } from "lucide-react";
 import { Link } from "wouter";
+import { getLoginUrl } from "@/const";
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
@@ -25,7 +26,26 @@ function fileToBase64(file: File): Promise<string> {
 
 export default function ImageAdmin() {
   const utils = trpc.useUtils();
-  const { data: images, isLoading, error } = trpc.images.list.useQuery();
+  const { data: me, isLoading: meLoading } = trpc.auth.me.useQuery();
+  const { data: images, isLoading, error } = trpc.images.list.useQuery(
+    undefined,
+    { enabled: !!me }
+  );
+
+  // Show spinner while checking auth
+  if (meLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+      </div>
+    );
+  }
+
+  // Not logged in → redirect to Manus login (with returnPath so user comes back here)
+  if (!me) {
+    window.location.href = getLoginUrl("/admin/bilder");
+    return null;
+  }
   const uploadMutation = trpc.images.upload.useMutation({
     onSuccess: () => {
       utils.images.list.invalidate();
