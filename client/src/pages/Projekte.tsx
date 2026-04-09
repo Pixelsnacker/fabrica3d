@@ -219,6 +219,36 @@ const projects: Project[] = [
     descEn: 'Oversized grasshopper tactile model (522 × 430 × 280 mm) for a natural history exhibition. Body and legs printed in SLA resin and sealed with textured lacquer for maximum haptic quality and durability. The long antennae were produced in flexible TPU to ensure break resistance in exhibition use.',
     image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/proj_museum_heuschrecke_a1ec1f0a.jpg',
   },
+  {
+    id: 14,
+    title: 'Modell Papiermaschine',
+    titleEn: 'Paper Machine Scale Model',
+    category: '3D-Druck',
+    categoryEn: '3D Printing',
+    tech: 'FDM Mehrfarbig',
+    material: 'PLA Mehrfarbig',
+    materialEn: 'PLA Multicolor',
+    application: 'Industrie & Maschinenbau',
+    applicationEn: 'Industry & Mechanical Engineering',
+    desc: 'Detailreiches 3D-gedrucktes Modell einer Papiermaschine im FDM-Verfahren, mehrfarbig gefertigt (30 × 18 × 20 cm). Die farbliche Trennung einzelner Baugruppen ermöglicht eine anschauliche Darstellung komplexer Maschinenabläufe. Ideal für Präsentationen, Schulungen und als Ausstellungsstück.',
+    descEn: 'Detailed FDM-printed scale model of a paper machine, produced in multicolor (30 × 18 × 20 cm). Color-coded assemblies provide a clear visual separation of individual components, making complex machine processes easy to understand. Ideal for presentations, training and as a display piece.',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/Maschinenmodell_6570eb37.jpg',
+  },
+  {
+    id: 15,
+    title: 'Geomodell Museumsmodell',
+    titleEn: 'Geological Museum Model',
+    category: 'Museum',
+    categoryEn: 'Museum',
+    tech: 'CNC-Fräsen + FDM 3D-Druck + Modellbau',
+    material: 'PU-Schaum + PLA',
+    materialEn: 'PU Foam + PLA',
+    application: 'Museumsmodell',
+    applicationEn: 'Museum Model',
+    desc: 'Geomodell für ein Museum – kombiniert aus gefrästem PU-Schaum, präzisem 3D-Druck und klassischem Modellbau. Ideal für Ausstellungen, Bildungsprojekte und Präsentationen, die komplexe geologische Strukturen und Landschaften anschaulich darstellen.',
+    descEn: 'Geological model for a museum – a combination of CNC-milled PU foam, precision 3D printing and traditional model making. Ideal for exhibitions, educational projects and presentations that illustrate complex geological structures and landscapes.',
+    image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/GeoModellMuseum_7b94f63d.jpg',
+  },
 ];
 
 // ─── Filterwerte ──────────────────────────────────────────────────────────────
@@ -229,11 +259,11 @@ const ALL_EN = 'All';
 const categories    = ['Alle', '3D-Druck', 'CAD', '3D-Scan', 'CNC', 'Museum'];
 const categoriesEn  = ['All', '3D Printing', 'CAD', '3D Scan', 'CNC', 'Museum'];
 
-const materials     = ['Alle', 'PA6 + Kohlefaser', 'PA12', 'Metall', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'Titan Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLS Polyamid (PA12) + TPU'];
-const materialsEn   = ['All', 'PA6 + Carbon Fiber', 'PA12', 'Metal', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'Titanium Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLS Polyamide (PA12) + TPU'];
+const materials     = ['Alle', 'PA6 + Kohlefaser', 'PA12', 'Metall', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'PLA Mehrfarbig', 'PU-Schaum + PLA', 'Titan Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLS Polyamid (PA12) + TPU'];
+const materialsEn   = ['All', 'PA6 + Carbon Fiber', 'PA12', 'Metal', 'Aluminium 7075', 'Polyjet Rigid', 'Dental Resin', 'PLA', 'PLA Multicolor', 'PU Foam + PLA', 'Titanium Grade 5', 'Standard Resin', 'POM', 'PA6 + Kevlar', 'SLS Polyamide (PA12) + TPU'];
 
-const applications  = ['Alle', 'Automotive', 'Maschinenbau', 'Qualitätssicherung', 'Museumsmodell', 'Medizin', 'Architektur', 'Konsumgüter', 'Bildung & Forschung', 'Elektronik', 'Robotik & Automation'];
-const applicationsEn = ['All', 'Automotive', 'Mechanical Engineering', 'Quality Assurance', 'Museum Model', 'Medical', 'Architecture', 'Consumer Goods', 'Education & Research', 'Electronics', 'Robotics & Automation'];
+const applications  = ['Alle', 'Automotive', 'Maschinenbau', 'Qualitätssicherung', 'Museumsmodell', 'Medizin', 'Architektur', 'Konsumgüter', 'Bildung & Forschung', 'Elektronik', 'Robotik & Automation', 'Industrie & Maschinenbau'];
+const applicationsEn = ['All', 'Automotive', 'Mechanical Engineering', 'Quality Assurance', 'Museum Model', 'Medical', 'Architecture', 'Consumer Goods', 'Education & Research', 'Electronics', 'Robotics & Automation', 'Industry & Mechanical Engineering'];
 
 // ─── Hauptkomponente ──────────────────────────────────────────────────────────
 

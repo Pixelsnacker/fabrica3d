@@ -199,3 +199,15 @@
 
 ## Neue Projekte – Bildtausch
 - [x] Projektkarte "Zahntechnisches Modell" → "SLA Dental Anschauungsmodell" umbenannt und Bild durch Dentalmodell.jpg ersetzt
+
+## Neues Projekt – Modell Papiermaschine
+- [x] Bild Maschinenmodell.jpg als CDN-Asset hochladen
+- [x] Projekteintrag "Modell Papiermaschine" in Projekte.tsx hinzugefügt (FDM Mehrfarbig, PLA Mehrfarbig, 30x18x20 cm)
+- [x] Filter-Listen (materials + applications) um "PLA Mehrfarbig" und "Industrie & Maschinenbau" ergänzt
+
+## Neue Projekte – Papiermaschine & Geomodell
+- [x] Bild Maschinenmodell.jpg als CDN-Asset hochgeladen
+- [x] Projekteintrag "Modell Papiermaschine" (id 14) hinzugefügt: FDM Mehrfarbig, PLA Mehrfarbig, 30x18x20 cm
+- [x] Bild GeoModellMuseum.jpg als CDN-Asset hochgeladen
+- [x] Projekteintrag "Geomodell Museumsmodell" (id 15) hinzugefügt: CNC-Fräsen + FDM + Modellbau, PU-Schaum + PLA
+- [x] Filter-Listen (materials + applications) um "PLA Mehrfarbig", "PU-Schaum + PLA", "Industrie & Maschinenbau" ergänzt
