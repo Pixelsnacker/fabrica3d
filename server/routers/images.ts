@@ -40,6 +40,9 @@ export const imagesRouter = router({
 
   /** Return all image slots */
   list: protectedProcedure.query(async ({ ctx }) => {
+    console.log("[images.list] ctx.user:", JSON.stringify({ openId: ctx.user?.openId, role: ctx.user?.role, name: ctx.user?.name }));
+    console.log("[images.list] OWNER_OPEN_ID:", process.env.OWNER_OPEN_ID);
+    console.log("[images.list] isOwner:", isOwner(ctx));
     if (!isOwner(ctx)) throw new TRPCError({ code: "FORBIDDEN" });
     const db = await getDb();
     if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "DB not available" });
