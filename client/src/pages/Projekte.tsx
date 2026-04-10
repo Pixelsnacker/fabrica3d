@@ -249,6 +249,21 @@ const projects: Project[] = [
     descEn: 'Geological model for a museum – a combination of CNC-milled PU foam, precision 3D printing and traditional model making. Ideal for exhibitions, educational projects and presentations that illustrate complex geological structures and landscapes.',
     image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/GeoModellMuseum_7b94f63d.jpg',
   },
+  {
+    id: 16,
+    title: 'Maschinenteil aus Endlosfaser-CFK',
+    titleEn: 'Machine Part – Continuous Carbon Fiber',
+    category: '3D-Druck',
+    categoryEn: '3D Printing',
+    tech: 'Endlosfaser FDM (Kohlefaser)',
+    material: 'PA6 + Kohlefaser',
+    materialEn: 'PA6 + Carbon Fiber',
+    application: 'Industrie & Maschinenbau',
+    applicationEn: 'Industry & Mechanical Engineering',
+    desc: 'Hochfestes Maschinenteil aus PA6 mit Kohlenstoff-Endlosfaser – so fest wie Flugzeug-Aluminium, bis 160 °C hitzebeständig, bis zu 70 % leichter und 80 % schneller produziert als ein gefrästes Aluminiumteil. Additiv gefertigt mit 90 % weniger Energieeinsatz: nachhaltig, ressourcenschonend und ohne Werkzeugkosten.',
+    descEn: 'High-strength machine part made from PA6 with continuous carbon fiber – as strong as aerospace aluminium, heat-resistant up to 160 °C, up to 70% lighter and 80% faster to produce than a milled aluminium part. Additively manufactured with 90% less energy: sustainable, resource-efficient and without tooling costs.',
+    image: 'https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/3D_Druck_Carbon_Onyx_38634d8b.jpg',
+  },
 ];
 
 // ─── Filterwerte ──────────────────────────────────────────────────────────────
