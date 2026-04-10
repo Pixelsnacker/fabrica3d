@@ -263,3 +263,5 @@
 - [x] FORBIDDEN-Fehler beim Bild-Upload behoben: isOwner/requireOwner prüft jetzt role=admin (aus DB) statt nur OWNER_OPEN_ID
 - [x] Gleiche Korrektur in pricing.ts (requireOwner) angewendet
 - [x] Footer: Telefonnummer mit "Tel.:" Prefix versehen
+- [x] Owner-Account (Daniel Rincón) in DB auf role=admin gesetzt und verifiziert
+- [x] Upload auf Live-Website erfolgreich getestet (bestätigt vom Nutzer 09.04.2026)
