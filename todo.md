@@ -281,3 +281,7 @@
 ## FDM-Bild Ersatz
 - [x] Professionelles FDM-Bild gesucht: Markforged FX20 Industrie-FDM-Drucker in Aktion (schwarzes Bauteil mit Stützstrukturen im Druckraum)
 - [x] Bild als CDN-Asset hochgeladen und in FDM.tsx eingebunden (Fallback-URL ersetzt)
+
+## BUG: FDM-Bild nicht sichtbar auf Live-Website
+- [ ] Ursache ermitteln warum das neue FDM-Bild nicht angezeigt wird (CDN-URL, /api/img Proxy, TechPageLayout heroImage Prop)
+- [ ] Fix implementieren und verifizieren
