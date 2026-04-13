@@ -794,14 +794,17 @@ function Lightbox({
           </div>
 
           {/* CTA */}
-          <div className="mt-auto pt-4 border-t border-gray-100">
+          <div className="mt-auto pt-4 border-t border-gray-100 space-y-3">
+            <p className="text-xs text-gray-400 text-center">
+              {t('Interessiert? Wir erstellen Ihnen ein unverbindliches Angebot.', 'Interested? We will provide you with a no-obligation quote.')}
+            </p>
             <a
-              href={`mailto:kontakt@fabrica3d.eu?subject=${encodeURIComponent(`Anfrage: ${p.title}`)}`}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-white text-sm font-medium transition-opacity hover:opacity-90 w-full justify-center"
+              href={`mailto:kontakt@fabrica3d.eu?subject=${encodeURIComponent(`Jetzt anfragen: ${p.title}`)}&body=${encodeURIComponent(`Guten Tag,\n\nich interessiere mich für ein ähnliches Projekt wie "${p.title}".\n\nBitte senden Sie mir ein unverbindliches Angebot.\n\nMit freundlichen Grüßen`)}`}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-white text-sm font-semibold transition-all hover:opacity-90 hover:shadow-md w-full justify-center"
               style={{ backgroundColor: 'var(--fabrica-red)' }}
             >
               <Mail size={16} />
-              {t('Ähnliches Projekt anfragen', 'Request a similar project')}
+              {t('Jetzt anfragen', 'Request now')}
             </a>
           </div>
         </div>

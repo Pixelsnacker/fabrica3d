@@ -270,3 +270,6 @@
 - [x] Foto 3D_Druck_Carbon_Onyx.jpg als CDN-Asset hochgeladen
 - [x] Neues Projekt (id 16) in Projekte.tsx hinzugefügt: "Maschinenteil aus Endlosfaser-CFK", FDM Endlosfaser, PA6 + Kohlefaser, mit allen Kennwerten
 - [x] Material "PA6 + Kohlefaser" war bereits in der Filter-Liste vorhanden
+
+## Projektgalerie – CTA-Button in Lightbox
+- [x] „Jetzt anfragen“-Button in Lightbox eingebaut (mailto-Link mit Projekttitel + vorausgefülltem Text, DE/EN)
