@@ -273,3 +273,11 @@
 
 ## Projektgalerie – CTA-Button in Lightbox
 - [x] „Jetzt anfragen“-Button in Lightbox eingebaut (mailto-Link mit Projekttitel + vorausgefülltem Text, DE/EN)
+
+## FDM-Bild Ersatz
+- [ ] Professionelles FDM-Bild suchen (sauber, komplex, industriell – kein unsauberer Heimdruck)
+- [ ] Bild als CDN-Asset hochladen und in alle betroffenen Seiten einbinden
+
+## FDM-Bild Ersatz
+- [x] Professionelles FDM-Bild gesucht: Markforged FX20 Industrie-FDM-Drucker in Aktion (schwarzes Bauteil mit Stützstrukturen im Druckraum)
+- [x] Bild als CDN-Asset hochgeladen und in FDM.tsx eingebunden (Fallback-URL ersetzt)
