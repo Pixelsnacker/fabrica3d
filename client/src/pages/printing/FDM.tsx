@@ -79,6 +79,45 @@ export default function FDM() {
         </div>
       </section>
 
+      {/* Markforged Mark Two */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--fabrica-anthrazit)' }}>
+          {t('Unser Drucker: Markforged Mark Two', 'Our Printer: Markforged Mark Two')}
+        </h2>
+        <div className="h-1 w-12 rounded mb-6" style={{ backgroundColor: 'var(--fabrica-red)' }} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          <div>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              {t(
+                'Bei Fabrica setzen wir auf den Markforged Mark Two – einen der leistungsfähigsten Industrie-FDM-Drucker für Endlosfaser-Verbundwerkstoffe. Er kombiniert das FFF-Verfahren (Fused Filament Fabrication) mit der patentierten CFF-Technologie (Continuous Fiber Fabrication), bei der kontinuierliche Kohlenstoff-, Glas- oder Kevlar-Fasern direkt in das Bauteil eingebettet werden.',
+                'At Fabrica, we use the Markforged Mark Two – one of the most powerful industrial FDM printers for continuous fiber composites. It combines the FFF process with patented CFF technology (Continuous Fiber Fabrication), embedding continuous carbon, glass or Kevlar fibers directly into the part.'
+              )}
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              {t(
+                'Das Ergebnis: Bauteile mit bis zu 26-facher Festigkeit gegenüber ABS – bei gleichzeitig deutlich geringerem Gewicht als Aluminium. Der Mark Two druckt mit dem Hochleistungsmaterial Onyx (mikrokarbongefülltes Nylon) als Basiswerkstoff und verstärkt ihn optional mit Endlosfasern für strukturelle Anwendungen.',
+                'The result: parts with up to 26x the strength of ABS – while being significantly lighter than aluminum. The Mark Two prints with Onyx (micro carbon-filled nylon) as the base material and optionally reinforces it with continuous fibers for structural applications.'
+              )}
+            </p>
+          </div>
+          <div className="space-y-3">
+            {[
+              { label: t('Technologie', 'Technology'), value: 'FFF + CFF (Endlosfaser / Continuous Fiber)' },
+              { label: t('Bauraum', 'Build Volume'), value: '320 × 132 × 154 mm' },
+              { label: t('Schichtdicke', 'Layer Thickness'), value: '0,1 – 0,25 mm' },
+              { label: t('Basismaterial', 'Base Material'), value: 'Onyx (Mikro-Carbon-Nylon)' },
+              { label: t('Fasern', 'Fibers'), value: t('Kohlefaser, Glasfaser, Kevlar, HSHT-Glasfaser', 'Carbon Fiber, Fiberglass, Kevlar, HSHT Fiberglass') },
+              { label: t('Festigkeit vs. ABS', 'Strength vs. ABS'), value: t('bis zu 26×', 'up to 26×') },
+            ].map((spec) => (
+              <div key={spec.label} className="flex justify-between items-center py-2 border-b">
+                <span className="text-sm font-medium text-gray-700">{spec.label}</span>
+                <span className="text-sm text-gray-500 text-right max-w-[55%]">{spec.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Technical specs table */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--fabrica-anthrazit)' }}>

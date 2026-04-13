@@ -283,5 +283,8 @@
 - [x] Bild als CDN-Asset hochgeladen und in FDM.tsx eingebunden (Fallback-URL ersetzt)
 
 ## BUG: FDM-Bild nicht sichtbar auf Live-Website
-- [ ] Ursache ermitteln warum das neue FDM-Bild nicht angezeigt wird (CDN-URL, /api/img Proxy, TechPageLayout heroImage Prop)
-- [ ] Fix implementieren und verifizieren
+- [x] Ursache: CDN liefert content-type: application/octet-stream statt image/jpeg → Browser blockiert als CSS-Hintergrund
+- [x] Fix: heroImage-URL über /api/img-Proxy geleitet → content-type image/jpeg, Bild wird korrekt angezeigt
+
+## Markforged Mark Two Beschreibung auf FDM-Seite
+- [x] Markforged Mark Two Beschreibung recherchiert und auf FDM-Seite eingebaut (Technologie FFF+CFF, Bauraum, Onyx-Material, Fasern, 26x Festigkeit vs. ABS, DE/EN)
