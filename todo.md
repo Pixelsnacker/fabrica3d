@@ -288,3 +288,6 @@
 
 ## Markforged Mark Two Beschreibung auf FDM-Seite
 - [x] Markforged Mark Two Beschreibung recherchiert und auf FDM-Seite eingebaut (Technologie FFF+CFF, Bauraum, Onyx-Material, Fasern, 26x Festigkeit vs. ABS, DE/EN)
+
+## BUG: Anwendungsbereich-Kästchen FDM-Seite – Text läuft über Rand
+- [x] Kästchen auf min-h-[3.5rem] + flex + items-center + justify-center umgestellt

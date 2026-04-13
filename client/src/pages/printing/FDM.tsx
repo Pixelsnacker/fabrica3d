@@ -163,7 +163,7 @@ export default function FDM() {
           ].map((app) => (
             <div
               key={app.de}
-              className="p-3 rounded-lg text-center text-sm font-medium border"
+              className="p-3 rounded-lg text-center text-sm font-medium border flex items-center justify-center min-h-[3.5rem]"
               style={{ color: 'var(--fabrica-anthrazit)' }}
             >
               {app.de}
