@@ -65,8 +65,8 @@ const projects: Project[] = [
     materialEn: 'Metal',
     application: 'Qualitätssicherung',
     applicationEn: 'Quality Assurance',
-    desc: 'Qualitätskontrolle von 500 Serienteilen mit GOM ATOS. Vollständige Prüfdokumentation mit Farbplot.',
-    descEn: 'Quality control of 500 series parts with GOM ATOS. Complete inspection documentation with color plot.',
+    desc: 'Qualitätskontrolle von Serienteilen mit GOM ATOS. Vollständige Prüfdokumentation mit Farbplot und lückenloser Rückverfolgbarkeit.',
+    descEn: 'Quality control of series parts with GOM ATOS. Complete inspection documentation with color plot and full traceability.',
     image: '/api/img?url=https://d2xsxph8kpxj0f.cloudfront.net/310419663031764330/hjDE334DRgUQ9x8faFXbRG/render_proj03_scan_turbine-mj5ThaoZrPBKCKZVC3zRkJ.webp',
   },
   {

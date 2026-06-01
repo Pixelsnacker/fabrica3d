@@ -291,3 +291,7 @@
 
 ## BUG: Anwendungsbereich-Kästchen FDM-Seite – Text läuft über Rand
 - [x] Kästchen auf min-h-[3.5rem] + flex + items-center + justify-center umgestellt
+
+## Ergebnis-Text entfernt (Bestandsschutz)
+- [x] "500 Teile in 3 Tagen geprüft, vollständige Prüfdokumentation, 3 Teile ausgesondert" aus GomAtos.tsx entfernt
+- [x] "500 Serienteile" aus Projekte.tsx (id 3) entfernt – ersetzt durch allgemeine Formulierung ohne Mengenangabe
