@@ -1,0 +1,20 @@
+# systemd-Service für dani-system (Beispiel für den VPS).
+# Passe BENUTZER und Pfade an, kopiere die Datei nach
+#   /etc/systemd/system/dani-system.service
+# und aktiviere sie mit:
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now dani-system
+
+[Unit]
+Description=dani-system (persönliches KI-Gedächtnis)
+After=network.target
+
+[Service]
+User=dani
+WorkingDirectory=/home/dani/dani-system
+ExecStart=/home/dani/dani-system/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

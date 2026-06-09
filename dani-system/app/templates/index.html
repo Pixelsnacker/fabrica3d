@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>dani-system</title>
+  <style>
+    :root { --akzent: #2b6cb0; --bg: #f7f7f5; --karte: #ffffff; --rand: #e2e2dc; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      margin: 0; background: var(--bg); color: #222; line-height: 1.5;
+    }
+    header { background: var(--akzent); color: #fff; padding: 16px 20px; }
+    header h1 { margin: 0; font-size: 20px; }
+    header small { opacity: .85; }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 20px; }
+    form { display: flex; gap: 8px; margin-bottom: 16px; }
+    textarea {
+      flex: 1; padding: 12px; font-size: 16px; border: 1px solid var(--rand);
+      border-radius: 8px; resize: vertical; min-height: 64px; font-family: inherit;
+    }
+    button {
+      background: var(--akzent); color: #fff; border: 0; border-radius: 8px;
+      padding: 0 20px; font-size: 16px; cursor: pointer;
+    }
+    button:hover { background: #234e7d; }
+    .karte {
+      background: var(--karte); border: 1px solid var(--rand); border-radius: 8px;
+      padding: 16px; margin-bottom: 16px;
+    }
+    .antwort { white-space: pre-wrap; }
+    .label { font-size: 13px; color: #666; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .04em; }
+    .badge { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 99px; background: #e8f0fa; color: var(--akzent); }
+    .quelle { border-top: 1px solid var(--rand); padding-top: 10px; margin-top: 10px; }
+    .quelle pre { white-space: pre-wrap; background: #faf9f6; padding: 8px; border-radius: 6px; font-size: 13px; overflow-x: auto; }
+    .hinweis-ki { font-size: 13px; color: #888; }
+    ul.aufgaben { list-style: none; padding: 0; margin: 0; }
+    ul.aufgaben li { padding: 6px 0; border-bottom: 1px solid var(--rand); font-size: 15px; }
+    ul.aufgaben li:last-child { border-bottom: 0; }
+    .leer { color: #999; font-style: italic; }
+    footer { text-align: center; color: #aaa; font-size: 12px; padding: 16px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧠 dani-system</h1>
+    <small>Dein persönliches Gedächtnis · {% if ki_aktiv %}KI-Antworten aktiv{% else %}Stichwortsuche{% endif %}</small>
+  </header>
+
+  <div class="wrap">
+    <form method="post" action="/">
+      <textarea name="eingabe" placeholder="Notiz, Aufgabe oder Frage eingeben…
+Beispiele:
+• Beruflich: Frau Gruner wegen Argos-Zeichnung anrufen
+• Frau Gruner erledigt
+• Was weißt du über Frau Gruner?">{{ eingabe }}</textarea>
+      <button type="submit">Senden</button>
+    </form>
+
+    {% if ergebnis %}
+    <div class="karte">
+      <div class="label">
+        Antwort
+        {% if ergebnis.typ == "frage" %}
+          {% if ergebnis.ki %}<span class="badge">KI</span>{% else %}<span class="badge">Suche</span>{% endif %}
+        {% endif %}
+      </div>
+      <div class="antwort">{{ ergebnis.antwort }}</div>
+
+      {% if ergebnis.treffer %}
+        {% if ergebnis.ki %}
+        <div class="quelle">
+          <div class="label">Quellen</div>
+          {% for t in ergebnis.treffer %}
+            <strong>{{ t.datei }}</strong>
+            <pre>{{ t.ausschnitt }}</pre>
+          {% endfor %}
+        </div>
+        {% endif %}
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="karte">
+      <div class="label">Offene Aufgaben</div>
+      {% if offene_aufgaben %}
+      <ul class="aufgaben">
+        {% for a in offene_aufgaben %}
+          <li>{{ a[5:] }}</li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="leer">Keine offenen Aufgaben.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <footer>dani-system v0.1 · alle Daten als Markdown auf deinem Server</footer>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Geheimnisse / Zugangsdaten — niemals committen
+.env
+
+# Persönliche Daten NICHT ins (öffentliche) Repo,
+# nur die leere Ordnerstruktur behalten:
+data/**
+!data/**/
+!data/**/.gitkeep
+
+# Backups (Inhalte) ebenfalls draußen lassen
+backups/**
+!backups/.gitkeep
