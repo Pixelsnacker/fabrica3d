@@ -496,7 +496,7 @@ export function MileageContent({
             <div className="flex gap-2">
               <Button onClick={submitTrip} className="gap-2">
                 <Plus className="h-4 w-4" />
-                {editing ? "Änderungen speichern" : "Fahrt hinzufügen"}
+                {editing ? "Änderungen speichern" : "Fahrt speichern"}
               </Button>
               {editing && (
                 <Button
