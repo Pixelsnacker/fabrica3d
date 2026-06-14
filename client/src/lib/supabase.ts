@@ -19,7 +19,11 @@ export function getSupabaseConfig(): SupabaseConfig | null {
     const raw = localStorage.getItem(CONFIG_KEY);
     if (!raw) return null;
     const cfg = JSON.parse(raw) as SupabaseConfig;
-    if (cfg.url && cfg.anonKey) return cfg;
+    if (cfg.url && cfg.anonKey)
+      return {
+        url: cfg.url.trim().replace(/\/+$/, ""),
+        anonKey: cfg.anonKey.trim(),
+      };
     return null;
   } catch {
     return null;
@@ -27,7 +31,12 @@ export function getSupabaseConfig(): SupabaseConfig | null {
 }
 
 export function saveSupabaseConfig(cfg: SupabaseConfig) {
-  localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+  const cleaned: SupabaseConfig = {
+    // URL säubern: Leerzeichen weg, kein abschließender Schrägstrich
+    url: cfg.url.trim().replace(/\/+$/, ""),
+    anonKey: cfg.anonKey.trim(),
+  };
+  localStorage.setItem(CONFIG_KEY, JSON.stringify(cleaned));
 }
 
 export function clearSupabaseConfig() {
