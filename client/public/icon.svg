@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#8B1A1A"/>
+  <g fill="none" stroke="#ffffff" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M120 300 h272 l-30 -78 a40 40 0 0 0 -38 -26 h-136 a40 40 0 0 0 -38 26 z"/>
+    <path d="M120 300 v60 h40 v-30 m192 30 v-60 m0 30 h40 v-30"/>
+    <circle cx="178" cy="330" r="26" fill="#8B1A1A"/>
+    <circle cx="334" cy="330" r="26" fill="#8B1A1A"/>
+  </g>
+  <text x="256" y="190" font-family="Inter, Arial, sans-serif" font-size="92" font-weight="700" fill="#ffffff" text-anchor="middle">km</text>
+</svg>

@@ -37,6 +37,8 @@ const Laserschneiden = lazy(() => import("@/pages/cnc/Laserschneiden"));
 
 // Kalkulator
 const Kalkulator = lazy(() => import("@/pages/Kalkulator"));
+// Kilometerabrechnung (intern, login-geschützt)
+const Kilometerabrechnung = lazy(() => import("@/pages/Kilometerabrechnung"));
 // Admin
 const AdminOverview = lazy(() => import("@/pages/admin/AdminOverview"));
 const PreisAdmin = lazy(() => import("@/pages/admin/PreisAdmin"));
@@ -92,6 +94,8 @@ function Router() {
 
         {/* Kalkulator */}
         <Route path="/kalkulator" component={Kalkulator} />
+        {/* Kilometerabrechnung */}
+        <Route path="/kilometerabrechnung" component={Kilometerabrechnung} />
         {/* Admin */}
         <Route path="/admin" component={AdminOverview} />
         <Route path="/admin/preise" component={PreisAdmin} />

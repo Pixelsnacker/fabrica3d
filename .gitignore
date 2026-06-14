@@ -4,8 +4,11 @@
 
 # Build outputs
 dist/
+dist-pwa/
+dist-standalone/
 build/
 *.dist
+Kilometerabrechnung.html
 
 # Environment variables
 .env
