@@ -119,7 +119,18 @@ export default function Kilometerabrechnung() {
     descriptionEn:
       "Monthly mileage report for business trips – with address search, distance calculation and PDF export.",
   });
+  return (
+    <PageLayout className="bg-[var(--fabrica-gray)]">
+      <MileageContent />
+    </PageLayout>
+  );
+}
 
+/**
+ * Eigentlicher Inhalt der Kilometerabrechnung – ohne Seiten-Layout,
+ * damit er auch in der eigenständigen Single-File-Variante genutzt werden kann.
+ */
+export function MileageContent() {
   const store = useMileageStore();
   const { trips, addresses, settings } = store;
   const rate = settings.ratePerKm || 0.3;
@@ -223,7 +234,7 @@ export default function Kilometerabrechnung() {
     Number(form.distanceKm.replace(",", ".")) * (form.roundTrip ? 2 : 1);
 
   return (
-    <PageLayout className="bg-[var(--fabrica-gray)]">
+    <>
       <div className="mx-auto max-w-5xl px-4 py-8">
         {/* Kopf */}
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
@@ -534,7 +545,7 @@ export default function Kilometerabrechnung() {
         rate={rate}
         settings={settings}
       />
-    </PageLayout>
+    </>
   );
 }
 
