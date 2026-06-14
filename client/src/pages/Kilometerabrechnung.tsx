@@ -11,6 +11,9 @@ import {
 } from "@/components/mileage/SignaturePad";
 import {
   useMileageStore,
+  isStorageAvailable,
+  exportData,
+  importData,
   type MileageSettings,
   type Trip,
 } from "@/lib/mileageStore";
@@ -40,6 +43,9 @@ import {
   Calculator,
   RotateCw,
   X,
+  Download,
+  Upload,
+  AlertTriangle,
 } from "lucide-react";
 
 // ---------------------------------------------------------------------------
@@ -141,6 +147,35 @@ export function MileageContent() {
   const [addressDialog, setAddressDialog] = useState(false);
   const [settingsDialog, setSettingsDialog] = useState(false);
   const [reportDialog, setReportDialog] = useState(false);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const storageOk = useMemo(() => isStorageAvailable(), []);
+
+  // Alle Daten als Datei sichern
+  function handleBackup() {
+    const blob = new Blob([exportData()], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `kilometerabrechnung-backup-${today()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast.success("Sicherung gespeichert.");
+  }
+
+  // Daten aus einer zuvor gespeicherten Datei wiederherstellen
+  function handleRestore(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        importData(String(reader.result));
+        toast.success("Daten geladen.");
+      } catch {
+        toast.error("Datei konnte nicht gelesen werden.");
+      }
+    };
+    reader.readAsText(file);
+  }
 
   const monthTrips = useMemo(
     () =>
@@ -267,8 +302,50 @@ export function MileageContent() {
             >
               <SettingsIcon className="h-4 w-4" /> Einstellungen
             </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2"
+              onClick={handleBackup}
+              title="Alle Fahrten & Einstellungen als Datei speichern"
+            >
+              <Download className="h-4 w-4" /> Sichern
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2"
+              onClick={() => fileInputRef.current?.click()}
+              title="Daten aus einer Sicherungsdatei laden"
+            >
+              <Upload className="h-4 w-4" /> Laden
+            </Button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="application/json,.json"
+              className="hidden"
+              onChange={e => {
+                const f = e.target.files?.[0];
+                if (f) handleRestore(f);
+                e.target.value = "";
+              }}
+            />
           </div>
         </div>
+
+        {!storageOk && (
+          <div className="mb-6 flex items-start gap-3 rounded-md border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+            <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" />
+            <div>
+              <strong>Achtung: Dein Browser speichert nichts dauerhaft.</strong>{" "}
+              Vermutlich ein privates/Inkognito-Fenster oder die Einstellung
+              „Daten beim Schließen löschen". Öffne die Seite in einem normalen
+              Fenster – oder nutze regelmäßig den Knopf <em>„Sichern"</em>, um
+              deine Fahrten als Datei zu behalten.
+            </div>
+          </div>
+        )}
 
         {/* Erfassungsformular */}
         <Card className="mb-6">

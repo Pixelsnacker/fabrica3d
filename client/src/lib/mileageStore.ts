@@ -94,6 +94,34 @@ const newId = () =>
     ? crypto.randomUUID()
     : String(Date.now() + Math.random());
 
+/** Prüft, ob der Browser das dauerhafte Speichern erlaubt (nicht im Privat-Modus). */
+export function isStorageAvailable(): boolean {
+  try {
+    const k = "__km_test__";
+    window.localStorage.setItem(k, "1");
+    window.localStorage.removeItem(k);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** Gesamte Daten als JSON-Text (für „Sichern"). */
+export function exportData(): string {
+  return JSON.stringify(cache, null, 2);
+}
+
+/** Daten aus JSON-Text einlesen (für „Laden"). Wirft bei ungültigem Inhalt. */
+export function importData(json: string) {
+  const parsed = JSON.parse(json) as Partial<MileageData>;
+  if (!parsed || typeof parsed !== "object") throw new Error("Ungültige Datei.");
+  write({
+    trips: Array.isArray(parsed.trips) ? parsed.trips : [],
+    addresses: Array.isArray(parsed.addresses) ? parsed.addresses : [],
+    settings: { ...DEFAULT_DATA.settings, ...(parsed.settings ?? {}) },
+  });
+}
+
 /** React-Hook mit den Daten und allen Mutationen. */
 export function useMileageStore() {
   const data = useSyncExternalStore(subscribe, () => cache, () => cache);
