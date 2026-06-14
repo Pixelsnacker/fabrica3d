@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { MileageContent } from "@/pages/Kilometerabrechnung";
+import { SupabaseMileageApp } from "@/SupabaseMileageApp";
 import { Car } from "lucide-react";
 import "./index.css";
 
@@ -24,7 +24,7 @@ function StandaloneApp() {
             </span>
           </div>
         </header>
-        <MileageContent />
+        <SupabaseMileageApp />
       </div>
     </TooltipProvider>
   );

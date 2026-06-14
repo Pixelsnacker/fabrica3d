@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, type ReactNode } from "react";
 import PageLayout from "@/components/PageLayout";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import {
@@ -15,6 +15,7 @@ import {
   exportData,
   importData,
   type MileageSettings,
+  type MileageStoreApi,
   type Trip,
 } from "@/lib/mileageStore";
 import { routeDistanceKm, searchAddresses } from "@/lib/osm";
@@ -127,17 +128,66 @@ export default function Kilometerabrechnung() {
   });
   return (
     <PageLayout className="bg-[var(--fabrica-gray)]">
-      <MileageContent />
+      <LocalMileageApp />
     </PageLayout>
   );
 }
 
 /**
- * Eigentlicher Inhalt der Kilometerabrechnung – ohne Seiten-Layout,
- * damit er auch in der eigenständigen Single-File-Variante genutzt werden kann.
+ * Lokale Variante (localStorage) inkl. Sichern/Laden-Funktion.
+ * Wird sowohl auf der Webseite als auch in der eigenständigen App genutzt.
  */
-export function MileageContent() {
+export function LocalMileageApp() {
   const store = useMileageStore();
+  const backup: BackupApi = {
+    available: isStorageAvailable(),
+    onBackup: () => {
+      const blob = new Blob([exportData()], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `kilometerabrechnung-backup-${today()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      toast.success("Sicherung gespeichert.");
+    },
+    onRestore: (file: File) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          importData(String(reader.result));
+          toast.success("Daten geladen.");
+        } catch {
+          toast.error("Datei konnte nicht gelesen werden.");
+        }
+      };
+      reader.readAsText(file);
+    },
+  };
+  return <MileageContent store={store} backup={backup} />;
+}
+
+/** Sicherungs-Funktionen (nur in der lokalen Variante vorhanden). */
+export interface BackupApi {
+  available: boolean;
+  onBackup: () => void;
+  onRestore: (file: File) => void;
+}
+
+/**
+ * Eigentlicher Inhalt der Kilometerabrechnung – ohne Seiten-Layout.
+ * Der Datenspeicher wird übergeben, damit dieselbe Oberfläche sowohl lokal
+ * (localStorage) als auch mit Supabase (Cloud) funktioniert.
+ */
+export function MileageContent({
+  store,
+  backup,
+  accountSlot,
+}: {
+  store: MileageStoreApi;
+  backup?: BackupApi;
+  accountSlot?: ReactNode;
+}) {
   const { trips, addresses, settings } = store;
   const rate = settings.ratePerKm || 0.3;
 
@@ -149,33 +199,7 @@ export function MileageContent() {
   const [reportDialog, setReportDialog] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const storageOk = useMemo(() => isStorageAvailable(), []);
-
-  // Alle Daten als Datei sichern
-  function handleBackup() {
-    const blob = new Blob([exportData()], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `kilometerabrechnung-backup-${today()}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-    toast.success("Sicherung gespeichert.");
-  }
-
-  // Daten aus einer zuvor gespeicherten Datei wiederherstellen
-  function handleRestore(file: File) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        importData(String(reader.result));
-        toast.success("Daten geladen.");
-      } catch {
-        toast.error("Datei konnte nicht gelesen werden.");
-      }
-    };
-    reader.readAsText(file);
-  }
+  const storageWarning = backup ? !backup.available : false;
 
   const monthTrips = useMemo(
     () =>
@@ -302,39 +326,44 @@ export function MileageContent() {
             >
               <SettingsIcon className="h-4 w-4" /> Einstellungen
             </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-2"
-              onClick={handleBackup}
-              title="Alle Fahrten & Einstellungen als Datei speichern"
-            >
-              <Download className="h-4 w-4" /> Sichern
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-2"
-              onClick={() => fileInputRef.current?.click()}
-              title="Daten aus einer Sicherungsdatei laden"
-            >
-              <Upload className="h-4 w-4" /> Laden
-            </Button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="application/json,.json"
-              className="hidden"
-              onChange={e => {
-                const f = e.target.files?.[0];
-                if (f) handleRestore(f);
-                e.target.value = "";
-              }}
-            />
+            {backup && (
+              <>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-2"
+                  onClick={backup.onBackup}
+                  title="Alle Fahrten & Einstellungen als Datei speichern"
+                >
+                  <Download className="h-4 w-4" /> Sichern
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-2"
+                  onClick={() => fileInputRef.current?.click()}
+                  title="Daten aus einer Sicherungsdatei laden"
+                >
+                  <Upload className="h-4 w-4" /> Laden
+                </Button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="application/json,.json"
+                  className="hidden"
+                  onChange={e => {
+                    const f = e.target.files?.[0];
+                    if (f) backup.onRestore(f);
+                    e.target.value = "";
+                  }}
+                />
+              </>
+            )}
+            {accountSlot}
           </div>
         </div>
 
-        {!storageOk && (
+        {storageWarning && (
           <div className="mb-6 flex items-start gap-3 rounded-md border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
             <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" />
             <div>
