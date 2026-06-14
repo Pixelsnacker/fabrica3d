@@ -36,18 +36,37 @@ interface MileageData {
   settings: MileageSettings;
 }
 
+/**
+ * Gemeinsame Schnittstelle für die Datenhaltung – wird sowohl von der
+ * lokalen (localStorage) als auch von der Supabase-Variante implementiert,
+ * damit dieselbe Oberfläche beide nutzen kann.
+ */
+export interface MileageStoreApi {
+  trips: Trip[];
+  addresses: SavedAddress[];
+  settings: MileageSettings;
+  addTrip: (trip: Omit<Trip, "id">) => void;
+  updateTrip: (id: string, trip: Omit<Trip, "id">) => void;
+  deleteTrip: (id: string) => void;
+  addAddress: (addr: Omit<SavedAddress, "id">) => void;
+  deleteAddress: (id: string) => void;
+  saveSettings: (settings: MileageSettings) => void;
+}
+
 const STORAGE_KEY = "fabrica-kilometerabrechnung";
+
+export const DEFAULT_SETTINGS: MileageSettings = {
+  driverName: "",
+  licensePlate: "",
+  personnelNumber: "",
+  defaultStartAddress: "",
+  ratePerKm: 0.3,
+};
 
 const DEFAULT_DATA: MileageData = {
   trips: [],
   addresses: [],
-  settings: {
-    driverName: "",
-    licensePlate: "",
-    personnelNumber: "",
-    defaultStartAddress: "",
-    ratePerKm: 0.3,
-  },
+  settings: DEFAULT_SETTINGS,
 };
 
 function read(): MileageData {
