@@ -1,4 +1,4 @@
-import { boolean, date, decimal, int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { decimal, int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -81,74 +81,3 @@ export const siteImages = mysqlTable("site_images", {
 });
 export type SiteImage = typeof siteImages.$inferSelect;
 export type InsertSiteImage = typeof siteImages.$inferInsert;
-
-/**
- * Kilometerabrechnung – persönliche Einstellungen pro Benutzer.
- * Speichert Stammdaten für die monatliche Fahrtkostenabrechnung an die Fabrica GmbH.
- */
-export const mileageSettings = mysqlTable("mileage_settings", {
-  id: int("id").autoincrement().primaryKey(),
-  /** Verweis auf users.id – ein Datensatz pro Benutzer */
-  userId: int("userId").notNull().unique(),
-  /** Name des Fahrers/Mitarbeiters (erscheint auf der Abrechnung) */
-  driverName: varchar("driverName", { length: 256 }),
-  /** Kfz-Kennzeichen des genutzten Fahrzeugs */
-  licensePlate: varchar("licensePlate", { length: 32 }),
-  /** Personalnummer o. Ä. (optional) */
-  personnelNumber: varchar("personnelNumber", { length: 64 }),
-  /** Standard-Startadresse (z. B. Wohnort), wird für neue Fahrten vorbelegt */
-  defaultStartAddress: text("defaultStartAddress"),
-  /** Erstattungssatz in € pro km (Standard 0,30 €) */
-  ratePerKm: decimal("ratePerKm", { precision: 6, scale: 2 }).default("0.30").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-});
-export type MileageSettings = typeof mileageSettings.$inferSelect;
-export type InsertMileageSettings = typeof mileageSettings.$inferInsert;
-
-/**
- * Häufig angefahrene Adressen, die ein Benutzer speichert,
- * um sie beim Erfassen einer Fahrt schnell auswählen zu können.
- */
-export const savedAddresses = mysqlTable("saved_addresses", {
-  id: int("id").autoincrement().primaryKey(),
-  userId: int("userId").notNull(),
-  /** Kurzbezeichnung, z. B. "Büro", "Kunde Müller GmbH" */
-  label: varchar("label", { length: 128 }).notNull(),
-  /** Vollständige, von Google Maps formatierte Adresse */
-  address: text("address").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-});
-export type SavedAddress = typeof savedAddresses.$inferSelect;
-export type InsertSavedAddress = typeof savedAddresses.$inferInsert;
-
-/**
- * Einzelne dienstliche Fahrt für die monatliche Kilometerabrechnung.
- * Der erstattete Betrag wird aus distanceKm × ratePerKm berechnet
- * (× 2 bei Hin- und Rückfahrt).
- */
-export const mileageTrips = mysqlTable("mileage_trips", {
-  id: int("id").autoincrement().primaryKey(),
-  userId: int("userId").notNull(),
-  /** Datum der Fahrt (ISO-String YYYY-MM-DD) */
-  tripDate: date("tripDate", { mode: "string" }).notNull(),
-  /** Grund/Zweck der Dienstfahrt */
-  purpose: varchar("purpose", { length: 512 }).notNull(),
-  /** Startadresse */
-  startAddress: text("startAddress").notNull(),
-  /** Zieladresse */
-  endAddress: text("endAddress").notNull(),
-  /** true = Hin- und Rückfahrt (Distanz zählt doppelt) */
-  roundTrip: boolean("roundTrip").default(false).notNull(),
-  /** Einfache Strecke in km (eine Richtung) */
-  distanceKm: decimal("distanceKm", { precision: 8, scale: 2 }).notNull(),
-  /** Erstattungssatz €/km zum Zeitpunkt der Erfassung */
-  ratePerKm: decimal("ratePerKm", { precision: 6, scale: 2 }).default("0.30").notNull(),
-  /** Optionale Notiz */
-  note: text("note"),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-});
-export type MileageTrip = typeof mileageTrips.$inferSelect;
-export type InsertMileageTrip = typeof mileageTrips.$inferInsert;

@@ -1,9 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import PageLayout from "@/components/PageLayout";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { useAuth } from "@/_core/hooks/useAuth";
-import { getLoginUrl } from "@/const";
-import { trpc } from "@/lib/trpc";
 import {
   AddressAutocomplete,
   type SavedAddressOption,
@@ -12,16 +9,17 @@ import {
   SignaturePad,
   type SignaturePadHandle,
 } from "@/components/mileage/SignaturePad";
+import {
+  useMileageStore,
+  type MileageSettings,
+  type Trip,
+} from "@/lib/mileageStore";
+import { routeDistanceKm, searchAddresses } from "@/lib/osm";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -41,7 +39,6 @@ import {
   Printer,
   Calculator,
   RotateCw,
-  LogIn,
   X,
 } from "lucide-react";
 
@@ -54,7 +51,7 @@ const eur = (n: number) =>
     currency: "EUR",
   }).format(n);
 
-const km = (n: number) =>
+const fmtKm = (n: number) =>
   new Intl.NumberFormat("de-DE", {
     minimumFractionDigits: 1,
     maximumFractionDigits: 2,
@@ -81,13 +78,16 @@ function monthLabel(month: string) {
 }
 
 function formatDate(value: string) {
-  // value: YYYY-MM-DD
   const [y, m, d] = value.split("-").map(Number);
   return new Date(y, m - 1, d).toLocaleDateString("de-DE");
 }
 
+// Gemeinsame Suchfunktion für alle Adressfelder (OpenStreetMap / Nominatim)
+const addressSearch = (q: string, signal: AbortSignal) =>
+  searchAddresses(q, signal);
+
 interface TripForm {
-  id?: number;
+  id?: string;
   tripDate: string;
   purpose: string;
   startAddress: string;
@@ -97,7 +97,7 @@ interface TripForm {
   note: string;
 }
 
-const emptyForm = (start = "", rate = 0.3): TripForm => ({
+const emptyForm = (start = ""): TripForm => ({
   tripDate: today(),
   purpose: "",
   startAddress: start,
@@ -120,113 +120,54 @@ export default function Kilometerabrechnung() {
       "Monthly mileage report for business trips – with address search, distance calculation and PDF export.",
   });
 
-  const auth = useAuth();
+  const store = useMileageStore();
+  const { trips, addresses, settings } = store;
+  const rate = settings.ratePerKm || 0.3;
 
-  if (auth.loading) {
-    return (
-      <PageLayout>
-        <div className="flex min-h-[40vh] items-center justify-center">
-          <RotateCw className="h-6 w-6 animate-spin text-muted-foreground" />
-        </div>
-      </PageLayout>
-    );
-  }
-
-  if (!auth.isAuthenticated) {
-    return (
-      <PageLayout>
-        <div className="mx-auto flex min-h-[40vh] max-w-md flex-col items-center justify-center gap-4 px-4 text-center">
-          <Car className="h-10 w-10" style={{ color: "var(--fabrica-red)" }} />
-          <h1 className="text-2xl font-bold">Kilometerabrechnung</h1>
-          <p className="text-muted-foreground">
-            Bitte melde dich an, um deine Fahrten zu erfassen und die
-            monatliche Abrechnung zu erstellen.
-          </p>
-          <a href={getLoginUrl("/kilometerabrechnung")}>
-            <Button className="gap-2">
-              <LogIn className="h-4 w-4" /> Anmelden
-            </Button>
-          </a>
-        </div>
-      </PageLayout>
-    );
-  }
-
-  return <MileageApp userName={auth.user?.name ?? ""} />;
-}
-
-function MileageApp({ userName }: { userName: string }) {
-  const utils = trpc.useUtils();
   const [month, setMonth] = useState(currentMonth());
-
-  const settingsQuery = trpc.mileage.settings.get.useQuery();
-  const addressesQuery = trpc.mileage.addresses.list.useQuery();
-  const tripsQuery = trpc.mileage.trips.list.useQuery({ month });
-
-  const rate = settingsQuery.data
-    ? Number(settingsQuery.data.ratePerKm)
-    : 0.3;
-  const defaultStart = settingsQuery.data?.defaultStartAddress ?? "";
-  const saved: SavedAddressOption[] = addressesQuery.data ?? [];
-
   const [form, setForm] = useState<TripForm>(emptyForm());
   const [calculating, setCalculating] = useState(false);
   const [addressDialog, setAddressDialog] = useState(false);
   const [settingsDialog, setSettingsDialog] = useState(false);
   const [reportDialog, setReportDialog] = useState(false);
 
-  const trips = tripsQuery.data ?? [];
+  const monthTrips = useMemo(
+    () =>
+      trips
+        .filter(t => t.tripDate.startsWith(month))
+        .sort((a, b) => b.tripDate.localeCompare(a.tripDate)),
+    [trips, month]
+  );
 
   const totals = useMemo(() => {
     let totalKm = 0;
     let amount = 0;
-    for (const t of trips) {
-      const base = Number(t.distanceKm) * (t.roundTrip ? 2 : 1);
+    for (const t of monthTrips) {
+      const base = t.distanceKm * (t.roundTrip ? 2 : 1);
       totalKm += base;
-      amount += base * Number(t.ratePerKm);
+      amount += base * t.ratePerKm;
     }
     return { totalKm, amount };
-  }, [trips]);
+  }, [monthTrips]);
 
-  // -- Mutations -----------------------------------------------------------
-  const createTrip = trpc.mileage.trips.create.useMutation({
-    onSuccess: () => {
-      utils.mileage.trips.list.invalidate();
-      toast.success("Fahrt gespeichert.");
-      setForm(emptyForm(defaultStart, rate));
-    },
-    onError: e => toast.error(e.message),
-  });
-  const updateTrip = trpc.mileage.trips.update.useMutation({
-    onSuccess: () => {
-      utils.mileage.trips.list.invalidate();
-      toast.success("Fahrt aktualisiert.");
-      setForm(emptyForm(defaultStart, rate));
-    },
-    onError: e => toast.error(e.message),
-  });
-  const deleteTrip = trpc.mileage.trips.delete.useMutation({
-    onSuccess: () => {
-      utils.mileage.trips.list.invalidate();
-      toast.success("Fahrt gelöscht.");
-    },
-    onError: e => toast.error(e.message),
-  });
+  const savedOptions: SavedAddressOption[] = addresses;
 
   // -- Streckenberechnung --------------------------------------------------
   async function calcDistance() {
-    if (form.startAddress.trim().length < 3 || form.endAddress.trim().length < 3) {
+    if (
+      form.startAddress.trim().length < 3 ||
+      form.endAddress.trim().length < 3
+    ) {
       toast.error("Bitte Start- und Zieladresse angeben.");
       return;
     }
     setCalculating(true);
     try {
-      const res = await utils.mileage.maps.distance.fetch({
-        origin: form.startAddress,
-        destination: form.endAddress,
-      });
+      const res = await routeDistanceKm(form.startAddress, form.endAddress);
       setForm(f => ({ ...f, distanceKm: String(res.distanceKm) }));
-      toast.success(`Strecke: ${res.distanceText} (${res.durationText})`);
+      toast.success(
+        `Strecke: ${fmtKm(res.distanceKm)} km (ca. ${res.durationMin} min)`
+      );
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Berechnung fehlgeschlagen.");
     } finally {
@@ -250,20 +191,23 @@ function MileageApp({ userName }: { userName: string }) {
       roundTrip: form.roundTrip,
       distanceKm: distance,
       ratePerKm: rate,
-      note: form.note.trim() || null,
+      note: form.note.trim() || undefined,
     };
 
     if (form.id) {
-      updateTrip.mutate({ id: form.id, ...payload });
+      store.updateTrip(form.id, payload);
+      toast.success("Fahrt aktualisiert.");
     } else {
-      createTrip.mutate(payload);
+      store.addTrip(payload);
+      toast.success("Fahrt gespeichert.");
     }
+    setForm(emptyForm(settings.defaultStartAddress));
   }
 
-  function editTrip(t: (typeof trips)[number]) {
+  function editTrip(t: Trip) {
     setForm({
       id: t.id,
-      tripDate: String(t.tripDate),
+      tripDate: t.tripDate,
       purpose: t.purpose,
       startAddress: t.startAddress,
       endAddress: t.endAddress,
@@ -275,6 +219,8 @@ function MileageApp({ userName }: { userName: string }) {
   }
 
   const editing = Boolean(form.id);
+  const previewKm =
+    Number(form.distanceKm.replace(",", ".")) * (form.roundTrip ? 2 : 1);
 
   return (
     <PageLayout className="bg-[var(--fabrica-gray)]">
@@ -353,7 +299,8 @@ function MileageApp({ userName }: { userName: string }) {
                 <AddressAutocomplete
                   value={form.startAddress}
                   onChange={v => setForm(f => ({ ...f, startAddress: v }))}
-                  saved={saved}
+                  searchFn={addressSearch}
+                  saved={savedOptions}
                   placeholder="Start eingeben…"
                 />
               </div>
@@ -362,7 +309,8 @@ function MileageApp({ userName }: { userName: string }) {
                 <AddressAutocomplete
                   value={form.endAddress}
                   onChange={v => setForm(f => ({ ...f, endAddress: v }))}
-                  saved={saved}
+                  searchFn={addressSearch}
+                  saved={savedOptions}
                   placeholder="Ziel eingeben…"
                 />
               </div>
@@ -418,41 +366,25 @@ function MileageApp({ userName }: { userName: string }) {
               />
             </div>
 
-            {form.distanceKm && Number(form.distanceKm.replace(",", ".")) > 0 && (
+            {form.distanceKm && previewKm > 0 && (
               <p className="text-sm text-muted-foreground">
-                Berechnet:{" "}
-                <strong>
-                  {km(
-                    Number(form.distanceKm.replace(",", ".")) *
-                      (form.roundTrip ? 2 : 1)
-                  )}{" "}
-                  km
-                </strong>{" "}
-                ×{" "}
-                {eur(rate)} ={" "}
+                Berechnet: <strong>{fmtKm(previewKm)} km</strong> × {eur(rate)}{" "}
+                ={" "}
                 <strong style={{ color: "var(--fabrica-red)" }}>
-                  {eur(
-                    Number(form.distanceKm.replace(",", ".")) *
-                      (form.roundTrip ? 2 : 1) *
-                      rate
-                  )}
+                  {eur(previewKm * rate)}
                 </strong>
               </p>
             )}
 
             <div className="flex gap-2">
-              <Button
-                onClick={submitTrip}
-                disabled={createTrip.isPending || updateTrip.isPending}
-                className="gap-2"
-              >
+              <Button onClick={submitTrip} className="gap-2">
                 <Plus className="h-4 w-4" />
                 {editing ? "Änderungen speichern" : "Fahrt hinzufügen"}
               </Button>
               {editing && (
                 <Button
                   variant="ghost"
-                  onClick={() => setForm(emptyForm(defaultStart, rate))}
+                  onClick={() => setForm(emptyForm(settings.defaultStartAddress))}
                 >
                   Abbrechen
                 </Button>
@@ -479,7 +411,7 @@ function MileageApp({ userName }: { userName: string }) {
             className="gap-2"
             style={{ backgroundColor: "var(--fabrica-red)" }}
             onClick={() => setReportDialog(true)}
-            disabled={trips.length === 0}
+            disabled={monthTrips.length === 0}
           >
             <Printer className="h-4 w-4" /> Abrechnung / PDF erstellen
           </Button>
@@ -488,7 +420,7 @@ function MileageApp({ userName }: { userName: string }) {
         {/* Fahrtenliste */}
         <Card>
           <CardContent className="p-0">
-            {trips.length === 0 ? (
+            {monthTrips.length === 0 ? (
               <p className="p-8 text-center text-sm text-muted-foreground">
                 Noch keine Fahrten für {monthLabel(month)} erfasst.
               </p>
@@ -506,13 +438,12 @@ function MileageApp({ userName }: { userName: string }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {trips.map(t => {
-                      const tripKm =
-                        Number(t.distanceKm) * (t.roundTrip ? 2 : 1);
+                    {monthTrips.map(t => {
+                      const tripKm = t.distanceKm * (t.roundTrip ? 2 : 1);
                       return (
                         <tr key={t.id} className="border-b last:border-0">
                           <td className="whitespace-nowrap p-3 align-top">
-                            {formatDate(String(t.tripDate))}
+                            {formatDate(t.tripDate)}
                           </td>
                           <td className="p-3 align-top">
                             <div className="font-medium">{t.purpose}</div>
@@ -524,10 +455,10 @@ function MileageApp({ userName }: { userName: string }) {
                             {t.roundTrip ? "Ja" : "Nein"}
                           </td>
                           <td className="whitespace-nowrap p-3 text-right align-top">
-                            {km(tripKm)}
+                            {fmtKm(tripKm)}
                           </td>
                           <td className="whitespace-nowrap p-3 text-right align-top font-medium">
-                            {eur(tripKm * Number(t.ratePerKm))}
+                            {eur(tripKm * t.ratePerKm)}
                           </td>
                           <td className="whitespace-nowrap p-3 text-right align-top">
                             <button
@@ -539,7 +470,10 @@ function MileageApp({ userName }: { userName: string }) {
                             </button>
                             <button
                               className="rounded p-1.5 text-destructive hover:bg-destructive/10"
-                              onClick={() => deleteTrip.mutate({ id: t.id })}
+                              onClick={() => {
+                                store.deleteTrip(t.id);
+                                toast.success("Fahrt gelöscht.");
+                              }}
                               title="Löschen"
                             >
                               <Trash2 className="h-4 w-4" />
@@ -554,7 +488,7 @@ function MileageApp({ userName }: { userName: string }) {
                       <td className="p-3" colSpan={3}>
                         Summe {monthLabel(month)}
                       </td>
-                      <td className="p-3 text-right">{km(totals.totalKm)}</td>
+                      <td className="p-3 text-right">{fmtKm(totals.totalKm)}</td>
                       <td
                         className="p-3 text-right"
                         style={{ color: "var(--fabrica-red)" }}
@@ -569,28 +503,36 @@ function MileageApp({ userName }: { userName: string }) {
             )}
           </CardContent>
         </Card>
+
+        <p className="mt-4 text-center text-xs text-muted-foreground">
+          Deine Daten werden ausschließlich lokal in diesem Browser gespeichert.
+        </p>
       </div>
 
       <AddressManagerDialog
         open={addressDialog}
         onOpenChange={setAddressDialog}
-        saved={saved}
+        saved={savedOptions}
+        onAdd={(label, address) => store.addAddress({ label, address })}
+        onDelete={id => store.deleteAddress(id)}
       />
       <SettingsDialog
         open={settingsDialog}
         onOpenChange={setSettingsDialog}
-        initial={settingsQuery.data ?? null}
-        defaultName={userName}
+        initial={settings}
+        onSave={s => {
+          store.saveSettings(s);
+          toast.success("Einstellungen gespeichert.");
+        }}
       />
       <ReportDialog
         open={reportDialog}
         onOpenChange={setReportDialog}
         month={month}
-        trips={trips}
+        trips={monthTrips}
         totals={totals}
         rate={rate}
-        settings={settingsQuery.data ?? null}
-        fallbackName={userName}
+        settings={settings}
       />
     </PageLayout>
   );
@@ -603,32 +545,17 @@ function AddressManagerDialog({
   open,
   onOpenChange,
   saved,
+  onAdd,
+  onDelete,
 }: {
   open: boolean;
   onOpenChange: (v: boolean) => void;
   saved: SavedAddressOption[];
+  onAdd: (label: string, address: string) => void;
+  onDelete: (id: string) => void;
 }) {
-  const utils = trpc.useUtils();
   const [label, setLabel] = useState("");
   const [address, setAddress] = useState("");
-
-  const invalidate = () => utils.mileage.addresses.list.invalidate();
-  const create = trpc.mileage.addresses.create.useMutation({
-    onSuccess: () => {
-      invalidate();
-      setLabel("");
-      setAddress("");
-      toast.success("Adresse gespeichert.");
-    },
-    onError: e => toast.error(e.message),
-  });
-  const remove = trpc.mileage.addresses.delete.useMutation({
-    onSuccess: () => {
-      invalidate();
-      toast.success("Adresse gelöscht.");
-    },
-    onError: e => toast.error(e.message),
-  });
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -641,7 +568,7 @@ function AddressManagerDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-2">
+        <div className="max-h-64 space-y-2 overflow-auto">
           {saved.length === 0 && (
             <p className="text-sm text-muted-foreground">
               Noch keine Adressen gespeichert.
@@ -660,7 +587,7 @@ function AddressManagerDialog({
               </div>
               <button
                 className="rounded p-1.5 text-destructive hover:bg-destructive/10"
-                onClick={() => remove.mutate({ id: s.id })}
+                onClick={() => onDelete(s.id)}
                 title="Löschen"
               >
                 <Trash2 className="h-4 w-4" />
@@ -684,19 +611,19 @@ function AddressManagerDialog({
             <AddressAutocomplete
               value={address}
               onChange={setAddress}
+              searchFn={addressSearch}
               placeholder="Adresse suchen…"
             />
           </div>
           <Button
             className="w-full gap-2"
-            disabled={
-              create.isPending ||
-              label.trim().length === 0 ||
-              address.trim().length < 3
-            }
-            onClick={() =>
-              create.mutate({ label: label.trim(), address: address.trim() })
-            }
+            disabled={label.trim().length === 0 || address.trim().length < 3}
+            onClick={() => {
+              onAdd(label.trim(), address.trim());
+              setLabel("");
+              setAddress("");
+              toast.success("Adresse gespeichert.");
+            }}
           >
             <Plus className="h-4 w-4" /> Adresse hinzufügen
           </Button>
@@ -713,48 +640,36 @@ function SettingsDialog({
   open,
   onOpenChange,
   initial,
-  defaultName,
+  onSave,
 }: {
   open: boolean;
   onOpenChange: (v: boolean) => void;
-  initial: {
-    driverName: string | null;
-    licensePlate: string | null;
-    personnelNumber: string | null;
-    defaultStartAddress: string | null;
-    ratePerKm: string;
-  } | null;
-  defaultName: string;
+  initial: MileageSettings;
+  onSave: (s: MileageSettings) => void;
 }) {
-  const utils = trpc.useUtils();
-  const [driverName, setDriverName] = useState("");
-  const [licensePlate, setLicensePlate] = useState("");
-  const [personnelNumber, setPersonnelNumber] = useState("");
-  const [defaultStartAddress, setDefaultStartAddress] = useState("");
-  const [ratePerKm, setRatePerKm] = useState("0,30");
+  const [driverName, setDriverName] = useState(initial.driverName);
+  const [licensePlate, setLicensePlate] = useState(initial.licensePlate);
+  const [personnelNumber, setPersonnelNumber] = useState(
+    initial.personnelNumber
+  );
+  const [defaultStartAddress, setDefaultStartAddress] = useState(
+    initial.defaultStartAddress
+  );
+  const [ratePerKm, setRatePerKm] = useState(
+    String(initial.ratePerKm).replace(".", ",")
+  );
   const [loaded, setLoaded] = useState(false);
 
-  // Werte beim Öffnen einmalig vorbelegen
+  // Werte beim Öffnen aus dem Store übernehmen
   if (open && !loaded) {
-    setDriverName(initial?.driverName ?? defaultName ?? "");
-    setLicensePlate(initial?.licensePlate ?? "");
-    setPersonnelNumber(initial?.personnelNumber ?? "");
-    setDefaultStartAddress(initial?.defaultStartAddress ?? "");
-    setRatePerKm(
-      initial ? String(initial.ratePerKm).replace(".", ",") : "0,30"
-    );
+    setDriverName(initial.driverName);
+    setLicensePlate(initial.licensePlate);
+    setPersonnelNumber(initial.personnelNumber);
+    setDefaultStartAddress(initial.defaultStartAddress);
+    setRatePerKm(String(initial.ratePerKm).replace(".", ","));
     setLoaded(true);
   }
   if (!open && loaded) setLoaded(false);
-
-  const save = trpc.mileage.settings.upsert.useMutation({
-    onSuccess: () => {
-      utils.mileage.settings.get.invalidate();
-      toast.success("Einstellungen gespeichert.");
-      onOpenChange(false);
-    },
-    onError: e => toast.error(e.message),
-  });
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -798,6 +713,7 @@ function SettingsDialog({
             <AddressAutocomplete
               value={defaultStartAddress}
               onChange={setDefaultStartAddress}
+              searchFn={addressSearch}
               placeholder="z. B. Wohnort – wird bei neuen Fahrten vorbelegt"
             />
           </div>
@@ -815,16 +731,16 @@ function SettingsDialog({
 
         <DialogFooter>
           <Button
-            disabled={save.isPending}
-            onClick={() =>
-              save.mutate({
-                driverName: driverName.trim() || null,
-                licensePlate: licensePlate.trim() || null,
-                personnelNumber: personnelNumber.trim() || null,
-                defaultStartAddress: defaultStartAddress.trim() || null,
+            onClick={() => {
+              onSave({
+                driverName: driverName.trim(),
+                licensePlate: licensePlate.trim(),
+                personnelNumber: personnelNumber.trim(),
+                defaultStartAddress: defaultStartAddress.trim(),
                 ratePerKm: Number(ratePerKm.replace(",", ".")) || 0.3,
-              })
-            }
+              });
+              onOpenChange(false);
+            }}
           >
             Speichern
           </Button>
@@ -837,18 +753,6 @@ function SettingsDialog({
 // ---------------------------------------------------------------------------
 // Dialog: Abrechnung / Druckansicht
 // ---------------------------------------------------------------------------
-type Trip = {
-  id: number;
-  tripDate: unknown;
-  purpose: string;
-  startAddress: string;
-  endAddress: string;
-  roundTrip: boolean;
-  distanceKm: string;
-  ratePerKm: string;
-  note: string | null;
-};
-
 function ReportDialog({
   open,
   onOpenChange,
@@ -857,7 +761,6 @@ function ReportDialog({
   totals,
   rate,
   settings,
-  fallbackName,
 }: {
   open: boolean;
   onOpenChange: (v: boolean) => void;
@@ -865,18 +768,13 @@ function ReportDialog({
   trips: Trip[];
   totals: { totalKm: number; amount: number };
   rate: number;
-  settings: {
-    driverName: string | null;
-    licensePlate: string | null;
-    personnelNumber: string | null;
-  } | null;
-  fallbackName: string;
+  settings: MileageSettings;
 }) {
   const sigRef = useRef<SignaturePadHandle>(null);
   const [place, setPlace] = useState("");
   const [signDate, setSignDate] = useState(today());
 
-  const driverName = settings?.driverName || fallbackName || "—";
+  const driverName = settings.driverName || "—";
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -902,7 +800,10 @@ function ReportDialog({
               </p>
             </div>
             <div className="text-right">
-              <div className="text-lg font-bold" style={{ color: "var(--fabrica-red)" }}>
+              <div
+                className="text-lg font-bold"
+                style={{ color: "var(--fabrica-red)" }}
+              >
                 Fabrica GmbH
               </div>
             </div>
@@ -917,13 +818,13 @@ function ReportDialog({
               <span className="text-gray-500">Abrechnungsmonat:</span>{" "}
               <strong>{monthLabel(month)}</strong>
             </div>
-            {settings?.licensePlate && (
+            {settings.licensePlate && (
               <div>
                 <span className="text-gray-500">Kfz-Kennzeichen:</span>{" "}
                 <strong>{settings.licensePlate}</strong>
               </div>
             )}
-            {settings?.personnelNumber && (
+            {settings.personnelNumber && (
               <div>
                 <span className="text-gray-500">Personalnr.:</span>{" "}
                 <strong>{settings.personnelNumber}</strong>
@@ -943,16 +844,18 @@ function ReportDialog({
                 <th className="border border-gray-300 p-1.5">Von → Nach</th>
                 <th className="border border-gray-300 p-1.5 text-center">H/R</th>
                 <th className="border border-gray-300 p-1.5 text-right">km</th>
-                <th className="border border-gray-300 p-1.5 text-right">Betrag</th>
+                <th className="border border-gray-300 p-1.5 text-right">
+                  Betrag
+                </th>
               </tr>
             </thead>
             <tbody>
               {trips.map(t => {
-                const tripKm = Number(t.distanceKm) * (t.roundTrip ? 2 : 1);
+                const tripKm = t.distanceKm * (t.roundTrip ? 2 : 1);
                 return (
                   <tr key={t.id}>
                     <td className="whitespace-nowrap border border-gray-300 p-1.5">
-                      {formatDate(String(t.tripDate))}
+                      {formatDate(t.tripDate)}
                     </td>
                     <td className="border border-gray-300 p-1.5">{t.purpose}</td>
                     <td className="border border-gray-300 p-1.5">
@@ -962,10 +865,10 @@ function ReportDialog({
                       {t.roundTrip ? "Ja" : "Nein"}
                     </td>
                     <td className="whitespace-nowrap border border-gray-300 p-1.5 text-right">
-                      {km(tripKm)}
+                      {fmtKm(tripKm)}
                     </td>
                     <td className="whitespace-nowrap border border-gray-300 p-1.5 text-right">
-                      {eur(tripKm * Number(t.ratePerKm))}
+                      {eur(tripKm * t.ratePerKm)}
                     </td>
                   </tr>
                 );
@@ -977,7 +880,7 @@ function ReportDialog({
                   Gesamt
                 </td>
                 <td className="border border-gray-300 p-1.5 text-right">
-                  {km(totals.totalKm)}
+                  {fmtKm(totals.totalKm)}
                 </td>
                 <td className="border border-gray-300 p-1.5 text-right">
                   {eur(totals.amount)}
@@ -987,8 +890,8 @@ function ReportDialog({
           </table>
 
           <p className="mt-3 text-xs text-gray-600">
-            Hiermit bestätige ich die Richtigkeit der angegebenen
-            dienstlichen Fahrten.
+            Hiermit bestätige ich die Richtigkeit der angegebenen dienstlichen
+            Fahrten.
           </p>
 
           {/* Ort / Datum / Unterschrift */}

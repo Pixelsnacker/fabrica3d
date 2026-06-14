@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { MapPin, Star, Loader2 } from "lucide-react";
-import { trpc } from "@/lib/trpc";
 import { cn } from "@/lib/utils";
 
 export interface SavedAddressOption {
-  id: number;
+  id: string;
   label: string;
   address: string;
 }
@@ -12,6 +11,11 @@ export interface SavedAddressOption {
 interface AddressAutocompleteProps {
   value: string;
   onChange: (value: string) => void;
+  /** Async-Suchfunktion, liefert Adressvorschläge zu einem Suchbegriff. */
+  searchFn: (
+    query: string,
+    signal: AbortSignal
+  ) => Promise<{ description: string }[]>;
   saved?: SavedAddressOption[];
   placeholder?: string;
   id?: string;
@@ -19,7 +23,7 @@ interface AddressAutocompleteProps {
 }
 
 /** Einfacher Debounce-Hook. */
-function useDebounced<T>(value: T, delay = 350): T {
+function useDebounced<T>(value: T, delay = 400): T {
   const [debounced, setDebounced] = useState(value);
   useEffect(() => {
     const t = setTimeout(() => setDebounced(value), delay);
@@ -29,12 +33,13 @@ function useDebounced<T>(value: T, delay = 350): T {
 }
 
 /**
- * Adresseingabe mit automatischer Vervollständigung (Google Maps) und
- * Schnellauswahl gespeicherter Adressen.
+ * Adresseingabe mit automatischer Vervollständigung und Schnellauswahl
+ * gespeicherter Adressen. Die eigentliche Suche wird über `searchFn` injiziert.
  */
 export function AddressAutocomplete({
   value,
   onChange,
+  searchFn,
   saved = [],
   placeholder,
   id,
@@ -42,6 +47,8 @@ export function AddressAutocomplete({
 }: AddressAutocompleteProps) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState(value);
+  const [results, setResults] = useState<{ description: string }[]>([]);
+  const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // value von außen (z. B. nach Auswahl gespeicherter Adresse) übernehmen
@@ -49,13 +56,26 @@ export function AddressAutocomplete({
     setQuery(value);
   }, [value]);
 
-  const debouncedQuery = useDebounced(query, 350);
-  const shouldSearch = open && debouncedQuery.trim().length >= 3;
+  const debouncedQuery = useDebounced(query, 400);
 
-  const suggestions = trpc.mileage.maps.autocomplete.useQuery(
-    { input: debouncedQuery.trim() },
-    { enabled: shouldSearch, staleTime: 60_000 }
-  );
+  // Suche ausführen, sobald genug Zeichen vorhanden sind und das Feld offen ist
+  useEffect(() => {
+    const term = debouncedQuery.trim();
+    if (!open || term.length < 3) {
+      setResults([]);
+      setLoading(false);
+      return;
+    }
+    const controller = new AbortController();
+    setLoading(true);
+    searchFn(term, controller.signal)
+      .then(r => setResults(r))
+      .catch(err => {
+        if ((err as Error)?.name !== "AbortError") setResults([]);
+      })
+      .finally(() => setLoading(false));
+    return () => controller.abort();
+  }, [debouncedQuery, open, searchFn]);
 
   // Klick außerhalb schließt das Dropdown
   useEffect(() => {
@@ -85,9 +105,9 @@ export function AddressAutocomplete({
     setOpen(false);
   }
 
-  const hasPredictions = (suggestions.data?.length ?? 0) > 0;
+  const hasResults = results.length > 0;
   const showDropdown =
-    open && (matchingSaved.length > 0 || hasPredictions || suggestions.isFetching);
+    open && (matchingSaved.length > 0 || hasResults || loading);
 
   return (
     <div ref={containerRef} className={cn("relative", className)}>
@@ -107,7 +127,7 @@ export function AddressAutocomplete({
           onFocus={() => setOpen(true)}
           className="flex h-10 w-full rounded-md border border-input bg-background py-2 pl-9 pr-9 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
-        {suggestions.isFetching && (
+        {loading && (
           <Loader2 className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 animate-spin text-muted-foreground" />
         )}
       </div>
@@ -136,14 +156,14 @@ export function AddressAutocomplete({
             </button>
           ))}
 
-          {hasPredictions && matchingSaved.length > 0 && (
+          {hasResults && matchingSaved.length > 0 && (
             <div className="my-1 border-t border-border" />
           )}
 
-          {suggestions.data?.map(p => (
+          {results.map((p, i) => (
             <button
               type="button"
-              key={p.placeId}
+              key={`${p.description}-${i}`}
               onClick={() => select(p.description)}
               className="flex w-full items-start gap-2 rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent hover:text-accent-foreground"
             >
@@ -152,13 +172,11 @@ export function AddressAutocomplete({
             </button>
           ))}
 
-          {!hasPredictions &&
-            !suggestions.isFetching &&
-            matchingSaved.length === 0 && (
-              <div className="px-2 py-2 text-sm text-muted-foreground">
-                Keine Vorschläge gefunden.
-              </div>
-            )}
+          {!hasResults && !loading && matchingSaved.length === 0 && (
+            <div className="px-2 py-2 text-sm text-muted-foreground">
+              Keine Vorschläge gefunden.
+            </div>
+          )}
         </div>
       )}
     </div>
