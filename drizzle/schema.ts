@@ -81,3 +81,28 @@ export const siteImages = mysqlTable("site_images", {
 });
 export type SiteImage = typeof siteImages.$inferSelect;
 export type InsertSiteImage = typeof siteImages.$inferInsert;
+
+/**
+ * Siepe product data sheets (Produktdatenblätter).
+ * Each row is one data sheet identified by a stable permalink id (nanoid).
+ * The full multilingual content lives in `data` (JSON); the extra columns are
+ * denormalised copies for fast listing, search and sorting.
+ * The id is permanent so the public view/PDF link can be embedded on the
+ * website and inside the Siepe ERP (Lotus Notes) – content always stays live.
+ */
+export const datasheets = mysqlTable("datasheets", {
+  /** Permanent permalink id (nanoid). Never changes once created. */
+  id: varchar("id", { length: 32 }).primaryKey(),
+  status: mysqlEnum("status", ["entwurf", "pruefung", "freigegeben", "archiviert"]).default("entwurf").notNull(),
+  /** Denormalised German headline for listing/search. */
+  headlineDe: varchar("headlineDe", { length: 256 }).default("").notNull(),
+  productGroup: varchar("productGroup", { length: 128 }).default("").notNull(),
+  prospektNr: varchar("prospektNr", { length: 64 }).default("").notNull(),
+  datum: varchar("datum", { length: 16 }).default("").notNull(),
+  /** Full Datasheet object as JSON (images are stored as URLs, not base64). */
+  data: text("data").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+export type DatasheetRow = typeof datasheets.$inferSelect;
+export type InsertDatasheetRow = typeof datasheets.$inferInsert;
