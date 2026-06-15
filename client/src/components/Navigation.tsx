@@ -56,6 +56,7 @@ const navItems: NavItem[] = [
   { label: 'Projekte', labelEn: 'Projects', href: '/projekte' },
   { label: 'Basiswissen', labelEn: 'Knowledge Base', href: '/basiswissen' },
   { label: 'F3 Kalkulator', labelEn: 'F3 Calculator', href: '/kalkulator' },
+  { label: 'Datenblätter', labelEn: 'Data Sheets', href: '/datenblatt' },
   { label: 'Upload', labelEn: 'Upload', href: '/upload' },
 ];
 

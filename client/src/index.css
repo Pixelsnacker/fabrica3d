@@ -320,3 +320,47 @@
     margin: 14mm 0;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Produktdatenblatt – Druck/PDF (randloser A4, vektorscharf)
+   Der Druck-Container #dsPrintRoot wird per Portal an <body> gehängt und ist
+   nur während des Druckens (body.ds-printing) sichtbar.
+   ────────────────────────────────────────────────────────────────────────── */
+#dsPrintRoot {
+  display: none;
+}
+.ds-doc {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+@page datenblatt {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body.ds-printing {
+    margin: 0 !important;
+    background: #fff !important;
+  }
+  /* App ausblenden, Datenblatt einblenden */
+  body.ds-printing #root {
+    display: none !important;
+  }
+  body.ds-printing #dsPrintRoot {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+  }
+  /* gegen die globale `body * { visibility:hidden }`-Regel der Kilometer-Seite */
+  body.ds-printing #dsPrintRoot,
+  body.ds-printing #dsPrintRoot * {
+    visibility: visible !important;
+  }
+  body.ds-printing .ds-doc {
+    page: datenblatt;
+    box-shadow: none !important;
+  }
+}
